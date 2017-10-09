@@ -239,7 +239,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var PluginListComponent = (function () {
     function PluginListComponent(http) {
         this.plugins = [];
-        this.service = new __WEBPACK_IMPORTED_MODULE_1__services_http_service__["a" /* HttpService */]("http://127.0.0.1:8081/plugins", http);
+        this.service = new __WEBPACK_IMPORTED_MODULE_1__services_http_service__["a" /* HttpService */]("/plugins", http);
     }
     PluginListComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -270,7 +270,7 @@ var PluginListComponent = (function () {
                 o.Status = "RUNNING";
         }
         console.log(param);
-        this.service.get("http://127.0.0.1:8081/switch?" + param + "_switch=start")
+        this.service.get("/switch?" + param + "_switch=start")
             .subscribe(function (response) {
             console.log(response);
         }, function (error) {
@@ -293,7 +293,7 @@ var PluginListComponent = (function () {
                 o.Status = "STOPPED";
         }
         console.log(param);
-        this.service.get("http://127.0.0.1:8081/switch?" + param + "_switch=stop")
+        this.service.get("/switch?" + param + "_switch=stop")
             .subscribe(function (response) {
             console.log(response);
         }, function (error) {
@@ -464,11 +464,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var SliderControlComponent = (function () {
     function SliderControlComponent(http) {
         this.chains = [];
-        this.service = new __WEBPACK_IMPORTED_MODULE_1__services_http_service__["a" /* HttpService */]("http://127.0.0.1:8081/singlejoint", http);
+        this.service = new __WEBPACK_IMPORTED_MODULE_1__services_http_service__["a" /* HttpService */]("/singlejoint", http);
     }
     SliderControlComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.service.get("http://127.0.0.1:8081/chains")
+        this.service.get("/chains")
             .subscribe(function (response) {
             for (var _i = 0, _a = response["Chains"]; _i < _a.length; _i++) {
                 var o = _a[_i];
@@ -509,7 +509,7 @@ var SliderControlComponent = (function () {
         });
     };
     SliderControlComponent.prototype.onMaster = function () {
-        this.service.get("http://127.0.0.1:8081/master?web")
+        this.service.get("/master?web")
             .subscribe(function (response) {
         }, function (error) {
             //rimovo dal vettore
