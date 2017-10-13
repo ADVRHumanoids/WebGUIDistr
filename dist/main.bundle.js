@@ -213,7 +213,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/plugin-list/plugin-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  plugin-list\n</p>\n<li *ngFor=\"let item of plugins\"> {{item.Name}} {{item.Status}}\n    <button type=\"button\" (click)=\"onStart(item.Name)\">Start</button> \n    <button type=\"button\" (click)=\"onStop(item.Name)\">Stop</button> \n  </li>\n"
+module.exports = "<p>\n  plugin-list\n</p>\n<li *ngFor=\"let item of plugins\"> {{item.Name}} {{item.Status}}\n    <button type=\"button\" (click)=\"onStart(item.Name)\">Start</button> \n    <button type=\"button\" (click)=\"onStop(item.Name)\">Stop</button> \n     <input type=\"text\"  #cmd>\n     <button type=\"button\" (click)=\"onCmd(item.Name, cmd.value)\">Cmd</button> \n  </li>\n"
 
 /***/ }),
 
@@ -312,6 +312,23 @@ var PluginListComponent = (function () {
             }
         });
     };
+    PluginListComponent.prototype.onCmd = function (param, cmd) {
+        console.log(cmd);
+        this.service.post("/cmd", { "Name": param + "_cmd", "cmd": cmd })
+            .subscribe(function (response) {
+        }, function (error) {
+            //rimovo dal vettore
+            if (error instanceof __WEBPACK_IMPORTED_MODULE_3__common_not_foud_error__["a" /* NotFoundError */]) {
+                //expected error
+                //deleted
+                //this.form.setErrors(error.json());
+            }
+            else {
+                //unexpected error
+                throw error;
+            }
+        });
+    };
     return PluginListComponent;
 }());
 PluginListComponent = __decorate([
@@ -386,6 +403,13 @@ var HttpService = (function () {
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    HttpService.prototype.post = function (url, resource) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
+        var options = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["c" /* RequestOptions */]({ headers: headers });
+        return this.http.post(url, JSON.stringify(resource), options)
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     HttpService.prototype.updatePost = function (resource) {
         //we put in the post only the property that we want modify, so 
         //we send less data to the server
@@ -438,7 +462,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/slider-control/slider-control.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  slider-control  <button type=\"button\" (click)=\"onMaster()\">Set Web Master</button> \n \n</p>\n<li *ngFor=\"let item of chains; let i=index\"> {{item.Name}} {{item.Id}} \n  <!-- <input  #Input type=\"range\" min=\"-2\" max=\"2\" [(ngModel)]=\"chains[in]\" value=\"chains{{in}}.Val\" step=\"0.1\" (change)=\"sendVal(Input.value,item.Id)\">-->\n   <input type=\"range\" #Input name=\"range\" [(ngModel)]=\"chains[i].Val\" min={{item.Llimit}}  max={{item.Ulimit}} step=\"0.1\" (change)=\"sendVal(Input.value,item.Id)\" > {{item.Val}}\n</li>\n\n "
+module.exports = "<p>\n  slider-control  <button type=\"button\" (click)=\"onMaster()\">Set Web Master</button> \n <button type=\"button\" (click)=\"type='range'\">R</button><button type=\"button\" (click)=\"type='number'\">N</button> \n</p>\n<li *ngFor=\"let item of chains; let i=index\"> {{item.Chain}}\n  \n  {{item.Val.Name}} {{item.Val.Id}} <input [type]=\"type\" #Input name=\"range\" [(ngModel)]=\"chains[i].Val.Val\" min={{item.Val.Llimit}}  max={{item.Val.Ulimit}} step=\"0.1\" (change)=\"sendVal(Input.value,item.Val.Id)\" > {{item.Val.Val}}\n</li>\n\n "
 
 /***/ }),
 
@@ -466,6 +490,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var SliderControlComponent = (function () {
     function SliderControlComponent(http) {
+        this.type = "range";
         this.chains = [];
         this.jid = [];
         this.jval = [];
@@ -478,9 +503,10 @@ var SliderControlComponent = (function () {
             for (var _i = 0, _a = response["Chains"]; _i < _a.length; _i++) {
                 var o = _a[_i];
                 var p = o["Val"];
+                var chna = o["Chain"];
                 for (var _b = 0, p_1 = p; _b < p_1.length; _b++) {
                     var u = p_1[_b];
-                    _this.chains.push({ Name: u["Name"], Id: u["ID"], Val: u["Lval"], Llimit: u["Llimit"], Ulimit: u["Ulimit"] });
+                    _this.chains.push({ Chain: chna, Val: { Name: u["Name"], Id: u["ID"], Val: u["Lval"], Llimit: u["Llimit"], Ulimit: u["Ulimit"] } });
                 }
             }
         }, function (error) {
@@ -542,8 +568,8 @@ var SliderControlComponent = (function () {
             for (var _d = 0, _e = _this.chains; _d < _e.length; _d++) {
                 var entry = _e[_d];
                 for (var i in _this.jval) {
-                    if (entry.Id == _this.jid[i]) {
-                        entry.Val = _this.jval[i];
+                    if (entry.Val.Id == _this.jid[i]) {
+                        entry.Val.Val = _this.jval[i];
                     }
                 }
             }
