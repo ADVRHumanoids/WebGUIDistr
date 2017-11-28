@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\n  <h1>\n    XBotCore\n  </h1>\n</div>\n <app-plugin-list></app-plugin-list>\n <app-slider-control></app-slider-control>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\n  <h1>\n    XBotCore\n  </h1>\n</div>\n<div #container></div>\n <app-plugin-list></app-plugin-list>\n <app-slider-control></app-slider-control>\n"
 
 /***/ }),
 
@@ -43,6 +43,7 @@ module.exports = "<!--The content below is only a placeholder and can be replace
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_three__ = __webpack_require__("../../../../three/build/three.module.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -50,21 +51,75 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'app';
+        console.log(__WEBPACK_IMPORTED_MODULE_1_three__);
     }
+    AppComponent.prototype.ngOnInit = function () {
+        this.container = this.elementRef.nativeElement;
+        console.log(this.container);
+        this.init();
+    };
+    AppComponent.prototype.init = function () {
+        var screen = {
+            width: 400,
+            height: 300
+        }, view = {
+            angle: 45,
+            aspect: screen.width / screen.height,
+            near: 0.1,
+            far: 1000
+        };
+        this.scene = new __WEBPACK_IMPORTED_MODULE_1_three__["Scene"]();
+        this.camera = new __WEBPACK_IMPORTED_MODULE_1_three__["PerspectiveCamera"](view.angle, view.aspect, view.near, view.far);
+        this.renderer = new __WEBPACK_IMPORTED_MODULE_1_three__["WebGLRenderer"]();
+        this.scene.add(this.camera);
+        this.scene.add(new __WEBPACK_IMPORTED_MODULE_1_three__["AxisHelper"](20));
+        this.camera.position.set(10, 10, 10);
+        this.camera.lookAt(new __WEBPACK_IMPORTED_MODULE_1_three__["Vector3"](0, 0, 0));
+        this.renderer.setSize(screen.width, screen.height);
+        this.container.appendChild(this.renderer.domElement);
+        var geometry = new __WEBPACK_IMPORTED_MODULE_1_three__["BoxGeometry"](5, 5, 5), material = new __WEBPACK_IMPORTED_MODULE_1_three__["MeshBasicMaterial"]({ color: 0xFFFFFF, wireframe: true });
+        this.cube = new __WEBPACK_IMPORTED_MODULE_1_three__["Mesh"](geometry, material);
+        this.cube.position.set(-50, -50, -50);
+        this.scene.add(this.cube);
+        this.render();
+    };
+    AppComponent.prototype.render = function () {
+        var self = this;
+        (function render() {
+            requestAnimationFrame(render);
+            self.renderer.render(self.scene, self.camera);
+            self.animate();
+        }());
+    };
+    AppComponent.prototype.animate = function () {
+        this.cube.rotateX(0.1);
+        this.cube.rotateY(0.1);
+        this.cube.position.addScalar(0.2);
+    };
     return AppComponent;
 }());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* ViewChild */])('container'),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* ElementRef */]) === "function" && _a || Object)
+], AppComponent.prototype, "elementRef", void 0);
 AppComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
         selector: 'app-root',
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.css")]
-    })
+    }),
+    __metadata("design:paramtypes", [])
 ], AppComponent);
 
+var _a;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -462,7 +517,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/slider-control/slider-control.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  slider-control  <button type=\"button\" (click)=\"onMaster()\">Set Web Master</button> \n <button type=\"button\" (click)=\"type='range'\">R</button><button type=\"button\" (click)=\"type='number'\">N</button> \n</p>\n<li *ngFor=\"let item of chains; let i=index\"> {{item.Chain}}\n  \n  {{item.Val.Name}} {{item.Val.Id}} <input [type]=\"type\" #Input name=\"range\" [(ngModel)]=\"chains[i].Val.Val\" min={{item.Val.Llimit}}  max={{item.Val.Ulimit}} step=\"0.1\" (change)=\"sendVal(Input.value,item.Val.Id)\" > {{item.Val.Val}}\n</li>\n\n "
+module.exports = "<p>\n  slider-control  <button type=\"button\" (click)=\"onMaster()\">Set Web Master</button> \n <button type=\"button\" (click)=\"type='range'\">R</button><button type=\"button\" (click)=\"type='number'\">N</button> \n</p>\n<li *ngFor=\"let item of chains; let i=index\"> {{item.Chain}}\n  \n  {{item.Val.Name}} {{item.Val.Id}} <p>PositionRef</p><input [type]=\"type\" #Input name=\"range\" [(ngModel)]=\"chains[i].Val.JVal\" min={{item.Val.Llimit}}  max={{item.Val.Ulimit}} step=\"0.1\" (change)=\"setPosRef(Input.value)\" > {{item.Val.JVal}}\n  \n  <p>VelocityRef</p><input [type]=\"type\" #Vel name=\"range\" [(ngModel)]=\"chains[i].Val.VVal\"  step=\"0.1\" (change)=\"setVelRef(Vel.value)\" > {{item.Val.VVal}}\n  <p>EffortRef</p><input [type]=\"type\" #Eff name=\"range\" [(ngModel)]=\"chains[i].Val.EVal\"  step=\"0.1\" (change)=\"setEffortRef(Eff.value)\" > {{item.Val.EVal}}\n  <p>Stiffness</p><input [type]=\"type\" #Stiff name=\"range\" [(ngModel)]=\"chains[i].Val.SVal\"  step=\"0.1\" (change)=\"setStiffRef(Stiff.value)\" > {{item.Val.SVal}}\n  <p>Damping</p><input [type]=\"type\" #Damp name=\"range\" [(ngModel)]=\"chains[i].Val.DVal\"  step=\"0.1\" (change)=\"setDampRef(Damp.value)\" > {{item.Val.DVal}}\n  <button type=\"button\" (click)=\"sendVal(item.Val.Id)\">SEND</button>\n</li>\n\n "
 
 /***/ }),
 
@@ -494,6 +549,11 @@ var SliderControlComponent = (function () {
         this.chains = [];
         this.jid = [];
         this.jval = [];
+        this.pval = 0.0;
+        this.vval = 0.0;
+        this.eval = 0.0;
+        this.sval = 0.0;
+        this.dval = 0.0;
         this.service = new __WEBPACK_IMPORTED_MODULE_1__services_http_service__["a" /* HttpService */]("/singlejoint", http);
     }
     SliderControlComponent.prototype.ngOnInit = function () {
@@ -506,7 +566,9 @@ var SliderControlComponent = (function () {
                 var chna = o["Chain"];
                 for (var _b = 0, p_1 = p; _b < p_1.length; _b++) {
                     var u = p_1[_b];
-                    _this.chains.push({ Chain: chna, Val: { Name: u["Name"], Id: u["ID"], Val: u["Lval"], Llimit: u["Llimit"], Ulimit: u["Ulimit"] } });
+                    _this.chains.push({ Chain: chna, Val: { Name: u["Name"], Id: u["ID"], JVal: u["Lval"],
+                            VVal: u["Vval"], EVal: u["Eval"], SVal: u["Sval"], DVal: u["Dval"],
+                            Llimit: u["Llimit"], Ulimit: u["Ulimit"] } });
                 }
             }
         }, function (error) {
@@ -522,9 +584,26 @@ var SliderControlComponent = (function () {
             }
         });
     };
-    SliderControlComponent.prototype.sendVal = function (param, id) {
+    SliderControlComponent.prototype.setPosRef = function (param) {
+        this.pval = param;
+    };
+    SliderControlComponent.prototype.setVelRef = function (param) {
+        this.vval = param;
+    };
+    SliderControlComponent.prototype.setEffortRef = function (param) {
+        this.eval = param;
+    };
+    SliderControlComponent.prototype.setStiffRef = function (param) {
+        this.sval = param;
+    };
+    SliderControlComponent.prototype.setDampRef = function (param) {
+        this.dval = param;
+    };
+    SliderControlComponent.prototype.sendVal = function (id) {
         //{"joint":[{"id": 15, "val": 0},{"id": 16, "val": 0}]}
-        this.service.create({ "joint": [{ "id": Number(id), "val": Number(param) }] })
+        this.service.create({ "joint": [{ "id": Number(id), "pos": Number(this.pval),
+                    "vel": Number(this.vval), "eff": Number(this.eval), "stiff": Number(this.sval),
+                    "damp": Number(this.dval) }] })
             .subscribe(function (response) {
         }, function (error) {
             //rimovo dal vettore
