@@ -517,7 +517,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/slider-control/slider-control.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  slider-control  <button type=\"button\" (click)=\"onMaster()\">Set Web Master</button> \n <button type=\"button\" (click)=\"type='range'\">R</button><button type=\"button\" (click)=\"type='number'\">N</button> \n</p>\n<li *ngFor=\"let item of chains; let i=index\"> {{item.Chain}}\n  \n  {{item.Val.Name}} {{item.Val.Id}} <p>PositionRef</p><input [type]=\"type\" #Input name=\"range\" [(ngModel)]=\"chains[i].Val.JVal\" min={{item.Val.Llimit}}  max={{item.Val.Ulimit}} step=\"0.1\" (change)=\"setPosRef(Input.value)\" > {{item.Val.JVal}}\n  \n  <p>VelocityRef</p><input [type]=\"type\" #Vel name=\"range\" [(ngModel)]=\"chains[i].Val.VVal\"  step=\"0.1\" (change)=\"setVelRef(Vel.value)\" > {{item.Val.VVal}}\n  <p>EffortRef</p><input [type]=\"type\" #Eff name=\"range\" [(ngModel)]=\"chains[i].Val.EVal\"  step=\"0.1\" (change)=\"setEffortRef(Eff.value)\" > {{item.Val.EVal}}\n  <p>Stiffness</p><input [type]=\"type\" #Stiff name=\"range\" [(ngModel)]=\"chains[i].Val.SVal\"  step=\"0.1\" (change)=\"setStiffRef(Stiff.value)\" > {{item.Val.SVal}}\n  <p>Damping</p><input [type]=\"type\" #Damp name=\"range\" [(ngModel)]=\"chains[i].Val.DVal\"  step=\"0.1\" (change)=\"setDampRef(Damp.value)\" > {{item.Val.DVal}}\n  <button type=\"button\" (click)=\"sendVal(item.Val.Id)\">SEND</button>\n</li>\n\n "
+module.exports = "<p>\n  slider-control  <button type=\"button\" (click)=\"onMaster()\">Set Web Master</button> \n <button type=\"button\" (click)=\"type='range'\">R</button><button type=\"button\" (click)=\"type='number'\">N</button> \n</p>\n<li *ngFor=\"let item of chains; let i=index\"> {{item.Chain}}\n  \n  {{item.Val.Name}} {{item.Val.Id}} <p>PositionRef</p><input [type]=\"type\" #Input name=\"range\" [(ngModel)]=\"chains[i].Val.JVal\" min={{item.Val.Llimit}}  max={{item.Val.Ulimit}} step=\"0.1\" (change)=\"setPosRef(Input.value)\" > {{item.Val.JVal}}\n  \n  <p>VelocityRef</p><input [type]=\"type\" #Vel name=\"range\" [(ngModel)]=\"chains[i].Val.VVal\"  step=\"0.1\" (change)=\"setVelRef(Vel.value)\" > {{item.Val.VVal}}\n  <p>EffortRef</p><input [type]=\"type\" #Eff name=\"range\" [(ngModel)]=\"chains[i].Val.EVal\" step=\"0.1\" (change)=\"setEffortRef(Eff.value)\" > {{item.Val.EVal}}\n  <p>Stiffness</p><input [type]=\"type\" #Stiff name=\"range\" [(ngModel)]=\"chains[i].Val.SVal\" min=0.0  max=10000.0  step=\"0.1\" (change)=\"setStiffRef(Stiff.value)\" > {{item.Val.SVal}}\n  <p>Damping</p><input [type]=\"type\" #Damp name=\"range\" [(ngModel)]=\"chains[i].Val.DVal\" min=0.0  max=10000.0 step=\"0.1\" (change)=\"setDampRef(Damp.value)\" > {{item.Val.DVal}}\n  <button type=\"button\" (click)=\"setPosRef(Input.value); setVelRef(Vel.value); setEffortRef(Eff.value); setStiffRef(Stiff.value); setDampRef(Damp.value); sendVal(item.Val.Id)\">SEND</button>\n</li>\n\n "
 
 /***/ }),
 
@@ -550,6 +550,7 @@ var SliderControlComponent = (function () {
         this.jid = [];
         this.jval = [];
         this.evval = [];
+        this.vvval = [];
         this.svval = [];
         this.dvval = [];
         this.pval = 0.0;
@@ -651,19 +652,24 @@ var SliderControlComponent = (function () {
                 var o = _e[_d];
                 _this.evval.push(o);
             }
-            for (var _f = 0, _g = response["stiffness"]; _f < _g.length; _f++) {
+            for (var _f = 0, _g = response["link_velocity"]; _f < _g.length; _f++) {
                 var o = _g[_f];
+                _this.vvval.push(o);
+            }
+            for (var _h = 0, _j = response["stiffness"]; _h < _j.length; _h++) {
+                var o = _j[_h];
                 _this.svval.push(o);
             }
-            for (var _h = 0, _j = response["damping"]; _h < _j.length; _h++) {
-                var o = _j[_h];
+            for (var _k = 0, _l = response["damping"]; _k < _l.length; _k++) {
+                var o = _l[_k];
                 _this.dvval.push(o);
             }
-            for (var _k = 0, _l = _this.chains; _k < _l.length; _k++) {
-                var entry = _l[_k];
+            for (var _m = 0, _o = _this.chains; _m < _o.length; _m++) {
+                var entry = _o[_m];
                 for (var i in _this.jval) {
                     if (entry.Val.Id == _this.jid[i]) {
                         entry.Val.JVal = _this.jval[i];
+                        entry.Val.VVal = _this.vvval[i];
                         entry.Val.EVal = _this.evval[i];
                         entry.Val.SVal = _this.svval[i];
                         entry.Val.DVal = _this.dvval[i];
