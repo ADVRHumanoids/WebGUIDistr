@@ -549,6 +549,9 @@ var SliderControlComponent = (function () {
         this.chains = [];
         this.jid = [];
         this.jval = [];
+        this.evval = [];
+        this.svval = [];
+        this.dvval = [];
         this.pval = 0.0;
         this.vval = 0.0;
         this.eval = 0.0;
@@ -644,11 +647,26 @@ var SliderControlComponent = (function () {
                 var o = _c[_b];
                 _this.jval.push(o);
             }
-            for (var _d = 0, _e = _this.chains; _d < _e.length; _d++) {
-                var entry = _e[_d];
+            for (var _d = 0, _e = response["effort"]; _d < _e.length; _d++) {
+                var o = _e[_d];
+                _this.evval.push(o);
+            }
+            for (var _f = 0, _g = response["stiffness"]; _f < _g.length; _f++) {
+                var o = _g[_f];
+                _this.svval.push(o);
+            }
+            for (var _h = 0, _j = response["damping"]; _h < _j.length; _h++) {
+                var o = _j[_h];
+                _this.dvval.push(o);
+            }
+            for (var _k = 0, _l = _this.chains; _k < _l.length; _k++) {
+                var entry = _l[_k];
                 for (var i in _this.jval) {
                     if (entry.Val.Id == _this.jid[i]) {
-                        entry.Val.Val = _this.jval[i];
+                        entry.Val.JVal = _this.jval[i];
+                        entry.Val.EVal = _this.evval[i];
+                        entry.Val.SVal = _this.svval[i];
+                        entry.Val.DVal = _this.dvval[i];
                     }
                 }
             }
