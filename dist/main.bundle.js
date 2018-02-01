@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\n  <h1>\n    XBotCore\n  </h1>\n</div>\n<div #container></div>\n <app-plugin-list></app-plugin-list>\n <app-slider-control></app-slider-control>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div style=\"text-align:center\">\n  <h1>\n    XBotCore\n  </h1>\n</div>\n<app-canvas></app-canvas>\n<app-plugin-list></app-plugin-list>\n<app-slider-control></app-slider-control>\n"
 
 /***/ }),
 
@@ -43,8 +43,125 @@ module.exports = "<!--The content below is only a placeholder and can be replace
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_three__ = __webpack_require__("../../../../three/build/three.module.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var AppComponent = (function () {
+    function AppComponent() {
+    }
+    return AppComponent;
+}());
+AppComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
+        selector: 'app-root',
+        template: __webpack_require__("../../../../../src/app/app.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/app.component.css")]
+    })
+], AppComponent);
+
+//# sourceMappingURL=app.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/app.module.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_http_service__ = __webpack_require__("../../../../../src/app/services/http.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_app_error_handler__ = __webpack_require__("../../../../../src/app/common/app-error-handler.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__plugin_list_plugin_list_component__ = __webpack_require__("../../../../../src/app/plugin-list/plugin-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__slider_control_slider_control_component__ = __webpack_require__("../../../../../src/app/slider-control/slider-control.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__canvas_canvas_component__ = __webpack_require__("../../../../../src/app/canvas/canvas.component.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+
+
+
+
+var AppModule = (function () {
+    function AppModule() {
+    }
+    return AppModule;
+}());
+AppModule = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["b" /* NgModule */])({
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_6__plugin_list_plugin_list_component__["a" /* PluginListComponent */],
+            __WEBPACK_IMPORTED_MODULE_7__slider_control_slider_control_component__["a" /* SliderControlComponent */],
+            __WEBPACK_IMPORTED_MODULE_9__canvas_canvas_component__["a" /* CanvasComponent */]
+        ],
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_8__angular_forms__["a" /* FormsModule */]
+        ],
+        providers: [
+            __WEBPACK_IMPORTED_MODULE_0__services_http_service__["a" /* HttpService */],
+            { provide: __WEBPACK_IMPORTED_MODULE_2__angular_core__["c" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_3__common_app_error_handler__["a" /* AppErrorHandler */] }
+        ],
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
+    })
+], AppModule);
+
+//# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/canvas/canvas.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/canvas/canvas.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div #container></div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/canvas/canvas.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_three__ = __webpack_require__("../../../../three/build/three.module.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CanvasComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,17 +173,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var AppComponent = (function () {
-    function AppComponent() {
+var CanvasComponent = (function () {
+    function CanvasComponent() {
         this.title = 'app';
         console.log(__WEBPACK_IMPORTED_MODULE_1_three__);
     }
-    AppComponent.prototype.ngOnInit = function () {
+    CanvasComponent.prototype.ngOnInit = function () {
         this.container = this.elementRef.nativeElement;
         console.log(this.container);
         this.init();
     };
-    AppComponent.prototype.init = function () {
+    CanvasComponent.prototype.init = function () {
         var screen = {
             width: 400,
             height: 300
@@ -91,7 +208,7 @@ var AppComponent = (function () {
         this.scene.add(this.cube);
         this.render();
     };
-    AppComponent.prototype.render = function () {
+    CanvasComponent.prototype.render = function () {
         var self = this;
         (function render() {
             requestAnimationFrame(render);
@@ -99,87 +216,28 @@ var AppComponent = (function () {
             self.animate();
         }());
     };
-    AppComponent.prototype.animate = function () {
+    CanvasComponent.prototype.animate = function () {
         this.cube.rotateX(0.1);
         this.cube.rotateY(0.1);
         this.cube.position.addScalar(0.2);
     };
-    return AppComponent;
+    return CanvasComponent;
 }());
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* ViewChild */])('container'),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* ViewChild */])('container'),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* ElementRef */]) === "function" && _a || Object)
-], AppComponent.prototype, "elementRef", void 0);
-AppComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'app-root',
-        template: __webpack_require__("../../../../../src/app/app.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/app.component.css")]
+], CanvasComponent.prototype, "elementRef", void 0);
+CanvasComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
+        selector: 'app-canvas',
+        template: __webpack_require__("../../../../../src/app/canvas/canvas.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/canvas/canvas.component.css")]
     }),
     __metadata("design:paramtypes", [])
-], AppComponent);
+], CanvasComponent);
 
 var _a;
-//# sourceMappingURL=app.component.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/app.module.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_http_service__ = __webpack_require__("../../../../../src/app/services/http.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__common_app_error_handler__ = __webpack_require__("../../../../../src/app/common/app-error-handler.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__plugin_list_plugin_list_component__ = __webpack_require__("../../../../../src/app/plugin-list/plugin-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__slider_control_slider_control_component__ = __webpack_require__("../../../../../src/app/slider-control/slider-control.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-
-
-
-
-
-var AppModule = (function () {
-    function AppModule() {
-    }
-    return AppModule;
-}());
-AppModule = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["b" /* NgModule */])({
-        declarations: [
-            __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_6__plugin_list_plugin_list_component__["a" /* PluginListComponent */],
-            __WEBPACK_IMPORTED_MODULE_7__slider_control_slider_control_component__["a" /* SliderControlComponent */]
-        ],
-        imports: [
-            __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_http__["a" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_8__angular_forms__["a" /* FormsModule */]
-        ],
-        providers: [
-            __WEBPACK_IMPORTED_MODULE_0__services_http_service__["a" /* HttpService */],
-            { provide: __WEBPACK_IMPORTED_MODULE_2__angular_core__["c" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_3__common_app_error_handler__["a" /* AppErrorHandler */] }
-        ],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
-    })
-], AppModule);
-
-//# sourceMappingURL=app.module.js.map
+//# sourceMappingURL=canvas.component.js.map
 
 /***/ }),
 
@@ -387,7 +445,7 @@ var PluginListComponent = (function () {
     return PluginListComponent;
 }());
 PluginListComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["_5" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["_6" /* Component */])({
         selector: 'app-plugin-list',
         template: __webpack_require__("../../../../../src/app/plugin-list/plugin-list.component.html"),
         styles: [__webpack_require__("../../../../../src/app/plugin-list/plugin-list.component.css")]
@@ -517,7 +575,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/slider-control/slider-control.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  slider-control  <button type=\"button\" (click)=\"onMaster()\">Set Web Master</button> \n <button type=\"button\" (click)=\"type='range'\">R</button><button type=\"button\" (click)=\"type='number'\">N</button> \n</p>\n<li *ngFor=\"let item of chains; let i=index\"> {{item.Chain}}\n  \n  {{item.Val.Name}} {{item.Val.Id}} <p>PositionRef</p><input [type]=\"type\" #Input name=\"range\" [(ngModel)]=\"chains[i].Val.JVal\" min={{item.Val.Llimit}}  max={{item.Val.Ulimit}} step=\"0.1\" (change)=\"setPosRef(Input.value)\" > {{item.Val.JVal}}\n  \n  <p>VelocityRef</p><input [type]=\"type\" #Vel name=\"range\" [(ngModel)]=\"chains[i].Val.VVal\"  step=\"0.1\" (change)=\"setVelRef(Vel.value)\" > {{item.Val.VVal}}\n  <p>EffortRef</p><input [type]=\"type\" #Eff name=\"range\" [(ngModel)]=\"chains[i].Val.EVal\" step=\"0.1\" (change)=\"setEffortRef(Eff.value)\" > {{item.Val.EVal}}\n  <p>Stiffness</p><input [type]=\"type\" #Stiff name=\"range\" [(ngModel)]=\"chains[i].Val.SVal\" min=0.0  max=10000.0  step=\"0.1\" (change)=\"setStiffRef(Stiff.value)\" > {{item.Val.SVal}}\n  <p>Damping</p><input [type]=\"type\" #Damp name=\"range\" [(ngModel)]=\"chains[i].Val.DVal\" min=0.0  max=10000.0 step=\"0.1\" (change)=\"setDampRef(Damp.value)\" > {{item.Val.DVal}}\n  <button type=\"button\" (click)=\"setPosRef(Input.value); setVelRef(Vel.value); setEffortRef(Eff.value); setStiffRef(Stiff.value); setDampRef(Damp.value); sendVal(item.Val.Id)\">SEND</button>\n</li>\n\n "
+module.exports = "<p>\n  slider-control  <button type=\"button\" (click)=\"onMaster()\">Set Web Master</button> \n <button type=\"button\" (click)=\"type='range'\">R</button><button type=\"button\" (click)=\"type='number'\">N</button> \n</p>\n<li *ngFor=\"let item of chains; let i=index\"> {{item.Chain}}\n  \n  {{item.Val.Name}} {{item.Val.Id}} <p>PositionRef</p><input [type]=\"type\" #Input name=\"range\" [(ngModel)]=\"chains[i].Val.PRef\" min={{item.Val.Llimit}}  max={{item.Val.Ulimit}} step=\"0.1\" (change)=\"setPosRef(Input.value)\" > {{item.Val.PRef}}\n  \n  <p>VelocityRef</p><input [type]=\"type\" #Vel name=\"range\" [(ngModel)]=\"chains[i].Val.VRef\"  step=\"0.1\" (change)=\"setVelRef(Vel.value)\" > {{item.Val.VRef}}\n  <p>EffortRef</p><input [type]=\"type\" #Eff name=\"range\" [(ngModel)]=\"chains[i].Val.ERef\" step=\"0.1\" (change)=\"setEffortRef(Eff.value)\" > {{item.Val.ERef}}\n  <p>Stiffness</p><input [type]=\"type\" #Stiff name=\"range\" [(ngModel)]=\"chains[i].Val.SVal\" min=0.0  max=10000.0  step=\"0.1\" (change)=\"setStiffRef(Stiff.value)\" > {{item.Val.SVal}}\n  <p>Damping</p><input [type]=\"type\" #Damp name=\"range\" [(ngModel)]=\"chains[i].Val.DVal\" min=0.0  max=10000.0 step=\"0.1\" (change)=\"setDampRef(Damp.value)\" > {{item.Val.DVal}}\n  <button type=\"button\" (click)=\"setPosRef(Input.value); setVelRef(Vel.value); setEffortRef(Eff.value); setStiffRef(Stiff.value); setDampRef(Damp.value); sendVal(item.Val.Id)\">SEND</button>\n</li>\n\n "
 
 /***/ }),
 
@@ -553,6 +611,9 @@ var SliderControlComponent = (function () {
         this.vvval = [];
         this.svval = [];
         this.dvval = [];
+        this.posref = [];
+        this.velref = [];
+        this.effref = [];
         this.pval = 0.0;
         this.vval = 0.0;
         this.eval = 0.0;
@@ -571,8 +632,8 @@ var SliderControlComponent = (function () {
                 for (var _b = 0, p_1 = p; _b < p_1.length; _b++) {
                     var u = p_1[_b];
                     _this.chains.push({ Chain: chna, Val: { Name: u["Name"], Id: u["ID"], JVal: u["Lval"],
-                            VVal: u["Vval"], EVal: u["Eval"], SVal: u["Sval"], DVal: u["Dval"],
-                            Llimit: u["Llimit"], Ulimit: u["Ulimit"] } });
+                            VVal: u["Vval"], EVal: u["Eval"], SVal: u["Sval"], DVal: u["Dval"], PRef: u["pos_ref"],
+                            VRef: u["vel_ref"], ERef: u["eff_ref"], Llimit: u["Llimit"], Ulimit: u["Ulimit"] } });
                 }
             }
         }, function (error) {
@@ -664,8 +725,20 @@ var SliderControlComponent = (function () {
                 var o = _l[_k];
                 _this.dvval.push(o);
             }
-            for (var _m = 0, _o = _this.chains; _m < _o.length; _m++) {
-                var entry = _o[_m];
+            for (var _m = 0, _o = response["pos_ref"]; _m < _o.length; _m++) {
+                var o = _o[_m];
+                _this.posref.push(o);
+            }
+            for (var _p = 0, _q = response["vel_ref"]; _p < _q.length; _p++) {
+                var o = _q[_p];
+                _this.velref.push(o);
+            }
+            for (var _r = 0, _s = response["eff_ref"]; _r < _s.length; _r++) {
+                var o = _s[_r];
+                _this.effref.push(o);
+            }
+            for (var _t = 0, _u = _this.chains; _t < _u.length; _t++) {
+                var entry = _u[_t];
                 for (var i in _this.jval) {
                     if (entry.Val.Id == _this.jid[i]) {
                         entry.Val.JVal = _this.jval[i];
@@ -673,6 +746,9 @@ var SliderControlComponent = (function () {
                         entry.Val.EVal = _this.evval[i];
                         entry.Val.SVal = _this.svval[i];
                         entry.Val.DVal = _this.dvval[i];
+                        entry.Val.PRef = _this.posref[i];
+                        entry.Val.VRef = _this.velref[i];
+                        entry.Val.ERef = _this.effref[i];
                     }
                 }
             }
@@ -692,7 +768,7 @@ var SliderControlComponent = (function () {
     return SliderControlComponent;
 }());
 SliderControlComponent = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["_5" /* Component */])({
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__angular_core__["_6" /* Component */])({
         selector: 'app-slider-control',
         template: __webpack_require__("../../../../../src/app/slider-control/slider-control.component.html"),
         styles: [__webpack_require__("../../../../../src/app/slider-control/slider-control.component.css")]
