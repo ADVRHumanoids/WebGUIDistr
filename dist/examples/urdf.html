@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+
+<script src="https://static.robotwebtools.org/threejs/current/three.js"></script>
+<script src="https://static.robotwebtools.org/threejs/current/ColladaLoader.js"></script>
+<script src="https://static.robotwebtools.org/threejs/current/STLLoader.js"></script>
+<script src="https://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+<script src="https://static.robotwebtools.org/roslibjs/current/roslib.js"></script>
+<script src="../build/ros3d.js"></script>
+<script src="js/ColladaLoader.js"></script> <!-- override the default ColladaLoader -->
+
+<script>
+  /**
+   * Setup all visualization elements when the page is loaded.
+   */
+  function init() {
+    // Connect to ROS.
+    var ros = new ROSLIB.Ros({
+      url : 'ws://localhost:9090'
+    });
+
+    // Create the main viewer.
+    var viewer = new ROS3D.Viewer({
+      divID : 'urdf',
+      width : 800,
+      height : 600,
+      antialias : true,
+      background : '#000000'
+    });
+
+    // Add a grid.
+    //viewer.addObject(new ROS3D.Grid());
+
+    // Setup a client to listen to TFs.
+    var tfClient = new ROSLIB.TFClient({
+      ros : ros,
+      angularThres : 0.01,
+      transThres : 0.01,
+      rate : 10.0
+    });
+
+    // Setup the URDF client.
+    var urdfClient = new ROS3D.UrdfClient({
+      ros : ros,
+      tfClient : tfClient,
+      path : 'http://127.0.0.1:8081',
+      rootObject : viewer.scene,
+    });
+
+    var arrow = new ROS3D.Arrow({
+      origin: new THREE.Vector3(1, 1, 1)    
+    });
+    viewer.addObject(arrow);
+
+    var arrowNode = new ROS3D.SceneNode({
+      tfClient : tfClient,
+      frameID  : '/r_sole',
+      object   : new ROS3D.Arrow(),        
+      
+    });
+    viewer.scene.add(arrowNode);
+
+    arrowNode.addEventListener("click",function(){
+    	console.log("test");
+	});
+
+    var mouseHandler = new ROS3D.MouseHandler({
+	renderer : viewer.renderer,
+        rootObject : arrowNode,
+	camera : viewer.camera
+        //fallbackTarget : handler
+     
+    });
+
+    urdfClient.urdf.children[0].children[0].children[0] = ROS3D.MeshResource({
+	path : "http://127.0.0.1:8081",
+        resource : "cogimon_urdf/meshes/HipPitch.stl",
+    });
+        
+  }
+</script>
+</head>
+
+<body onload="init()">
+  <h1>XBot WEB Monitoring Tool</h1>
+  <p>Run the following commands in the terminal then refresh this page.</p>
+  <ol>
+    <li><tt>XBotCore [-D]</tt></li>
+    <li><tt>rosrun robot_state_publisher robot_state_publisher</tt></li>
+    <li><tt>rosrun tf2_web_republisher tf2_web_republisher</tt></li>
+    <li><tt>roslaunch rosbridge_server rosbridge_websocket.launch</tt></li>
+  </ol>
+  <div id="urdf"></div>
+</body>
+</html>
