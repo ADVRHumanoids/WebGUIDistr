@@ -49,35 +49,91 @@
       rootObject : viewer.scene,
     });
 
-    var arrow = new ROS3D.Arrow({
-      origin: new THREE.Vector3(1, 1, 1)    
-    });
-    viewer.addObject(arrow);
+    //var arrow = new ROS3D.Arrow({
+    //  origin: new THREE.Vector3(1, 1, 1)    
+    //});
+    //viewer.addObject(arrow);
 
-    var arrowNode = new ROS3D.SceneNode({
-      tfClient : tfClient,
-      frameID  : '/r_sole',
-      object   : new ROS3D.Arrow(),        
-      
-    });
-    viewer.scene.add(arrowNode);
+//////    var arrowNode = new ROS3D.SceneNode({
+//////      tfClient : tfClient,
+//////      frameID  : '/r_sole',
+//////      object   : new ROS3D.Arrow(),        
+//////      
+//////    });
+//////    viewer.scene.add(arrowNode);
+//////
+//////    arrowNode.addEventListener("click",function(){
+//////    	console.log("test");
+//////		});
+//////    var mouseHandler = new ROS3D.MouseHandler({
+//////	renderer : viewer.renderer,
+//////        rootObject : arrowNode,
+//////	camera : viewer.camera
+//////        //fallbackTarget : handler
+//////     
+//////    });
 
-    arrowNode.addEventListener("click",function(){
-    	console.log("test");
-	});
+	var sceneNode;
+    
+	document.getElementById("remove").addEventListener("click", remove);
+	function remove() {
+			document.getElementById("remove").innerHTML = "YOU CLICKED ME!";
+			viewer.scene.remove(sceneNode);
+	}
 
-    var mouseHandler = new ROS3D.MouseHandler({
-	renderer : viewer.renderer,
-        rootObject : arrowNode,
-	camera : viewer.camera
-        //fallbackTarget : handler
-     
-    });
 
-    urdfClient.urdf.children[0].children[0].children[0] = ROS3D.MeshResource({
-	path : "http://127.0.0.1:8081",
-        resource : "cogimon_urdf/meshes/HipPitch.stl",
-    });
+	document.getElementById("demo").addEventListener("click", myFunction);
+	function myFunction() {
+			document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+			
+			
+//		var mesh = ROS3D.MeshResource({
+//				path : "http://127.0.0.1:8081",
+//				resource : "cogimon_urdf/meshes/HipPitch.stl",
+//    });
+
+    loader = new THREE.STLLoader();
+		var mesh;
+
+    {
+
+      loader.load("http://127.0.0.1:8081/cogimon_urdf/meshes/HipRoll.stl", function ( geometry ) {
+
+        geometry.computeFaceNormals();
+
+        mesh = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( { color: 0xff0000 } ) );
+				// check for a scale
+				mesh.scale.copy( new THREE.Vector3(
+						0.001,
+						0.001,
+						0.001
+						));
+
+				
+						sceneNode = new ROS3D.SceneNode({
+										frameID : '/LHipMot',
+										//pose : visual.origin,
+										tfClient : tfClient,
+										object : mesh
+									});
+						viewer.scene.add(sceneNode);
+						
+						sceneNode.addEventListener("click",function(){
+							alert("test");
+						});
+						var mouseHandler = new ROS3D.MouseHandler({
+								renderer : viewer.renderer,
+								rootObject : sceneNode,
+								camera : viewer.camera
+						 
+						});
+
+				} );
+			}
+			
+
+			
+	}
         
   }
 </script>
@@ -93,5 +149,11 @@
     <li><tt>roslaunch rosbridge_server rosbridge_websocket.launch</tt></li>
   </ol>
   <div id="urdf"></div>
+
+		
+			
+	<br>
+	<p id="demo">MESH CHANGE</p>
+	<p id="remove">REMOVE MESH</p>
 </body>
 </html>
