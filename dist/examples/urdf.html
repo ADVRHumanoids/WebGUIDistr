@@ -136,6 +136,21 @@
 	}
         
   }
+
+var echo_service = new WebSocket('ws://127.0.0.1:8081/websocket');
+echo_service.onmessage = function(event){ 
+  console.log(event.data);
+  echo_service.send("talk");
+}
+echo_service.onopen = function(){ 
+  echo_service.send("hello!");
+}
+echo_service.onclose = function(){
+    console.log("close websocket");
+} 
+echo_service.onerror = function(){
+   console.log("errore nella connessione");
+}
 </script>
 </head>
 
