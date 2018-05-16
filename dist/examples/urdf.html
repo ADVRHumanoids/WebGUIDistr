@@ -74,7 +74,8 @@
 //////    });
 
 	var sceneNode;
-    
+    	var child;
+
 	document.getElementById("remove").addEventListener("click", remove);
 	function remove() {
 			document.getElementById("remove").innerHTML = "YOU CLICKED ME!";
@@ -85,6 +86,21 @@
 	document.getElementById("demo").addEventListener("click", myFunction);
 	function myFunction() {
 			document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+
+			child = viewer.scene.children[4]["children"];
+				
+
+			var arrayLength = child.length;
+			for (var i = 0; i < arrayLength; i++) {
+				var frame = child[i].frameID;
+				var ch = child[i];
+				ch.addEventListener("click",function(){
+					alert(ch.frameID);
+				});
+			//viewer.scene.remove(ch);
+			//viewer.scene.add(ch);
+			}
+
 			
 			
 //		var mesh = ROS3D.MeshResource({
@@ -119,8 +135,12 @@
 						viewer.scene.add(sceneNode);
 						
 						sceneNode.addEventListener("click",function(){
-							alert("test");
+							alert(sceneNode.frameID);
+						console.log(sceneNode.frameID);
+						
 						});
+
+						
 						var mouseHandler = new ROS3D.MouseHandler({
 								renderer : viewer.renderer,
 								rootObject : sceneNode,
