@@ -45,7 +45,7 @@
     var urdfClient = new ROS3D.UrdfClient({
       ros : ros,
       tfClient : tfClient,
-      path : 'http://127.0.0.1:8081',
+      path : 'http://127.0.0.1:8081/robots/iit-cogimon-ros-pkg/',
       rootObject : viewer.scene,
     });
 
@@ -113,7 +113,7 @@
 
     {
 
-      loader.load("http://127.0.0.1:8081/cogimon_urdf/meshes/HipRoll.stl", function ( geometry ) {
+      loader.load("http://127.0.0.1:8081/robots/iit-cogimon-ros-pkg/cogimon_urdf/meshes/HipRoll.stl", function ( geometry ) {
 
         geometry.computeFaceNormals();
 
