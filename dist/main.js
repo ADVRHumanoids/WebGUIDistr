@@ -321,7 +321,7 @@ module.exports = ".mat-expansion-panel{\n    background: #3f51b5;\n    bottom: 0
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n\n<mat-toolbar color=\"primary\">\n    <span>ROBOT WEB GUI</span>\n</mat-toolbar>\n<mat-tab-group >\n    <mat-tab  label=\"Monitoring\">\n        <div class=\"containerModelPlot\"\n        fxLayout\n        fxLayout.xs=\"column\"\n        fxLayoutAlign=\"center\"\n        fxLayoutGap=\"10px\"\n        fxLayoutGap.xs=\"0\">\n      <div class=\"item item-1\" fxFlex=\"50%\">\n          <app-canvas></app-canvas>\n      </div>\n      <div class=\"item item-2\" fxFlex=\"50%\">\n        <app-plotter></app-plotter>\n      </div>\n      </div>\n      \n    </mat-tab>\n    <mat-tab label=\"Plugins\">\n      <app-plugin-list></app-plugin-list>\n    </mat-tab>\n  </mat-tab-group>\n\n<!--<app-slider-control></app-slider-control>-->\n\n\n  \n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n\n<mat-toolbar color=\"primary\">\n    <span>ROBOT WEB GUI</span>\n</mat-toolbar>\n<mat-tab-group >\n    <mat-tab  label=\"Monitoring\">\n        <div class=\"containerModelPlot\"\n        fxLayout =\"row\"\n        fxLayout.xs=\"column\"\n        fxLayoutAlign=\"left\"\n        fxLayoutGap=\"50px\"\n        fxLayoutGap.xs=\"0\">\n      <div class=\"item item-1\" fxFlex=\"50%\">\n          <app-canvas></app-canvas>\n      </div>\n      <div class=\"item item-2\" fxFlex=\"50%\">\n        <app-plotter idPlot=\"1\" ></app-plotter>\n      </div>\n     \n      </div>\n\n      <div\n      fxLayout =\"row\"\n      fxLayout.xs=\"column\"\n      fxLayoutAlign=\"center\"\n      fxLayoutGap=\"30px\"\n      fxLayoutGap.xs=\"0\">\n      <div class=\"item item-1\" fxFlex=\"33%\">\n        <app-plotter idPlot=\"2\" label=\"Position\" [fields]=\"['motorPos','linkPos','refPos']\"></app-plotter>\n      </div>\n      <div class=\"item item-2\" fxFlex=\"33%\" >\n        <app-plotter idPlot=\"3\" label=\"Velocity\"  [fields]=\"['motorVel','linkVel','refVel']\"></app-plotter>\n      </div>\n   \n      <div class=\"item item-3\" fxFlex=\"34%\">\n        <app-plotter idPlot=\"4\" label=\"Torque\"  [fields]=\"['effort','refTor']\"></app-plotter>\n      </div>\n    </div>\n      \n    </mat-tab>\n    <mat-tab label=\"Plugins\">\n      <app-plugin-list></app-plugin-list>\n    </mat-tab>\n  </mat-tab-group>\n\n<!--<app-slider-control></app-slider-control>-->\n\n\n  \n"
 
 /***/ }),
 
@@ -517,7 +517,7 @@ module.exports = "/*.canvas{\n    margin-top: 64px;\n}*/"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"canvas\" #container></div>\n\n<div *ngIf=\"isJoint;else sensor\">\n<mat-card class=\"example-card\">\n<mat-card-header>\n    <mat-card-title>ID: {{robotState.id}}  Name: {{robotState.name}}</mat-card-title>\n</mat-card-header>\n<mat-card-content>\n       \n<p>Motor Position: <input  disabled matInput style=\"width: 50px;\" value={{robotState.motorPos}}> <button  mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'motorPos',robotState.name)\">Plot</button>\n        Link Position: <input  disabled matInput style=\"width: 50px;\" value={{robotState.linkPos}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'linkPos',robotState.name)\">Plot</button></p> \n<p>Motor Velocity:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.motorVel}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'motorVel',robotState.name)\">Plot</button>\n        Link Velocity: <input  disabled matInput style=\"width: 50px;\" value= {{robotState.linkVel}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'linkVel',robotState.name)\">Plot</button></p>\n<p>Stiffness:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.stiff}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'stiff',robotState.name)\">Plot</button>\n        Damping:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.damp}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'damp',robotState.name)\">Plot</button></p>\n<p>Torque:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.effort}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'effort',robotState.name)\">Plot</button> \n    Fault:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.fault}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'fault',robotState.name)\">Plot</button></p>\n<p>Temperature: <input  disabled matInput style=\"width: 50px;\" value={{robotState.temp}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'temp',robotState.name)\">Plot</button> \n    Aux:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.aux}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'aux',robotState.name)\">Plot</button></p>\n\n</mat-card-content>\n</mat-card>\n\n</div>\n      \n\n<ng-template #sensor>\n<mat-card class=\"example-card\">\n<mat-card-header>\n    <mat-card-title>ID: {{robotSensorState.id}}  Name: {{robotSensorState.name}}</mat-card-title>\n</mat-card-header>\n<mat-card-content>\n<p>Force: x: <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.forcex}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'forcex',robotSensorState.name)\">Plot</button> \n    y:<input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.forcey}}>  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'forcey',robotSensorState.name)\">Plot</button>\n    z:<input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.forcez}}>  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'forcez',robotSensorState.name)\">Plot</button>\n</p>\n<p>Torque: x: <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.torquex}}>  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'torquex',robotSensorState.name)\">Plot</button>\n    y: <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.torquey}}>  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'torquey',robotSensorState.name)\">Plot</button>\n    z: <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.torquez}}>  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'torquez',robotSensorState.name)\">Plot</button>      \n</p>\n    </mat-card-content>\n</mat-card>\n</ng-template>\n  \n  \n"
+module.exports = "<div >\n<div class=\"canvas\" #container></div>\n\n<div  *ngIf=\"isJoint;else sensor\">\n<mat-card class=\"example-card\">\n<mat-card-header>\n    <mat-card-title>ID: {{robotState.id}}  Name: {{robotState.name}} <button  mat-raised-button color=\"primary\" type=\"button\" (click)=\"plotState(robotState.id,robotState.name)\">PlotState</button></mat-card-title>\n</mat-card-header>\n<mat-card-content>\n       \n<p>Motor Position: <input  disabled matInput style=\"width: 50px;\" value={{robotState.motorPos}}> <button  mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'motorPos',robotState.name)\">Plot</button>\n        Link Position: <input  disabled matInput style=\"width: 50px;\" value={{robotState.linkPos}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'linkPos',robotState.name)\">Plot</button></p> \n<p>Motor Velocity:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.motorVel}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'motorVel',robotState.name)\">Plot</button>\n        Link Velocity: <input  disabled matInput style=\"width: 50px;\" value= {{robotState.linkVel}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'linkVel',robotState.name)\">Plot</button></p>\n<p>Stiffness:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.stiff}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'stiff',robotState.name)\">Plot</button>\n        Damping:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.damp}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'damp',robotState.name)\">Plot</button></p>\n<p>Torque:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.effort}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'effort',robotState.name)\">Plot</button> \n    Fault:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.fault}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'fault',robotState.name)\">Plot</button></p>\n<p>Temperature: <input  disabled matInput style=\"width: 50px;\" value={{robotState.temp}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'temp',robotState.name)\">Plot</button> \n    Aux:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.aux}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'aux',robotState.name)\">Plot</button></p>\n\n</mat-card-content>\n</mat-card>\n\n</div>\n</div>\n\n<ng-template #sensor>\n<mat-card class=\"example-card\">\n<mat-card-header>\n    <mat-card-title>ID: {{robotSensorState.id}}  Name: {{robotSensorState.name}}</mat-card-title>\n</mat-card-header>\n<mat-card-content>\n<p>Force: x: <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.forcex}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'forcex',robotSensorState.name)\">Plot</button> \n    y:<input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.forcey}}>  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'forcey',robotSensorState.name)\">Plot</button>\n    z:<input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.forcez}}>  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'forcez',robotSensorState.name)\">Plot</button>\n</p>\n<p>Torque: x: <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.torquex}}>  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'torquex',robotSensorState.name)\">Plot</button>\n    y: <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.torquey}}>  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'torquey',robotSensorState.name)\">Plot</button>\n    z: <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.torquez}}>  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'torquez',robotSensorState.name)\">Plot</button>      \n</p>\n    </mat-card-content>\n</mat-card>\n</ng-template>\n  \n  \n"
 
 /***/ }),
 
@@ -598,7 +598,10 @@ var CanvasComponent = /** @class */ (function () {
             stiff: 0,
             damp: 0,
             fault: 0,
-            aux: 0
+            aux: 0,
+            refPos: 0,
+            refVel: 0,
+            refTor: 0
         };
         this.robotSensorState = {
             name: "",
@@ -612,7 +615,8 @@ var CanvasComponent = /** @class */ (function () {
         };
         console.log(three__WEBPACK_IMPORTED_MODULE_1__);
         this.isModelLoaded = true;
-        this.service = new _services_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"]("/model", http);
+        this.service = new _services_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"](http);
+        this.service.setURL("/model");
         this.robotService = robotService;
         this.robot = new Map();
         this.robotSensor = new Map();
@@ -624,6 +628,11 @@ var CanvasComponent = /** @class */ (function () {
                 if (item != null)
                     _this.robotState = item;
             }
+            _this.robotService.selectJointName = _this.selectJoint;
+            if (_this.isJoint)
+                _this.robotService.selectJointId = _this.robotState.id;
+            else
+                _this.robotService.selectJointId = _this.robotSensorState.id;
             if (_this.robotSensor != null && _this.selectedObject != null) {
                 var userdata = _this.selectedObject.userData;
                 if (userdata != null) {
@@ -787,7 +796,10 @@ var CanvasComponent = /** @class */ (function () {
         return cube;
     };
     CanvasComponent.prototype.addPlot = function (id, topic, name) {
-        this.robotService.addPlot(id, topic, name);
+        this.robotService.addPlot(1, id, topic, name);
+    };
+    CanvasComponent.prototype.plotState = function (id, name) {
+        this.robotService.plotState(id, name);
     };
     CanvasComponent.prototype.setVelRef = function (param) {
         this.vval = param;
@@ -854,6 +866,13 @@ var CanvasComponent = /** @class */ (function () {
         this.container.appendChild(this.renderer.domElement);
         this.render();
     };
+    CanvasComponent.prototype.ngAfterViewInit = function () {
+        this.container.style.width = "100%";
+        this.container.style.height = "100%";
+        this.camera.aspect = this.getAspectRatio();
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
+    };
     CanvasComponent.prototype.checkIntersection = function (event) {
         var rect = this.renderer.domElement.getBoundingClientRect();
         this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
@@ -861,6 +880,22 @@ var CanvasComponent = /** @class */ (function () {
         //console.log(this.mouse.x + "" +this.mouse.y);
         if (event.which === 1)
             this.CheckIntersection();
+    };
+    CanvasComponent.prototype.getAspectRatio = function () {
+        var height = this.container.clientHeight;
+        if (height === 0) {
+            return 0;
+        }
+        return this.container.clientWidth / this.container.clientHeight;
+    };
+    CanvasComponent.prototype.onResize = function (event) {
+        this.container.style.width = "100%";
+        this.container.style.height = "100%";
+        //console.log("onResize: " + this.container.clientWidth + ", " + this.container.clientHeight);
+        this.camera.aspect = this.getAspectRatio();
+        this.camera.updateProjectionMatrix();
+        this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
+        this.render();
     };
     CanvasComponent.prototype.render = function () {
         var self = this;
@@ -904,6 +939,12 @@ var CanvasComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [MouseEvent]),
         __metadata("design:returntype", void 0)
     ], CanvasComponent.prototype, "checkIntersection", null);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"])('window:resize', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Event]),
+        __metadata("design:returntype", void 0)
+    ], CanvasComponent.prototype, "onResize", null);
     CanvasComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-canvas',
@@ -1070,7 +1111,7 @@ module.exports = "/*#myChart{\n    margin-top: 64px;\n}*/"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<canvas id=\"myChart\" width=\"400\" height=\"400\"></canvas>\n<p>\n<button mat-raised-button color=\"primary\" type=\"button\" (click)=\"clearData()\">Clear Data</button> \n<button mat-raised-button color=\"primary\" type=\"button\" (click)=\"freeze()\">Freeze</button> \n<input [type]=\"type\" #Vel name=\"range\" step=\"0.1\" (change)=\"setScale(Vel.value)\" > \n</p>\n"
+module.exports = "<div>\n<canvas [id]=\"getId()\" width=\"600\" height=\"600\"></canvas>\n<div>\n<button mat-raised-button color=\"primary\" type=\"button\" (click)=\"clearData()\">Clear Data</button> \n<button mat-raised-button color=\"primary\" type=\"button\" (click)=\"freeze()\">Freeze</button>\n</div> \n<div>\nScale <input #Scale name=\"range\" step=\"0.1\" (change)=\"setScale(Scale.value)\" > \n</div>\n<div>\nSample <input #Sample name=\"range\" step=\"0.1\" (change)=\"setSample(Sample.value)\" > \n</div>\n</div>"
 
 /***/ }),
 
@@ -1133,7 +1174,9 @@ var PlotterComponent = /** @class */ (function () {
         };
         this.robotService = robotService;
         this.isfrozen = false;
-        this.samples = 500;
+        this.samples = 100;
+        if (this.label == null)
+            this.label = "Plotter";
         this.data = {
             labels: [],
             datasets: []
@@ -1151,20 +1194,38 @@ var PlotterComponent = /** @class */ (function () {
             }
         }, 10);
     }
+    PlotterComponent.prototype.getId = function () {
+        return "myChart" + this.idPlot;
+    };
     PlotterComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
-        this.canvas = document.getElementById('myChart');
+        console.log("PLOTTER ID " + this.idPlot);
+        if (parseInt(this.idPlot) == 1)
+            this.isResponsive = false;
+        else
+            this.isResponsive = true;
+        this.canvas = document.getElementById(this.getId());
         this.ctx = this.canvas.getContext('2d');
         this.myChart = new chart_js__WEBPACK_IMPORTED_MODULE_1__(this.ctx, {
             type: 'line',
             data: this.data,
             options: {
-                responsive: false,
+                responsiveAnimationDuration: 0,
+                elements: {
+                    line: {
+                        tension: 0
+                    }
+                },
+                animation: {
+                    duration: 0
+                },
+                responsive: this.isResponsive,
+                maintainAspectRation: false,
                 steppedLine: true,
                 //cubicInterpolationMode: "",
                 title: {
                     display: true,
-                    text: 'Plotter'
+                    text: this.label
                 },
                 tooltips: {
                     enabled: false,
@@ -1174,12 +1235,24 @@ var PlotterComponent = /** @class */ (function () {
                 /*hover: {
                     mode: 'nearest',
                     intersect: true
-                },*/
+        },*/
+                ticks: {
+                    source: 'labels'
+                },
                 scales: {
                     xAxes: [{
-                            display: false,
+                            display: true,
+                            type: 'time',
+                            distribution: 'series',
+                            time: {
+                                unit: 'second',
+                                displayFormats: {
+                                    second: 'ss'
+                                }
+                            },
                             scaleLabel: {
                                 display: true,
+                                labelString: 'Time'
                             }
                         }],
                     yAxes: [{
@@ -1195,12 +1268,13 @@ var PlotterComponent = /** @class */ (function () {
                 }
             }
         });
-        this.robotService.currentPlotAddDatamsg.subscribe(function (msg) {
+        this.robotService.registerPlotterComponent(parseInt(this.idPlot), this.fields);
+        this.robotService.currentPlotAddDatamsg.get(parseInt(this.idPlot)).subscribe(function (msg) {
             if (msg == null)
                 return;
             if (_this.isfrozen)
                 return;
-            _this.data.labels.push(new Date().getTime());
+            _this.data.labels.push(new Date());
             for (var _i = 0, msg_1 = msg; _i < msg_1.length; _i++) {
                 var pdata = msg_1[_i];
                 var name = pdata["name"];
@@ -1213,7 +1287,7 @@ var PlotterComponent = /** @class */ (function () {
                 _this.addDataToDataset(_this.data.datasets[i], value);
             }
         });
-        this.robotService.currentPlotAddmsg.subscribe(function (msg) {
+        this.robotService.currentPlotAddmsg.get(parseInt(this.idPlot)).subscribe(function (msg) {
             if (msg == null)
                 return;
             var topic = msg["topic"];
@@ -1226,9 +1300,17 @@ var PlotterComponent = /** @class */ (function () {
             _this.map.set(id, i);
             //console.log("ADD plot at "+ "pos "+i+" name "+name);
         });
+        this.robotService.currentClearmsg.get(parseInt(this.idPlot)).subscribe(function (msg) {
+            if (msg == null)
+                return;
+            _this.clearData();
+        });
     };
     PlotterComponent.prototype.setScale = function (val) {
         this.myChart.options.scales.yAxes[0].ticks.stepSize = val;
+    };
+    PlotterComponent.prototype.setSample = function (val) {
+        this.samples = val;
     };
     PlotterComponent.prototype.freeze = function () {
         this.isfrozen = !this.isfrozen;
@@ -1237,7 +1319,7 @@ var PlotterComponent = /** @class */ (function () {
     PlotterComponent.prototype.clearData = function () {
         this.data.labels = [];
         this.data.datasets = [];
-        this.robotService.clearPlot();
+        this.robotService.clearPlot(parseInt(this.idPlot));
         this.myChart.update();
     };
     PlotterComponent.prototype.addDataset = function (label) {
@@ -1264,6 +1346,18 @@ var PlotterComponent = /** @class */ (function () {
         //console.log("label "+ dataset.label+ " "+dataset.data.length);
         this.myChart.update();
     };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", String)
+    ], PlotterComponent.prototype, "idPlot", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", String)
+    ], PlotterComponent.prototype, "label", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Array)
+    ], PlotterComponent.prototype, "fields", void 0);
     PlotterComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-plotter',
@@ -1349,7 +1443,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var PluginListComponent = /** @class */ (function () {
     function PluginListComponent(http) {
         this.plugins = [];
-        this.service = new _services_http_service__WEBPACK_IMPORTED_MODULE_1__["HttpService"]("/plugins", http);
+        this.service = new _services_http_service__WEBPACK_IMPORTED_MODULE_1__["HttpService"](http);
+        this.service.setURL("/plugins");
     }
     PluginListComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1461,11 +1556,8 @@ var PluginListComponent = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpService", function() { return HttpService; });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _common_not_foud_error__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../common/not-foud-error */ "./src/app/common/not-foud-error.ts");
-/* harmony import */ var _common_app_error__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../common/app-error */ "./src/app/common/app-error.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /*
  * Copyright (C) 2017 IIT-ADVR
  * Author:  Giuseppe Rigano
@@ -1494,17 +1586,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-
-
-
 //import { Http, RequestOptions, Headers } from '@angular/http';
 
-//import 'rxjs//add/observable/throw';
+//import {throwError as observableThrowError, Observable} from 'rxjs';
 var HttpService = /** @class */ (function () {
-    function HttpService(url, http) {
-        this.url = url;
+    function HttpService(http) {
         this.http = http;
     }
+    HttpService.prototype.setURL = function (url) {
+        this.url = url;
+    };
     HttpService.prototype.getAll = function () {
         return this.http.get(this.url);
     };
@@ -1537,14 +1628,9 @@ var HttpService = /** @class */ (function () {
         return this.http.delete(this.url + '/' + post.id);
         //delete from array using indexof(posts)
     };
-    HttpService.prototype.handleError = function (error) {
-        if (error.status === 404)
-            return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["throwError"])(new _common_not_foud_error__WEBPACK_IMPORTED_MODULE_2__["NotFoundError"]());
-        return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["throwError"])(new _common_app_error__WEBPACK_IMPORTED_MODULE_3__["AppError"](error));
-    };
     HttpService = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        __metadata("design:paramtypes", [String, _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]])
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], HttpService);
     return HttpService;
 }());
@@ -1603,26 +1689,53 @@ var RobotStateService = /** @class */ (function () {
         this.parsedMsg = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]({});
         this.currentmsg = this.parsedMsg.asObservable();
         this.plotMap = new Map();
-        this.plotArray = new Array();
-        this.plotAddMsg = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]({});
-        this.currentPlotAddmsg = this.plotAddMsg.asObservable();
-        this.plotAddDataMsg = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]({});
-        this.currentPlotAddDatamsg = this.plotAddDataMsg.asObservable();
+        this.plotArrayMap = new Map();
+        this.topicPlotMap = new Map();
+        this.plotAddMsg = new Map();
+        this.currentPlotAddmsg = new Map();
+        this.plotAddDataMsg = new Map();
+        this.currentPlotAddDatamsg = new Map();
+        this.plotClearMsg = new Map();
+        this.currentClearmsg = new Map();
+        this.selectJointName = "";
+        this.selectJointId = 0;
         this.robot = new Map();
         this.robotSensor = new Map();
+        this.connectWebSocket();
+        this.wsService.messages.subscribe(function (msg) {
+            _this.parseMsg(msg);
+            _this.sendMsg();
+        }, this.onError, this.onClose);
+    }
+    RobotStateService.prototype.onError = function (err) {
+        console.log("WebSocket Error occur " + err);
+    };
+    RobotStateService.prototype.onClose = function () {
+        console.log("WebSocket closed by server");
+    };
+    RobotStateService.prototype.connectWebSocket = function () {
+        console.log("WebSocket trying connect");
+        clearInterval(this.interval);
         var ip = window.location.origin;
         ip = ip.substr(7);
         var WS_URL = "ws://" + ip + "/websocket";
         this.wsService.connect(WS_URL);
-        this.wsService.messages.subscribe(function (msg) {
-            _this.parseMsg(msg);
-            _this.sendMsg();
-        });
-    }
+    };
     RobotStateService.prototype.publishMsg = function (msg) {
         this.parsedMsg.next(msg);
     };
+    RobotStateService.prototype.registerPlotterComponent = function (id, fields) {
+        this.plotAddDataMsg.set(id, new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]({}));
+        this.currentPlotAddDatamsg.set(id, this.plotAddDataMsg.get(id).asObservable());
+        this.plotAddMsg.set(id, new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]({}));
+        this.currentPlotAddmsg.set(id, this.plotAddMsg.get(id).asObservable());
+        this.plotClearMsg.set(id, new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]({}));
+        this.currentClearmsg.set(id, this.plotClearMsg.get(id).asObservable());
+        if (fields != null)
+            this.topicPlotMap.set(id, fields);
+    };
     RobotStateService.prototype.parseMsg = function (msg) {
+        var _this = this;
         var robot = msg["Robot"];
         if (robot != null) {
             var nameList = robot["joint_name"];
@@ -1636,9 +1749,12 @@ var RobotStateService = /** @class */ (function () {
             var stiffs = robot["stiffness"];
             var damps = robot["damping"];
             var faults = robot["fault"];
+            var posrefs = robot["pos_ref"];
+            var velrefs = robot["vel_ref"];
+            var torrefs = robot["eff_ref"];
             var auxs = robot["aux"];
-            for (var i = 0; i < nameList.length; i++) {
-                var obj = {
+            var _loop_1 = function (i) {
+                obj = {
                     name: nameList[i],
                     id: ids[i],
                     motorPos: motors[i],
@@ -1650,18 +1766,28 @@ var RobotStateService = /** @class */ (function () {
                     stiff: stiffs[i],
                     damp: damps[i],
                     fault: faults[i],
-                    aux: auxs[i]
+                    aux: auxs[i],
+                    refPos: posrefs[i],
+                    refVel: velrefs[i],
+                    refTor: torrefs[i]
                 };
-                this.robot.set(nameList[i], obj);
-                var keys = Object.keys(obj);
-                for (var _i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
-                    var key = keys_1[_i];
-                    var topic = this.plotMap.get(ids[i] + "/" + key);
-                    if (topic != null) {
-                        var pobj = { "name": ids[i] + "/" + key, "value": obj[topic] };
-                        this.plotArray.push(pobj);
+                this_1.robot.set(nameList[i], obj);
+                keys = Object.keys(obj);
+                this_1.plotMap.forEach(function (value, mkey) {
+                    //var plotItem = this.plotMap.get(1);
+                    if (value != null) {
+                        for (var _i = 0, keys_1 = keys; _i < keys_1.length; _i++) {
+                            var key = keys_1[_i];
+                            var topic = value.get(ids[i] + "/" + key);
+                            if (topic != null) {
+                                var pobj = { "name": ids[i] + "/" + key, "value": obj[topic] };
+                                var array = _this.plotArrayMap.get(mkey);
+                                if (array != null)
+                                    array.push(pobj);
+                            }
+                        }
                     }
-                }
+                });
                 //var plotId = ids[i] +"/"+ 
                 //this.plotMap.get()
                 //push to vector
@@ -1679,6 +1805,10 @@ var RobotStateService = /** @class */ (function () {
                     //joint.rotateOnAxis(new THREE.Vector3(axis[0],axis[1],axis[2]),angle);
                   }
                 }*/
+            };
+            var this_1 = this, obj, keys;
+            for (var i = 0; i < nameList.length; i++) {
+                _loop_1(i);
             }
         }
         var sensors = msg["Sensors"];
@@ -1689,12 +1819,12 @@ var RobotStateService = /** @class */ (function () {
             var torques = sensors["torque"];
             var forcesv = [0, 0, 0];
             var torquesv = [0, 0, 0];
-            for (var i = 0; i < nameList.length; i++) {
+            var _loop_2 = function (i) {
                 if (forces != null)
                     forcesv = forces[i]["Vector"];
                 if (forces != null)
                     torquesv = torques[i]["Vector"];
-                var objs = {
+                objs = {
                     name: nameList[i],
                     id: ids[i],
                     forcex: forcesv[0],
@@ -1704,37 +1834,74 @@ var RobotStateService = /** @class */ (function () {
                     torquey: torquesv[1],
                     torquez: torquesv[2]
                 };
-                this.robotSensor.set(nameList[i], objs);
-                var keys = Object.keys(objs);
-                for (var _a = 0, keys_2 = keys; _a < keys_2.length; _a++) {
-                    var key = keys_2[_a];
-                    var topic = this.plotMap.get(ids[i] + "/" + key);
-                    if (topic != null) {
-                        var pobj = { "name": ids[i] + "/" + key, "value": objs[topic] };
-                        this.plotArray.push(pobj);
+                this_2.robotSensor.set(nameList[i], objs);
+                keys = Object.keys(objs);
+                this_2.plotMap.forEach(function (value, mkey) {
+                    //var plotItem = this.plotMap.get(1);
+                    if (value != null) {
+                        for (var _i = 0, keys_2 = keys; _i < keys_2.length; _i++) {
+                            var key = keys_2[_i];
+                            var topic = value.get(ids[i] + "/" + key);
+                            if (topic != null) {
+                                var pobj = { "name": ids[i] + "/" + key, "value": objs[topic] };
+                                var array = _this.plotArrayMap.get(mkey);
+                                if (array != null)
+                                    array.push(pobj);
+                            }
+                        }
                     }
-                }
+                });
+            };
+            var this_2 = this, objs, keys;
+            for (var i = 0; i < nameList.length; i++) {
+                _loop_2(i);
             }
         }
         this.publishMsg({ "robot": this.robot, "sensor": this.robotSensor });
-        if (this.plotArray.length != 0) {
-            this.plotAddDataMsg.next(this.plotArray);
-            this.plotArray = [];
-        }
+        this.plotArrayMap.forEach(function (value, key) {
+            if (value != null && value.length != 0) {
+                _this.plotAddDataMsg.get(key).next(value);
+                _this.plotArrayMap.set(key, []);
+            }
+        });
     };
     RobotStateService.prototype.sendMsg = function () {
         this.wsService.messages.next({ "msg": "Send" });
     };
-    RobotStateService.prototype.addPlot = function (id, topic, name) {
-        if (this.plotMap.get(id + "/" + topic) != null)
-            return;
+    RobotStateService.prototype.addPlot = function (idPlot, id, topic, name) {
+        var plotItem = this.plotMap.get(idPlot);
+        if (plotItem != null)
+            if (plotItem.get(id + "/" + topic) != null)
+                return;
         var obj = { "topic": topic, "id": id + "/" + topic, "name": name };
-        this.plotMap.set(id + "/" + topic, topic);
-        this.plotAddMsg.next(obj);
+        if (plotItem == null) {
+            plotItem = new Map();
+            this.plotMap.set(idPlot, plotItem);
+        }
+        plotItem.set(id + "/" + topic, topic);
+        if (this.plotArrayMap.get(idPlot) == null)
+            this.plotArrayMap.set(idPlot, new Array());
+        var addMsgItem = this.plotAddMsg.get(idPlot);
+        addMsgItem.next(obj);
     };
-    RobotStateService.prototype.clearPlot = function () {
-        this.plotMap.clear();
-        this.plotArray = [];
+    RobotStateService.prototype.plotState = function (id, name) {
+        var _this = this;
+        this.topicPlotMap.forEach(function (value, key) {
+            var clearItem = _this.plotClearMsg.get(key);
+            if (clearItem != null)
+                clearItem.next({});
+            for (var _i = 0, value_1 = value; _i < value_1.length; _i++) {
+                var t = value_1[_i];
+                _this.addPlot(key, id, t, name);
+            }
+        });
+    };
+    RobotStateService.prototype.clearPlot = function (idPlot) {
+        var array = this.plotArrayMap.get(idPlot);
+        var tmp = this.plotMap.get(idPlot);
+        if (tmp != null)
+            tmp.clear();
+        this.plotArrayMap.set(idPlot, []);
     };
     RobotStateService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
@@ -1920,7 +2087,8 @@ var SliderControlComponent = /** @class */ (function () {
         this.eval = 0.0;
         this.sval = 0.0;
         this.dval = 0.0;
-        this.service = new _services_http_service__WEBPACK_IMPORTED_MODULE_1__["HttpService"]("/singlejoint", http);
+        this.service = new _services_http_service__WEBPACK_IMPORTED_MODULE_1__["HttpService"](http);
+        this.service.setURL("/singlejoint");
     }
     SliderControlComponent.prototype.ngOnInit = function () {
         var _this = this;
