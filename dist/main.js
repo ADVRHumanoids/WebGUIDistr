@@ -310,7 +310,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".mat-expansion-panel{\n    background: #3f51b5;\n    bottom: 0;\n    clear: both;\n    position: fixed;\n    z-index: 2;\n    width: 100%;\n    \n}\n\n.mat-toolbar{\n    position: sticky;\n    position: -webkit-sticky; /* For macOS/iOS Safari */\n    top: 0; /* Sets the sticky toolbar to be on top */\n    z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */\n}\n\n#tab{\n    margin-top: 100px;\n}"
+module.exports = "/*.mat-expansion-panel{\n    background: #3f51b5;\n    bottom: 0;\n    clear: both;\n    position: fixed;\n    z-index: 2;\n    width: 100%;\n    \n}*/\n\n.mat-toolbar{\n    position: sticky;\n    position: -webkit-sticky; /* For macOS/iOS Safari */\n    top: 0; /* Sets the sticky toolbar to be on top */\n    z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */\n}\n\n#tab{\n    margin-top: 100px;\n}\n\n::ng-deep .mat-tab-body-wrapper {\n    height: 100%;\n}\n\n/*.mat-tab-body-wrapper{\n    flex-grow: 1;\n}\n\n.mat-tab-body-content{\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n}*/\n\n/*.mat-tab-group{\n    height: 100%;\n}*/"
 
 /***/ }),
 
@@ -321,7 +321,7 @@ module.exports = ".mat-expansion-panel{\n    background: #3f51b5;\n    bottom: 0
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n\n<mat-toolbar color=\"primary\">\n    <span>ROBOT WEB GUI</span>\n</mat-toolbar>\n<mat-tab-group >\n    <mat-tab  label=\"Monitoring\">\n        <div class=\"containerModelPlot\"\n        fxLayout =\"row\"\n        fxLayout.xs=\"column\"\n        fxLayoutAlign=\"left\"\n        fxLayoutGap=\"50px\"\n        fxLayoutGap.xs=\"0\">\n      <div class=\"item item-1\" fxFlex=\"50%\">\n          <app-canvas></app-canvas>\n      </div>\n      <div class=\"item item-2\" fxFlex=\"50%\">\n        <app-plotter idPlot=\"1\" ></app-plotter>\n      </div>\n     \n      </div>\n\n      <div\n      fxLayout =\"row\"\n      fxLayout.xs=\"column\"\n      fxLayoutAlign=\"center\"\n      fxLayoutGap=\"30px\"\n      fxLayoutGap.xs=\"0\">\n      <div class=\"item item-1\" fxFlex=\"33%\">\n        <app-plotter idPlot=\"2\" label=\"Position\" [fields]=\"['motorPos','linkPos','refPos']\"></app-plotter>\n      </div>\n      <div class=\"item item-2\" fxFlex=\"33%\" >\n        <app-plotter idPlot=\"3\" label=\"Velocity\"  [fields]=\"['motorVel','linkVel','refVel']\"></app-plotter>\n      </div>\n   \n      <div class=\"item item-3\" fxFlex=\"34%\">\n        <app-plotter idPlot=\"4\" label=\"Torque\"  [fields]=\"['effort','refTor']\"></app-plotter>\n      </div>\n    </div>\n      \n    </mat-tab>\n    <mat-tab label=\"Plugins\">\n      <app-plugin-list></app-plugin-list>\n    </mat-tab>\n  </mat-tab-group>\n\n<!--<app-slider-control></app-slider-control>-->\n\n\n  \n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n\n<mat-toolbar color=\"primary\">\n    <span>ROBOT WEB GUI</span>\n    <mat-button-toggle-group *ngIf=\"tabIndex==0\" [(ngModel)]=\"toggleGlobal\" style=\"margin-left: 50px;\" #group=\"matButtonToggleGroup\" name=\"mode\" aria-label=\"Font Style\" (change)=\"changeView(group.value)\">\n        <mat-button-toggle value=\"Plotter\">Plotter</mat-button-toggle>\n        <mat-button-toggle value=\"Model\">Model</mat-button-toggle>\n        <mat-button-toggle value=\"AllPlots\">4Plots</mat-button-toggle>\n    </mat-button-toggle-group>\n    <mat-button-toggle-group *ngIf=\"tabIndex==0 && !allPlotsViewFlag\" [(ngModel)]=\"toggleModel\" style=\"margin-left: 50px;\" #groupPanel=\"matButtonToggleGroup\" name=\"modePanel\" aria-label=\"Font Style\" (change)=\"changeViewPanel(groupPanel.value)\">\n        <mat-button-toggle value=\"Global\">Global</mat-button-toggle>\n        <mat-button-toggle value=\"Single\">Single</mat-button-toggle>\n        </mat-button-toggle-group>\n</mat-toolbar>\n<mat-tab-group style=\"width:100%; height:100%\" (selectedTabChange)=\"onLinkClick($event)\">\n  <mat-tab style=\"width:100%; height:100%\" label=\"Monitoring\">\n\n    <div style=\"width:100%; height:100%\" class=\"containerModelPlot\"\n    fxLayout =\"column\"\n    fxLayout.xs=\"column\"\n    fxLayoutAlign=\"center stretch\"\n    fxLayoutGap=\"5px\"\n    fxLayoutGap.xs=\"0\">\n      <div class=\"item item-1\"  fxFlex=\"90\" >\n        <div style=\"height:100%\">\n          <div style=\"width:100%; height:100%\"\n          fxLayout =\"row\"\n          fxLayout.xs=\"column\"\n          fxLayoutAlign=\"center stretch\"\n          fxLayoutGap=\"5px\"\n          fxLayoutGap.xs=\"0\">\n            <div class=\"item item-1\"  fxFlex=\"20\" >\n              <div style=\"width:100%; height:100%;\">\n                   <div  *ngIf=\"true; then TreeView\"></div>\n              </div> \n            </div>\n            <div class=\"item item-2\"  fxFlex=\"40\" >\n                <div style=\"width:100%; height:100%\"\n                fxLayout =\"column\"\n                fxLayout.xs=\"column\"\n                fxLayoutAlign=\"center stretch\"\n                fxLayoutGap=\"2px\"\n                fxLayoutGap.xs=\"0\">\n                    <div  *ngIf=\"allPlotsViewFlag; then LeftPlotView else controlPanelView\"></div>\n                </div>       \n            </div>\n            <div class=\"item item-3\"  fxFlex=\"40\" >\n                <div style=\"height:100%\"> \n                  <div style=\"width:100%; height:100%\"\n                  fxLayout =\"column\"\n                  fxLayout.xs=\"column\"\n                  fxLayoutAlign=\"center stretch\"\n                  fxLayoutGap=\"2px\"\n                  fxLayoutGap.xs=\"0\">\n                    <div  *ngIf=\"plotterViewFlag; then plotterView\"></div>\n                    <div  *ngIf=\"modelViewFlag; then modelView\"></div>\n                    <div  *ngIf=\"allPlotsViewFlag; then twoPlotView\"></div>\n                  </div>\n                </div> \n            </div>\n          </div>\n        </div> \n      </div>\n      <div class=\"item item-2\"  fxFlex=\"10\" >\n        <div style=\"background-color: red; height:100%\">LOGGER</div> \n      </div>\n\n    </div>\n    </mat-tab>\n    <mat-tab label=\"Plugins\">\n      <app-plugin-list></app-plugin-list>\n    </mat-tab>\n</mat-tab-group>\n\n<!--<app-slider-control></app-slider-control>-->\n\n\n<ng-template #controlPanelView>\n    <div class=\"item item-1\"  fxFlexFill >\n        <div *ngIf=\"controlPanelViewFlag== false\" style=\" height:100%\">\n            <app-bar-chart  idPlot=\"0\" ></app-bar-chart>\n        </div> \n        <div *ngIf=\"controlPanelViewFlag== true\" style=\" height:100%\">\n            <app-control-panel></app-control-panel>\n        </div> \n    </div>\n  </ng-template>\n  \n<ng-template #plotterView>\n  <div class=\"item item-1\"  fxFlexFill >\n      <div style=\"height:100%;\">\n          <app-plotter  idPlot=\"0\" ></app-plotter>\n      </div> \n  </div>\n</ng-template>\n\n<ng-template #modelView>\n    <div class=\"item item-1\"  fxFlexFill >\n        <div style=\" height:100%\">\n            <app-canvas></app-canvas>\n        </div> \n    </div>\n</ng-template>\n\n\n<ng-template #twoPlotView>\n    <div class=\"item item-1\"  fxFlex=\"50\" >\n        <div style=\" height:100%\">\n          <app-plotter idPlot=\"1\" ></app-plotter>\n        </div> \n    </div>\n    <div class=\"item item-2\"  fxFlex=\"50\" >\n        <div style=\" height:100%\">\n          <app-plotter idPlot=\"4\" label=\"Torque\"  [fields]=\"['effort','refTor']\"></app-plotter> \n        </div>\n    </div>  \n</ng-template>  \n\n<ng-template #LeftPlotView>\n\n        <div class=\"item item-2\"  fxFlex=\"50\" >\n            <div style=\" height:100%\">\n                <app-plotter idPlot=\"2\" label=\"Position\" [fields]=\"['motorPos','linkPos','refPos']\"></app-plotter>\n            </div> \n        </div>\n        <div class=\"item item-3\"  fxFlex=\"50\" >\n            <div style=\" height:100%\">\n                <app-plotter idPlot=\"3\" label=\"Velocity\"  [fields]=\"['motorVel','linkVel','refVel']\"></app-plotter> \n            </div> \n        </div>\n</ng-template>\n\n<ng-template #TreeView>\n    <app-tree-panel></app-tree-panel>\n</ng-template>\n"
 
 /***/ }),
 
@@ -363,7 +363,49 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
+        this.modelViewFlag = true;
+        this.plotterViewFlag = false;
+        this.allPlotsViewFlag = false;
+        this.controlPanelViewFlag = false;
+        this.tabIndex = 0;
+        this.toggleGlobal = "Global";
+        this.toggleModel = "Model";
     }
+    AppComponent.prototype.changeView = function (param) {
+        //console.log("enableModelView"+ param);
+        if (param == "Model") {
+            this.modelViewFlag = true;
+            this.plotterViewFlag = false;
+            this.allPlotsViewFlag = false;
+        }
+        else if (param == "Plotter") {
+            this.plotterViewFlag = true;
+            this.modelViewFlag = false;
+            this.allPlotsViewFlag = false;
+        }
+        else if (param == "AllPlots") {
+            this.plotterViewFlag = false;
+            this.allPlotsViewFlag = true;
+            this.modelViewFlag = false;
+        }
+        this.toggleModel = param;
+    };
+    AppComponent.prototype.changeViewPanel = function (param) {
+        //console.log("enableModelView"+ param);
+        this.toggleGlobal = param;
+        if (param == "Global") {
+            this.controlPanelViewFlag = false;
+        }
+        else if (param == "Single") {
+            this.controlPanelViewFlag = true;
+        }
+    };
+    AppComponent.prototype.onLinkClick = function (event) {
+        //console.log('event => ', event);
+        this.tabIndex = event.index;
+        //console.log('index => ', event.index);
+        //console.log('tab => ', event.tab); 
+    };
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-root',
@@ -401,15 +443,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _canvas_canvas_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./canvas/canvas.component */ "./src/app/canvas/canvas.component.ts");
 /* harmony import */ var _plotter_plotter_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./plotter/plotter.component */ "./src/app/plotter/plotter.component.ts");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/material/expansion */ "./node_modules/@angular/material/esm5/expansion.es5.js");
-/* harmony import */ var _angular_flex_layout__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/flex-layout */ "./node_modules/@angular/flex-layout/esm5/flex-layout.es5.js");
-/* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/material/list */ "./node_modules/@angular/material/esm5/list.es5.js");
-/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
-/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm5/input.es5.js");
-/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm5/button.es5.js");
-/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
+/* harmony import */ var _control_panel_control_panel_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./control-panel/control-panel.component */ "./src/app/control-panel/control-panel.component.ts");
+/* harmony import */ var _tree_panel_tree_panel_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./tree-panel/tree-panel.component */ "./src/app/tree-panel/tree-panel.component.ts");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_material_expansion__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/material/expansion */ "./node_modules/@angular/material/esm5/expansion.es5.js");
+/* harmony import */ var _angular_flex_layout__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/flex-layout */ "./node_modules/@angular/flex-layout/esm5/flex-layout.es5.js");
+/* harmony import */ var _angular_material_list__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/list */ "./node_modules/@angular/material/esm5/list.es5.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm5/card.es5.js");
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm5/input.es5.js");
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm5/button.es5.js");
+/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/esm5/icon.es5.js");
+/* harmony import */ var _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! @angular/material/button-toggle */ "./node_modules/@angular/material/esm5/button-toggle.es5.js");
+/* harmony import */ var _angular_material_tree__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/material/tree */ "./node_modules/@angular/material/esm5/tree.es5.js");
+/* harmony import */ var _bar_chart_bar_chart_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./bar-chart/bar-chart.component */ "./src/app/bar-chart/bar-chart.component.ts");
+/* harmony import */ var _angular_material_slider__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/material/slider */ "./node_modules/@angular/material/esm5/slider.es5.js");
+/* harmony import */ var _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/material/slide-toggle */ "./node_modules/@angular/material/esm5/slide-toggle.es5.js");
 /*
  * Copyright (C) 2017 IIT-ADVR
  * Author:  Giuseppe Rigano
@@ -457,6 +507,14 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+
+
+
+
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -467,21 +525,29 @@ var AppModule = /** @class */ (function () {
                 _plugin_list_plugin_list_component__WEBPACK_IMPORTED_MODULE_8__["PluginListComponent"],
                 _slider_control_slider_control_component__WEBPACK_IMPORTED_MODULE_9__["SliderControlComponent"],
                 _canvas_canvas_component__WEBPACK_IMPORTED_MODULE_11__["CanvasComponent"],
-                _plotter_plotter_component__WEBPACK_IMPORTED_MODULE_12__["PlotterComponent"]
+                _plotter_plotter_component__WEBPACK_IMPORTED_MODULE_12__["PlotterComponent"],
+                _control_panel_control_panel_component__WEBPACK_IMPORTED_MODULE_13__["ControlPanelComponent"],
+                _tree_panel_tree_panel_component__WEBPACK_IMPORTED_MODULE_14__["TreePanelComponent"],
+                _bar_chart_bar_chart_component__WEBPACK_IMPORTED_MODULE_27__["BarChartComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["BrowserModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_10__["FormsModule"],
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_13__["BrowserAnimationsModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_14__["MatToolbarModule"],
-                _angular_material_expansion__WEBPACK_IMPORTED_MODULE_15__["MatExpansionModule"],
-                _angular_flex_layout__WEBPACK_IMPORTED_MODULE_16__["FlexLayoutModule"],
-                _angular_material_list__WEBPACK_IMPORTED_MODULE_17__["MatListModule"],
-                _angular_material_card__WEBPACK_IMPORTED_MODULE_18__["MatCardModule"],
-                _angular_material_input__WEBPACK_IMPORTED_MODULE_19__["MatInputModule"],
-                _angular_material_button__WEBPACK_IMPORTED_MODULE_20__["MatButtonModule"],
-                _angular_material_tabs__WEBPACK_IMPORTED_MODULE_21__["MatTabsModule"]
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_15__["BrowserAnimationsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_16__["MatToolbarModule"],
+                _angular_material_expansion__WEBPACK_IMPORTED_MODULE_17__["MatExpansionModule"],
+                _angular_flex_layout__WEBPACK_IMPORTED_MODULE_18__["FlexLayoutModule"],
+                _angular_material_list__WEBPACK_IMPORTED_MODULE_19__["MatListModule"],
+                _angular_material_card__WEBPACK_IMPORTED_MODULE_20__["MatCardModule"],
+                _angular_material_input__WEBPACK_IMPORTED_MODULE_21__["MatInputModule"],
+                _angular_material_button__WEBPACK_IMPORTED_MODULE_22__["MatButtonModule"],
+                _angular_material_tabs__WEBPACK_IMPORTED_MODULE_23__["MatTabsModule"],
+                _angular_material_icon__WEBPACK_IMPORTED_MODULE_24__["MatIconModule"],
+                _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_25__["MatButtonToggleModule"],
+                _angular_material_tree__WEBPACK_IMPORTED_MODULE_26__["MatTreeModule"],
+                _angular_material_slider__WEBPACK_IMPORTED_MODULE_28__["MatSliderModule"],
+                _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_29__["MatSlideToggleModule"]
             ],
             providers: [
                 _services_http_service__WEBPACK_IMPORTED_MODULE_1__["HttpService"],
@@ -493,6 +559,253 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/bar-chart/bar-chart.component.css":
+/*!***************************************************!*\
+  !*** ./src/app/bar-chart/bar-chart.component.css ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/bar-chart/bar-chart.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/bar-chart/bar-chart.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div style=\"width:100%; height:100%\"\nfxLayout =\"column\"\nfxLayout.xs=\"column\"\nfxLayoutAlign=\"center stretch\"\nfxLayoutGap=\"2px\"\nfxLayoutGap.xs=\"0\">\n  <div class=\"item item-1\"  fxFlex=75 >\n    <div style=\" height:100%\">\n      <canvas [id]=\"getId()\"></canvas>\n    </div> \n  </div>\n  <div class=\"item item-2\"  fxFlex=\"5\" >\n      <div style=\" height:100%\">\n        <div >\n          MinScale <input #MinScale name=\"range\" step=\"0.1\" (change)=\"setMinScale(MinScale.value)\" style=\" width:50px\" >\n          MaxScale <input #MaxScale name=\"range\" step=\"0.1\" (change)=\"setMaxScale(MaxScale.value)\" style=\" width:50px\" >  \n        </div> \n      </div>\n    </div>\n  <div class=\"item item-3\"  fxFlex=20 >\n    <div style=\" height:100%; overflow: scroll;\">\n      <div  >TOPICS</div>\n      <mat-list role=\"list\">\n          <mat-list-item style=\" width:100%;\" *ngFor=\"let litem of topics\">\n              <button (click) =\"setTopic(litem)\" style=\" width:100%;\"  mat-button> {{litem}}</button>\n          </mat-list-item>\n      </mat-list>\n    </div> \n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/bar-chart/bar-chart.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/bar-chart/bar-chart.component.ts ***!
+  \**************************************************/
+/*! exports provided: BarChartComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BarChartComponent", function() { return BarChartComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/src/chart.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _services_robot_state_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../services/robot-state.service */ "./src/app/services/robot-state.service.ts");
+/*
+ * Copyright (C) 2017 IIT-ADVR
+ * Author:  Giuseppe Rigano
+ * email:   giuseppe.rigano@iit.it
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>
+*/
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var BarChartComponent = /** @class */ (function () {
+    function BarChartComponent(robotService) {
+        this.topics = [];
+        this.chartColors = {
+            red: 'rgb(255, 99, 132)',
+            orange: 'rgb(255, 159, 64)',
+            yellow: 'rgb(255, 205, 86)',
+            green: 'rgb(75, 192, 192)',
+            blue: 'rgb(54, 162, 235)',
+            purple: 'rgb(153, 102, 255)',
+            grey: 'rgb(201, 203, 207)'
+        };
+        this.robotService = robotService;
+        if (this.label == null)
+            this.label = "Plotter";
+        this.data = {
+            labels: [],
+            datasets: []
+        };
+    }
+    BarChartComponent.prototype.setTopic = function (topic) {
+        this.robotService.currentTopicBar = topic;
+    };
+    BarChartComponent.prototype.getId = function () {
+        return "myBarChart" + this.idPlot;
+    };
+    BarChartComponent.prototype.ngOnInit = function () {
+        console.log("ID ONINIT " + this.getId());
+    };
+    BarChartComponent.prototype.ngOnDestroy = function () {
+        clearTimeout(this.timeout);
+        if (this.subPlotAddDatamsg != null)
+            this.subPlotAddDatamsg.unsubscribe();
+        //this.subPlotAddmsg.unsubscribe();
+        //this.subPlotClearmsg.unsubscribe();
+        this.robotService = null;
+        this.map = null;
+        //REMOVE HOSTLISTENER
+        //REMOVE SETINTERVAL
+    };
+    BarChartComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        this.timeout = setTimeout(function () {
+            console.log("CHART ID " + _this.idPlot);
+            _this.isResponsive = true;
+            _this.canvas = document.getElementById(_this.getId());
+            _this.ctx = _this.canvas.getContext('2d');
+            _this.myChart = new chart_js__WEBPACK_IMPORTED_MODULE_1__(_this.ctx, {
+                type: 'bar',
+                data: _this.data,
+                options: {
+                    events: ['click'],
+                    responsiveAnimationDuration: 0,
+                    animation: {
+                        duration: 0
+                    },
+                    responsive: _this.isResponsive,
+                    maintainAspectRatio: false,
+                    //cubicInterpolationMode: "",
+                    title: {
+                        display: true,
+                        text: _this.label
+                    },
+                    tooltips: {
+                        enabled: true,
+                        mode: 'index',
+                        intersect: true,
+                        callbacks: {
+                            afterLabel: function (tooltipItem, data) {
+                                _this.robotService.selectJointSensorName = tooltipItem.xLabel;
+                                _this.robotService.advertiseSelectedJoint(_this.robotService.selectJointSensorName);
+                                return "";
+                            }
+                        }
+                    },
+                    /*hover: {
+                      mode: 'nearest',
+                      intersect: true
+                    },*/
+                    scales: {
+                        xAxes: [{
+                                display: false,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Joints'
+                                }
+                            }],
+                        yAxes: [{
+                                display: true,
+                                ticks: {
+                                    //stepSize: 0.5
+                                    beginAtZero: true,
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                }
+                            }]
+                    }
+                }
+            });
+            _this.robotService.registerBarChartComponent(parseInt(_this.idPlot));
+            _this.subPlotAddDatamsg = _this.robotService.currentBarAddDatamsg.get(parseInt(_this.idPlot)).subscribe(function (msg) {
+                if (msg == null)
+                    return;
+                if (msg != null) {
+                    //console.log(msg);
+                    var topicname = msg["topic"];
+                    var robot = msg["robot"];
+                    if (robot == null)
+                        return;
+                    //console.log(robot);
+                    var joint = robot["joint_name"];
+                    var topic = robot[topicname];
+                    var keys = Object.keys(robot);
+                    _this.topics = keys;
+                    _this.addDataset(joint);
+                    _this.setLabel(topicname);
+                    _this.addDataToDataset(topic);
+                }
+            });
+        }, 100);
+    };
+    BarChartComponent.prototype.clearData = function () {
+        this.data.labels = [];
+        this.data.datasets = [];
+        this.robotService.clearPlot(parseInt(this.idPlot));
+        this.myChart.update();
+    };
+    BarChartComponent.prototype.addDataset = function (msg) {
+        if (this.data.labels != null && this.data.labels.length == 0) {
+            var ol = Object.keys(this.chartColors);
+            var colorName = ol[this.data.datasets.length % ol.length];
+            var data = {
+                label: "",
+                backgroundColor: this.chartColors[colorName],
+                borderColor: this.chartColors[colorName],
+                borderWidth: 1,
+                data: new Array(msg.length)
+            }; //msg["value"]
+            this.data.labels = msg;
+            this.data.datasets.push(data);
+        }
+    };
+    BarChartComponent.prototype.setLabel = function (label) {
+        this.data.datasets[0].label = label;
+    };
+    BarChartComponent.prototype.setMinScale = function (val) {
+        this.myChart.options.scales.yAxes[0].ticks.min = parseFloat(val);
+    };
+    BarChartComponent.prototype.setMaxScale = function (val) {
+        this.myChart.options.scales.yAxes[0].ticks.max = parseFloat(val);
+    };
+    BarChartComponent.prototype.addDataToDataset = function (msg) {
+        for (var i = 0; i < this.data.labels.length; i++) {
+            this.data.datasets[0].data[i] = msg[i];
+        }
+        this.myChart.update(0);
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", String)
+    ], BarChartComponent.prototype, "idPlot", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", String)
+    ], BarChartComponent.prototype, "label", void 0);
+    BarChartComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-bar-chart',
+            template: __webpack_require__(/*! ./bar-chart.component.html */ "./src/app/bar-chart/bar-chart.component.html"),
+            styles: [__webpack_require__(/*! ./bar-chart.component.css */ "./src/app/bar-chart/bar-chart.component.css")]
+        }),
+        __metadata("design:paramtypes", [_services_robot_state_service__WEBPACK_IMPORTED_MODULE_2__["RobotStateService"]])
+    ], BarChartComponent);
+    return BarChartComponent;
 }());
 
 
@@ -517,7 +830,7 @@ module.exports = "/*.canvas{\n    margin-top: 64px;\n}*/"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div >\n<div class=\"canvas\" #container></div>\n\n<div  *ngIf=\"isJoint;else sensor\">\n<mat-card class=\"example-card\">\n<mat-card-header>\n    <mat-card-title>ID: {{robotState.id}}  Name: {{robotState.name}} <button  mat-raised-button color=\"primary\" type=\"button\" (click)=\"plotState(robotState.id,robotState.name)\">PlotState</button></mat-card-title>\n</mat-card-header>\n<mat-card-content>\n       \n<p>Motor Position: <input  disabled matInput style=\"width: 50px;\" value={{robotState.motorPos}}> <button  mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'motorPos',robotState.name)\">Plot</button>\n        Link Position: <input  disabled matInput style=\"width: 50px;\" value={{robotState.linkPos}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'linkPos',robotState.name)\">Plot</button></p> \n<p>Motor Velocity:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.motorVel}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'motorVel',robotState.name)\">Plot</button>\n        Link Velocity: <input  disabled matInput style=\"width: 50px;\" value= {{robotState.linkVel}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'linkVel',robotState.name)\">Plot</button></p>\n<p>Stiffness:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.stiff}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'stiff',robotState.name)\">Plot</button>\n        Damping:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.damp}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'damp',robotState.name)\">Plot</button></p>\n<p>Torque:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.effort}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'effort',robotState.name)\">Plot</button> \n    Fault:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.fault}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'fault',robotState.name)\">Plot</button></p>\n<p>Temperature: <input  disabled matInput style=\"width: 50px;\" value={{robotState.temp}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'temp',robotState.name)\">Plot</button> \n    Aux:  <input  disabled matInput style=\"width: 50px;\" value={{robotState.aux}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotState.id,'aux',robotState.name)\">Plot</button></p>\n\n</mat-card-content>\n</mat-card>\n\n</div>\n</div>\n\n<ng-template #sensor>\n<mat-card class=\"example-card\">\n<mat-card-header>\n    <mat-card-title>ID: {{robotSensorState.id}}  Name: {{robotSensorState.name}}</mat-card-title>\n</mat-card-header>\n<mat-card-content>\n<p>Force: x: <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.forcex}}> <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'forcex',robotSensorState.name)\">Plot</button> \n    y:<input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.forcey}}>  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'forcey',robotSensorState.name)\">Plot</button>\n    z:<input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.forcez}}>  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'forcez',robotSensorState.name)\">Plot</button>\n</p>\n<p>Torque: x: <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.torquex}}>  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'torquex',robotSensorState.name)\">Plot</button>\n    y: <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.torquey}}>  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'torquey',robotSensorState.name)\">Plot</button>\n    z: <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.torquez}}>  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"addPlot(robotSensorState.id,'torquez',robotSensorState.name)\">Plot</button>      \n</p>\n    </mat-card-content>\n</mat-card>\n</ng-template>\n  \n  \n"
+module.exports = "<div class=\"canvas\" #container></div>"
 
 /***/ }),
 
@@ -579,70 +892,86 @@ var STLLoader = __webpack_require__(/*! three-stl-loader */ "./node_modules/thre
 var loader = new STLLoader();
 
 var CanvasComponent = /** @class */ (function () {
+    /*private robotState = {
+      name: "",
+      id: 0,
+      motorPos: 0,
+      linkPos: 0,
+      motorVel: 0,
+      linkVel: 0,
+      temp: 0,
+      effort: 0,
+      stiff: 0,
+      damp: 0,
+      fault: 0,
+      aux : 0,
+      refPos: 0,
+      refVel: 0,
+      refTor: 0
+    }
+
+    private robotSensorState = {
+      name: "",
+      id: 0,
+      forcex: 0,
+      forcey: 0,
+      forcez: 0,
+      torquex: 0,
+      torquey: 0,
+      torquez: 0,
+    }*/
     function CanvasComponent(http, robotService) {
         var _this = this;
         this.title = 'app';
         this.linkmap = new Map();
         this.jointmap = new Map();
         this.order = 'XYZ';
-        this.isJoint = true;
-        this.robotState = {
-            name: "",
-            id: 0,
-            motorPos: 0,
-            linkPos: 0,
-            motorVel: 0,
-            linkVel: 0,
-            temp: 0,
-            effort: 0,
-            stiff: 0,
-            damp: 0,
-            fault: 0,
-            aux: 0,
-            refPos: 0,
-            refVel: 0,
-            refTor: 0
+        this.OnWindowResize = function (EventListener) {
+            _this.resize();
+            _this.render();
         };
-        this.robotSensorState = {
-            name: "",
-            id: 0,
-            forcex: 0,
-            forcey: 0,
-            forcez: 0,
-            torquex: 0,
-            torquey: 0,
-            torquez: 0,
+        this.Onclick = function (MouseEvent) {
+            var rect = _this.renderer.domElement.getBoundingClientRect();
+            _this.mouse.x = ((MouseEvent.clientX - rect.left) / rect.width) * 2 - 1;
+            _this.mouse.y = -((MouseEvent.clientY - rect.top) / rect.height) * 2 + 1;
+            //console.log(this.mouse.x + "" +this.mouse.y);
+            if (MouseEvent.which === 1)
+                _this.CheckIntersection();
         };
         console.log(three__WEBPACK_IMPORTED_MODULE_1__);
         this.isModelLoaded = true;
         this.service = new _services_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"](http);
         this.service.setURL("/model");
         this.robotService = robotService;
-        this.robot = new Map();
-        this.robotSensor = new Map();
-        this.robotService.currentmsg.subscribe(function (msg) {
-            _this.robot = msg["robot"];
-            _this.robotSensor = msg["sensor"];
-            if (_this.robot != null) {
-                var item = _this.robot.get(_this.selectJoint);
-                if (item != null)
-                    _this.robotState = item;
-            }
-            _this.robotService.selectJointName = _this.selectJoint;
-            if (_this.isJoint)
-                _this.robotService.selectJointId = _this.robotState.id;
-            else
-                _this.robotService.selectJointId = _this.robotSensorState.id;
-            if (_this.robotSensor != null && _this.selectedObject != null) {
-                var userdata = _this.selectedObject.userData;
-                if (userdata != null) {
-                    var sensor = userdata["name"];
-                    var items = _this.robotSensor.get(sensor);
-                    if (items != null)
-                        _this.robotSensorState = items;
-                }
-            }
-        });
+        /* this.robot = new Map<string, any>();
+         this.robotSensor = new Map<string, any>();
+         this.robotService.currentmsg.subscribe(msg => {
+           this.robot = msg["robot"];
+           this.robotSensor = msg["sensor"];
+           if(this.robot != null){
+             var item = this.robot.get(this.selectJoint);
+             if (item != null)
+               this.robotState = item;
+           }
+   
+           this.robotService.selectJointName = this.selectJoint;
+           if(this.isJoint)
+             this.robotService.selectJointId = this.robotState.id;
+           else
+             this.robotService.selectJointId = this.robotSensorState.id;
+             
+   
+           if (this.robotSensor!= null && this.selectedObject != null){
+             var userdata = this.selectedObject.userData;
+             if (userdata != null){
+               var sensor = userdata["name"];
+               var items = this.robotSensor.get(sensor);
+               if (items != null)
+                 this.robotSensorState = items;
+             }
+           }
+           
+       });*/
     }
     CanvasComponent.prototype.createNodeLink = function (pos, rot_axis, angle, scale) {
         var tmp = new three__WEBPACK_IMPORTED_MODULE_1__["Mesh"]();
@@ -742,6 +1071,21 @@ var CanvasComponent = /** @class */ (function () {
             link.rotation.set(-Math.PI / 2, 0, 0);
             link.add(joint);
             _this.scene.add(link);
+            //SAVE STATE
+            _this.robotService.CanvasState.camera = _this.camera;
+            _this.robotService.CanvasState.scene = _this.scene;
+            _this.robotService.CanvasState.controls = _this.controls;
+            _this.robotService.CanvasState.jointMap = _this.jointmap;
+            _this.robotService.CanvasState.linkMap = _this.linkmap;
+            _this.robotService.CanvasState.renderer = _this.renderer;
+            _this.robotService.CanvasState.state = 1;
+            /*var fkey;
+            for (let entry of Array.from(this.jointmap.entries())) {
+              fkey = entry[0];
+            }
+            this.robotService.selectJointSensorName = fkey;
+            this.robotService.advertiseSelectedJoint(this.robotService.selectJointSensorName);
+            */
             //load meshes
             _this.linkmap.forEach(function (value, key) {
                 if (value.userData != null) {
@@ -777,8 +1121,9 @@ var CanvasComponent = /** @class */ (function () {
         //console.log(this.container);
         this.raycaster = new three__WEBPACK_IMPORTED_MODULE_1__["Raycaster"]();
         this.mouse = new three__WEBPACK_IMPORTED_MODULE_1__["Vector2"]();
-        this.init();
-        this.getData();
+        var isInit = this.init();
+        if (!isInit)
+            this.getData();
     };
     CanvasComponent.prototype.addVectorMarker = function () {
         var material = new three__WEBPACK_IMPORTED_MODULE_1__["LineBasicMaterial"]({ color: 0x0000ff });
@@ -795,12 +1140,6 @@ var CanvasComponent = /** @class */ (function () {
         cube.position.set(pos[0], pos[1], pos[2]);
         return cube;
     };
-    CanvasComponent.prototype.addPlot = function (id, topic, name) {
-        this.robotService.addPlot(1, id, topic, name);
-    };
-    CanvasComponent.prototype.plotState = function (id, name) {
-        this.robotService.plotState(id, name);
-    };
     CanvasComponent.prototype.setVelRef = function (param) {
         this.vval = param;
         //this.selectedObject.rotateOnAxis(new THREE.Vector3(0,0,1),param);
@@ -809,7 +1148,6 @@ var CanvasComponent = /** @class */ (function () {
            var axis = userdata["axis"];
            //this.selectedObject.setRotationFromAxisAngle(new THREE.Vector3(axis[0],axis[1],axis[2]),param);
         }*/
-        this.isModelLoaded = true;
     };
     CanvasComponent.prototype.loadMesh = function (geometry, id) {
         var material;
@@ -828,15 +1166,17 @@ var CanvasComponent = /** @class */ (function () {
         //mesh.dispatchEvent({type:'click'});
         mesh.castShadow = true;
         mesh.receiveShadow = true;
-        var my = this.linkmap.get(id);
-        my.geometry = mesh.geometry;
-        var scale = my.userData["scale"];
-        if (scale != null)
-            my.geometry.scale(scale[0], scale[1], scale[2]);
-        my.material = mesh.material;
-        geometry.computeFaceNormals();
-        geometry.computeVertexNormals();
-        my.userData["load"] = true;
+        if (this.linkmap != null) {
+            var my = this.linkmap.get(id);
+            my.geometry = mesh.geometry;
+            var scale = my.userData["scale"];
+            if (scale != null)
+                my.geometry.scale(scale[0], scale[1], scale[2]);
+            my.material = mesh.material;
+            geometry.computeFaceNormals();
+            geometry.computeVertexNormals();
+            my.userData["load"] = true;
+        }
     };
     CanvasComponent.prototype.init = function () {
         var screen = {
@@ -848,39 +1188,130 @@ var CanvasComponent = /** @class */ (function () {
             near: 0.1,
             far: 1000
         };
-        this.scene = new three__WEBPACK_IMPORTED_MODULE_1__["Scene"]();
-        this.camera = new three__WEBPACK_IMPORTED_MODULE_1__["PerspectiveCamera"](view.angle, view.aspect, view.near, view.far);
-        this.renderer = new three__WEBPACK_IMPORTED_MODULE_1__["WebGLRenderer"]();
-        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-        this.scene.background = new three__WEBPACK_IMPORTED_MODULE_1__["Color"](0x72645b);
-        this.scene.add(this.camera);
-        //this.scene.add(new THREE.AxisHelper(20));
-        // lights
-        var light = new three__WEBPACK_IMPORTED_MODULE_1__["PointLight"](0xffffff, 0.8);
-        this.camera.add(light);
-        this.camera.position.set(1, 0.5, 2);
-        this.camera.lookAt(new three__WEBPACK_IMPORTED_MODULE_1__["Vector3"](0, 0, 0));
-        //this.camera.up.set(0,0,1);
-        this.scene.add(new three__WEBPACK_IMPORTED_MODULE_1__["AmbientLight"](0x222222));
-        this.renderer.setSize(screen.width, screen.height);
-        this.container.appendChild(this.renderer.domElement);
+        var status = false;
+        //Load state
+        if (this.robotService.CanvasState.state != 0) {
+            if (this.robotService.CanvasState.camera != null)
+                this.camera = this.robotService.CanvasState.camera;
+            if (this.robotService.CanvasState.controls != null)
+                this.controls = this.robotService.CanvasState.controls;
+            if (this.robotService.CanvasState.scene != null)
+                this.scene = this.robotService.CanvasState.scene;
+            if (this.robotService.CanvasState.linkMap != null)
+                this.linkmap = this.robotService.CanvasState.linkMap;
+            if (this.robotService.CanvasState.jointMap != null)
+                this.jointmap = this.robotService.CanvasState.jointMap;
+            if (this.robotService.CanvasState.renderer != null)
+                this.renderer = this.robotService.CanvasState.renderer;
+            status = true;
+        }
+        else {
+            this.scene = new three__WEBPACK_IMPORTED_MODULE_1__["Scene"]();
+            this.camera = new three__WEBPACK_IMPORTED_MODULE_1__["PerspectiveCamera"](view.angle, view.aspect, view.near, view.far);
+            this.renderer = new three__WEBPACK_IMPORTED_MODULE_1__["WebGLRenderer"]();
+            this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+            this.scene.background = new three__WEBPACK_IMPORTED_MODULE_1__["Color"](0x72645b);
+            this.scene.add(this.camera);
+            //this.scene.add(new THREE.AxisHelper(20));
+            // lights
+            var light = new three__WEBPACK_IMPORTED_MODULE_1__["PointLight"](0xffffff, 0.8);
+            this.camera.add(light);
+            this.camera.position.set(1, 0.5, 2);
+            this.camera.lookAt(new three__WEBPACK_IMPORTED_MODULE_1__["Vector3"](0, 0, 0));
+            //this.camera.up.set(0,0,1);
+            this.scene.add(new three__WEBPACK_IMPORTED_MODULE_1__["AmbientLight"](0x222222));
+            this.renderer.setSize(screen.width, screen.height);
+            status = false;
+        }
         this.render();
+        this.container.appendChild(this.renderer.domElement);
+        window.addEventListener('resize', this.OnWindowResize);
+        this.container.addEventListener('click', this.Onclick);
+        return status;
     };
-    CanvasComponent.prototype.ngAfterViewInit = function () {
+    CanvasComponent.prototype.resize = function () {
         this.container.style.width = "100%";
         this.container.style.height = "100%";
+        //console.log("onResize: " + this.container.clientWidth + ", " + this.container.clientHeight);
         this.camera.aspect = this.getAspectRatio();
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
     };
-    CanvasComponent.prototype.checkIntersection = function (event) {
-        var rect = this.renderer.domElement.getBoundingClientRect();
-        this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-        this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-        //console.log(this.mouse.x + "" +this.mouse.y);
-        if (event.which === 1)
-            this.CheckIntersection();
+    CanvasComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        console.log("ngAfterViewInit");
+        this.timeout = setTimeout(function () {
+            _this.resize();
+        }, 100);
     };
+    CanvasComponent.prototype.disposeNode = function (node) {
+        if (node instanceof three__WEBPACK_IMPORTED_MODULE_1__["Mesh"]) {
+            node.parent = undefined;
+            if (node.geometry) {
+                node.geometry.dispose();
+            }
+            var material = node.material;
+            if (material) {
+                if (material.map)
+                    material.map.dispose();
+                if (material.lightMap)
+                    material.lightMap.dispose();
+                if (material.bumpMap)
+                    material.bumpMap.dispose();
+                if (material.normalMap)
+                    material.normalMap.dispose();
+                if (material.specularMap)
+                    material.specularMap.dispose();
+                if (material.envMap)
+                    material.envMap.dispose();
+                material.dispose();
+            }
+        }
+        else if (node instanceof three__WEBPACK_IMPORTED_MODULE_1__["Object3D"]) {
+            node.parent.remove(node);
+            node.parent = undefined;
+        }
+    };
+    CanvasComponent.prototype.disposeHierarchy = function (node, callback) {
+        for (var i = node.children.length - 1; i >= 0; i--) {
+            var child = node.children[i];
+            this.disposeHierarchy(child, callback);
+            callback(child);
+        }
+    };
+    CanvasComponent.prototype.ngOnDestroy = function () {
+        cancelAnimationFrame(this.idAnimationFrame);
+        clearTimeout(this.timeout);
+        window.removeEventListener('resize', this.OnWindowResize);
+        this.container.removeEventListener('click', this.Onclick);
+        this.idAnimationFrame = null;
+        if (this.selectedObject != null) {
+            this.selectedObject.material = this.selectMaterial;
+        }
+        /*if (this.scene != null)
+          while (this.scene.children.length > 0) {
+            let obj = this.scene.children[0];
+            this.scene.remove(obj);
+            this.disposeHierarchy(obj, this.disposeNode);
+          }*/
+        this.robotService = null;
+        this.linkmap = null;
+        this.jointmap = null;
+        this.service = null;
+        this.scene = null;
+        this.camera = null;
+        this.controls = null;
+        this.container = null;
+    };
+    /*@HostListener('document:mousedown', ['$event'])
+    checkIntersection (event: MouseEvent) {
+      var rect = this.renderer.domElement.getBoundingClientRect();
+      this.mouse.x = ( ( event.clientX - rect.left ) / rect.width ) * 2 - 1;
+      this.mouse.y = - ( ( event.clientY - rect.top ) / rect.height ) * 2 + 1;
+      //console.log(this.mouse.x + "" +this.mouse.y);
+      if(event.which === 1)
+        this.CheckIntersection ();
+    }*/
     CanvasComponent.prototype.getAspectRatio = function () {
         var height = this.container.clientHeight;
         if (height === 0) {
@@ -888,20 +1319,38 @@ var CanvasComponent = /** @class */ (function () {
         }
         return this.container.clientWidth / this.container.clientHeight;
     };
-    CanvasComponent.prototype.onResize = function (event) {
-        this.container.style.width = "100%";
-        this.container.style.height = "100%";
-        //console.log("onResize: " + this.container.clientWidth + ", " + this.container.clientHeight);
-        this.camera.aspect = this.getAspectRatio();
-        this.camera.updateProjectionMatrix();
-        this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
+    /*@HostListener('window:resize', ['$event'])
+    public onResize(event: Event) {
+        this.resize();
         this.render();
-    };
+    }*/
     CanvasComponent.prototype.render = function () {
         var self = this;
         (function render() {
-            requestAnimationFrame(render);
-            self.renderer.render(self.scene, self.camera);
+            self.idAnimationFrame = requestAnimationFrame(render);
+            if (self.scene != null && self.camera != null)
+                self.renderer.render(self.scene, self.camera);
+            if (self.selectedObject != null) {
+                self.selectedObject.material = self.selectMaterial;
+            }
+            var joint = null;
+            if (self.jointmap != null)
+                joint = self.jointmap.get(self.robotService.selectJointSensorName);
+            if (joint != null) {
+                self.selectedObject = joint.children[0];
+                self.selectMaterial = self.selectedObject.material;
+                self.selectedObject.material = new three__WEBPACK_IMPORTED_MODULE_1__["MeshPhongMaterial"]({ color: 0xFFFF, specular: 0x111111, shininess: 200 });
+            }
+            else {
+                var sensor = null;
+                if (self.linkmap != null)
+                    sensor = self.linkmap.get(self.robotService.selectJointSensorName);
+                if (sensor != null) {
+                    self.selectedObject = sensor;
+                    self.selectMaterial = self.selectedObject.material;
+                    self.selectedObject.material = new three__WEBPACK_IMPORTED_MODULE_1__["MeshPhongMaterial"]({ color: 0xFFFF, specular: 0x111111, shininess: 200 });
+                }
+            }
         }());
     };
     CanvasComponent.prototype.CheckIntersection = function () {
@@ -909,42 +1358,35 @@ var CanvasComponent = /** @class */ (function () {
         var intersects = this.raycaster.intersectObjects(this.scene.children, true);
         //console.log(this.scene.children);
         if (intersects.length > 0) {
-            if (this.selectedObject != null) {
-                this.selectedObject.material = this.selectMaterial;
-            }
-            this.selectedObject = intersects[0].object;
-            this.selectMaterial = this.selectedObject.material;
-            this.selectedObject.material = new three__WEBPACK_IMPORTED_MODULE_1__["MeshPhongMaterial"]({ color: 0xFFFF, specular: 0x111111, shininess: 200 });
+            var objs = intersects[0].object;
             //console.log(this.selectedObject);
-            var userdata = this.selectedObject.parent.userData;
+            var userdata = objs.parent.userData;
             if (userdata != null) {
-                if (this.jointmap.get(userdata["name"]) != null)
-                    this.isJoint = true;
-                this.selectJoint = userdata["name"];
+                if (this.jointmap.get(userdata["name"]) != null) {
+                    var name = userdata["name"];
+                    var id = this.robotService.getJointId(name);
+                    if (id != null) {
+                        this.robotService.isJoint = true;
+                        this.robotService.selectJointSensorName = name;
+                        this.robotService.selectJointSensorId = id;
+                    }
+                }
             }
-            var userdata = this.selectedObject.userData;
+            var userdata = objs.userData;
             if (userdata != null) {
-                if (this.robotSensor.get(userdata["name"]) != null)
-                    this.isJoint = false;
+                var sensor = userdata["name"];
+                if (sensor != null) {
+                    this.robotService.isJoint = false;
+                    this.robotService.selectJointSensorName = sensor;
+                }
             }
+            this.robotService.advertiseSelectedJoint(this.robotService.selectJointSensorName);
         }
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('container'),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
     ], CanvasComponent.prototype, "elementRef", void 0);
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"])('document:mousedown', ['$event']),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [MouseEvent]),
-        __metadata("design:returntype", void 0)
-    ], CanvasComponent.prototype, "checkIntersection", null);
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"])('window:resize', ['$event']),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [Event]),
-        __metadata("design:returntype", void 0)
-    ], CanvasComponent.prototype, "onResize", null);
     CanvasComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-canvas',
@@ -1093,6 +1535,220 @@ var NotFoundError = /** @class */ (function (_super) {
 
 /***/ }),
 
+/***/ "./src/app/control-panel/control-panel.component.css":
+/*!***********************************************************!*\
+  !*** ./src/app/control-panel/control-panel.component.css ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/control-panel/control-panel.component.html":
+/*!************************************************************!*\
+  !*** ./src/app/control-panel/control-panel.component.html ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div style=\" height:100%; overflow: scroll;\" *ngIf=\"isJoint;else sensor\">\n  <mat-card style=\"margin-top: 10px\" class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"ID: {{robotState.id}}\">\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"15\" value=\"Name: {{robotState.name}}\">  \n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content >\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Motor Position:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.motorPos}}> \n            <button  mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'motorPos',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Link Position:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.linkPos}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'linkPos',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p> \n\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Motor Velocity:\">\n            <input disabled matInput style=\"width: 50px;\" value={{robotState.motorVel}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'motorVel',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Link Velocity:\">\n            <input  disabled matInput style=\"width: 50px;\" value= {{robotState.linkVel}}>\n            <button mat-icon-button  type=\"button\" (click)=\"addPlot(robotState.id,'linkVel',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Stiffness:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.stiff}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'stiff',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Damping:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.damp}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'damp',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Torque:\">  \n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.effort}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'effort',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Fault:\">\n\n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.fault}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'fault',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Temperature:\">  \n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.temp}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'temp',robotState.name)\">\n             <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Aux:\">\n\n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.aux}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'aux',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n    </mat-card-content>\n  </mat-card>\n\n<mat-card style=\"margin-top: 10px\" class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"Control\">\n            <mat-slide-toggle #Toggle\n            style=\"margin-left:20px\" \n            (change)=\"isControlEnable = ! isControlEnable; setControl()\"\n            color=\"primary\"\n            [checked]=\"isControlEnable\"\n            >Enable</mat-slide-toggle>       \n            <button  style=\"margin-left:60px\"  *ngIf=\"isControlEnable;\" mat-raised-button  type=\"button\" (click)=\"setPosRef(Pos.value); setVelRef(Vel.value); setEffortRef(Torque.value); setStiffRef(Stiff.value); setDampRef(Damp.value); sendVal(robotState.id)\">Send</button>\n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content >\n        <div  [hidden]=\"isControlEnable\">\n                <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Position:\">\n                        <mat-slider #PosOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"max\"\n                        [min]=\"min\"\n                        [step]=\"step\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.refPos\">\n                        </mat-slider>\n                    {{robotState.refPos}}\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n                        <mat-slider #VelOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"max\"\n                        [min]=\"min\"\n                        [step]=\"step\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.refVel\">\n                    </mat-slider>\n                    {{robotState.refVel}}\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n                        <mat-slider #TorqueOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"max\"\n                        [min]=\"min\"\n                        [step]=\"step\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.refTor\">\n                    </mat-slider>\n                    {{robotState.refTor}}\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n                        <mat-slider #StiffOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"step\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.stiff\">\n                    </mat-slider>\n                    {{robotState.stiff}}\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\" size=\"7\" value=\"Damping:\">\n                        <mat-slider  #DampOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"step\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.damp\">\n                    </mat-slider>\n                    {{robotState.damp}}\n                    </p>  \n        </div>\n\n        <div  [hidden]=\"!isControlEnable\">\n\n                <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Position:\">\n                        <mat-slider #Pos\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"max\"\n                        [min]=\"min\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"pval\">\n                        </mat-slider>\n                    {{Pos.value}}\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n                        <mat-slider #Vel\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"max\"\n                        [min]=\"min\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"vval\">\n                    </mat-slider>\n                    {{Vel.value}}\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n                        <mat-slider #Torque\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"max\"\n                        [min]=\"min\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"eval\">\n                    </mat-slider>\n                    {{Torque.value}}\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n                        <mat-slider #Stiff\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"0.1\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"sval\">\n                    </mat-slider>\n                    {{Stiff.value}}\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Damping:\">\n                        <mat-slider #Damp\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"0.1\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"dval\">\n                    </mat-slider>\n                    {{Damp.value}}\n                    </p>  \n        </div>\n\n    </mat-card-content>\n  </mat-card>\n\n</div>\n\n\n<ng-template #sensor>\n    <mat-card class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"ID: {{robotSensorState.id}}\">\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"15\" value=\"Name: {{robotSensorState.name}}\">           \n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content>\n    <p>Force: </p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"x:\">\n\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.forcex}}>\n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorState.id,'forcex',robotSensorState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.forcey}}>\n            <button mat-icon-button  type=\"button\" (click)=\"addPlot(robotSensorState.id,'forcey',robotSensorState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.forcez}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorState.id,'forcez',robotSensorState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n    <p>Torque:</p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" value=\"x:\"> \n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.torquex}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorState.id,'torquex',robotSensorState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.torquey}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorState.id,'torquey',robotSensorState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.torquez}}>  \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorState.id,'torquez',robotSensorState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon></button>      \n        </p>\n        </mat-card-content>\n    </mat-card>\n</ng-template>\n      \n<ng-template #ControlOFF>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Position:\">\n    <mat-slider #PosOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.refPos\">\n    </mat-slider>\n{{robotState.refPos}}\n</p> \n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n    <mat-slider #VelOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.refVel\">\n</mat-slider>\n{{robotState.refVel}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n    <mat-slider #TorqueOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.refTor\">\n</mat-slider>\n{{robotState.refTor}}\n</p> \n<p>\n    <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n    <mat-slider #StiffOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.stiff\">\n</mat-slider>\n{{robotState.stiff}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\" size=\"7\" value=\"Damping:\">\n    <mat-slider  #DampOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.damp\">\n</mat-slider>\n{{robotState.damp}}\n</p>  \n</ng-template>     \n\n<ng-template #ControlON>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Position:\">\n    <mat-slider #Pos\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.refPos\">\n    </mat-slider>\n{{Pos.value}}\n</p> \n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n    <mat-slider #Vel\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.refVel\">\n</mat-slider>\n{{Vel.value}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n    <mat-slider #Torque\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.refTor\">\n</mat-slider>\n{{Torque.value}}\n</p> \n<p>\n    <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n    <mat-slider #Stiff\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.stiff\">\n</mat-slider>\n{{Stiff.value}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Damping:\">\n    <mat-slider #Damp\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.damp\">\n</mat-slider>\n{{Damp.value}}\n</p>        \n</ng-template>   "
+
+/***/ }),
+
+/***/ "./src/app/control-panel/control-panel.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/control-panel/control-panel.component.ts ***!
+  \**********************************************************/
+/*! exports provided: ControlPanelComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ControlPanelComponent", function() { return ControlPanelComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_robot_state_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../services/robot-state.service */ "./src/app/services/robot-state.service.ts");
+/* harmony import */ var _common_not_foud_error__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../common/not-foud-error */ "./src/app/common/not-foud-error.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _services_http_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../services/http.service */ "./src/app/services/http.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var ControlPanelComponent = /** @class */ (function () {
+    function ControlPanelComponent(robotService, http) {
+        var _this = this;
+        this.type = "range";
+        this.pval = 0.0;
+        this.vval = 0.0;
+        this.eval = 0.0;
+        this.sval = 0.0;
+        this.dval = 0.0;
+        this.robotState = {
+            name: "",
+            id: 0,
+            motorPos: 0,
+            linkPos: 0,
+            motorVel: 0,
+            linkVel: 0,
+            temp: 0,
+            effort: 0,
+            stiff: 0,
+            damp: 0,
+            fault: 0,
+            aux: 0,
+            refPos: 0,
+            refVel: 0,
+            refTor: 0
+        };
+        this.robotSensorState = {
+            name: "",
+            id: 0,
+            forcex: 0,
+            forcey: 0,
+            forcez: 0,
+            torquex: 0,
+            torquey: 0,
+            torquez: 0,
+        };
+        this.isJoint = true;
+        this.isControlEnable = false;
+        this.robotService = robotService;
+        this.robot = new Map();
+        this.robotSensor = new Map();
+        this.service = new _services_http_service__WEBPACK_IMPORTED_MODULE_4__["HttpService"](http);
+        this.service.setURL("/singlejoint");
+        this.robotService.currentJointmsg.subscribe(function (msg) {
+            _this.setControl();
+        });
+        this.sub = this.robotService.currentmsg.subscribe(function (msg) {
+            _this.robot = msg["robot"];
+            _this.robotSensor = msg["sensor"];
+            if (_this.robot != null && _this.robotService.isJoint) {
+                var item = _this.robot.get(_this.robotService.selectJointSensorName);
+                if (item != null) {
+                    _this.robotState = item;
+                    _this.isJoint = true;
+                }
+            }
+            if (_this.robotSensor != null && !_this.robotService.isJoint) {
+                var items = _this.robotSensor.get(_this.robotService.selectJointSensorName);
+                if (items != null) {
+                    _this.robotSensorState = items;
+                    _this.isJoint = false;
+                }
+            }
+        });
+    }
+    ControlPanelComponent.prototype.ngOnDestroy = function () {
+        this.sub.unsubscribe();
+        this.robot = null;
+        this.robotService = null;
+        this.robotSensor = null;
+    };
+    ControlPanelComponent.prototype.ngOnInit = function () {
+        /*this.service.get("/chains")
+        .subscribe(
+          response => {
+             for (let o of response["Chains"]){
+               let p =o["Val"];
+               let chna =o["Chain"];
+                for (let u of p){
+                  this.chains.set(u["ID"],{ Chain: chna, Val:{ Name :u["Name"] , Id: u["ID"], JVal: u["Lval"],
+                  VVal: u["Vval"], EVal: u["Eval"], SVal: u["Sval"], DVal: u["Dval"], PRef: u["pos_ref"],
+                  VRef: u["vel_ref"], ERef: u["eff_ref"], Llimit: u["Llimit"], Ulimit: u["Ulimit"] } });
+                }
+            }
+          },
+          (error: AppError) => {
+    
+            //rimovo dal vettore
+            
+            if (error instanceof NotFoundError){
+              //expected error
+              //deleted
+              //this.form.setErrors(error.json());
+            }
+            else{
+              //unexpected error
+              throw error;
+    
+            }
+            
+           });*/
+    };
+    ControlPanelComponent.prototype.addPlot = function (id, topic, name) {
+        this.robotService.addPlot(0, id, topic, name);
+    };
+    ControlPanelComponent.prototype.setPosRef = function (param) {
+        this.pval = param;
+    };
+    ControlPanelComponent.prototype.setVelRef = function (param) {
+        this.vval = param;
+    };
+    ControlPanelComponent.prototype.setEffortRef = function (param) {
+        this.eval = param;
+    };
+    ControlPanelComponent.prototype.setStiffRef = function (param) {
+        this.sval = param;
+    };
+    ControlPanelComponent.prototype.setDampRef = function (param) {
+        this.dval = param;
+    };
+    ControlPanelComponent.prototype.sendVal = function (id) {
+        //{"joint":[{"id": 15, "val": 0},{"id": 16, "val": 0}]}
+        this.service.create({ "joint": [{ "id": Number(this.robotState.id), "pos": Number(this.pval),
+                    "vel": Number(this.vval), "eff": Number(this.eval), "stiff": Number(this.sval),
+                    "damp": Number(this.dval) }] })
+            .subscribe(function (response) {
+        }, function (error) {
+            //rimovo dal vettore
+            if (error instanceof _common_not_foud_error__WEBPACK_IMPORTED_MODULE_2__["NotFoundError"]) {
+                //expected error
+                //deleted
+                //this.form.setErrors(error.json());
+            }
+            else {
+                //unexpected error
+                throw error;
+            }
+        });
+    };
+    ControlPanelComponent.prototype.setControl = function () {
+        if (this.isControlEnable) {
+            this.pval = this.robotState.refPos;
+            this.vval = this.robotState.refVel;
+            this.eval = this.robotState.refTor;
+            this.sval = this.robotState.stiff;
+            this.dval = this.robotState.damp;
+        }
+    };
+    ControlPanelComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-control-panel',
+            template: __webpack_require__(/*! ./control-panel.component.html */ "./src/app/control-panel/control-panel.component.html"),
+            styles: [__webpack_require__(/*! ./control-panel.component.css */ "./src/app/control-panel/control-panel.component.css")]
+        }),
+        __metadata("design:paramtypes", [_services_robot_state_service__WEBPACK_IMPORTED_MODULE_1__["RobotStateService"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+    ], ControlPanelComponent);
+    return ControlPanelComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/plotter/plotter.component.css":
 /*!***********************************************!*\
   !*** ./src/app/plotter/plotter.component.css ***!
@@ -1111,7 +1767,7 @@ module.exports = "/*#myChart{\n    margin-top: 64px;\n}*/"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n<canvas [id]=\"getId()\" width=\"600\" height=\"600\"></canvas>\n<div>\n<button mat-raised-button color=\"primary\" type=\"button\" (click)=\"clearData()\">Clear Data</button> \n<button mat-raised-button color=\"primary\" type=\"button\" (click)=\"freeze()\">Freeze</button>\n</div> \n<div>\nScale <input #Scale name=\"range\" step=\"0.1\" (change)=\"setScale(Scale.value)\" > \n</div>\n<div>\nSample <input #Sample name=\"range\" step=\"0.1\" (change)=\"setSample(Sample.value)\" > \n</div>\n</div>"
+module.exports = "<div style=\"width:100%; height:100%\"\nfxLayout =\"column\"\nfxLayout.xs=\"column\"\nfxLayoutAlign=\"center stretch\"\nfxLayoutGap=\"2px\"\nfxLayoutGap.xs=\"0\">\n  <div class=\"item item-1\"  fxFlex=\"80\" >\n    <div style=\" height:100%\">\n      <canvas [id]=\"getId()\"></canvas>\n    </div> \n  </div>\n  <div class=\"item item-2\"  fxFlex=\"20\" >\n    <div style=\" height:100%\">\n      <div >\n        <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"clearData()\">Clear</button> \n        <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"freeze()\">Pause</button>\n        Scale <input #Scale name=\"range\" step=\"0.1\" (change)=\"setScale(Scale.value)\" style=\" width:50px\" > \n        Sample <input #Sample name=\"range\" step=\"0.1\" (change)=\"setSample(Sample.value)\" style=\" width:50px\"> \n      </div> \n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1159,7 +1815,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var WS_URL;
 var PlotterComponent = /** @class */ (function () {
     function PlotterComponent(robotService) {
         var _this = this;
@@ -1182,7 +1837,7 @@ var PlotterComponent = /** @class */ (function () {
             datasets: []
         };
         this.map = new Map();
-        setInterval(function () {
+        this.interval = setInterval(function () {
             if (_this.isfrozen)
                 return;
             if (_this.data.labels.length > _this.samples)
@@ -1199,112 +1854,144 @@ var PlotterComponent = /** @class */ (function () {
     };
     PlotterComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
-        console.log("PLOTTER ID " + this.idPlot);
-        if (parseInt(this.idPlot) == 1)
-            this.isResponsive = false;
-        else
-            this.isResponsive = true;
-        this.canvas = document.getElementById(this.getId());
-        this.ctx = this.canvas.getContext('2d');
-        this.myChart = new chart_js__WEBPACK_IMPORTED_MODULE_1__(this.ctx, {
-            type: 'line',
-            data: this.data,
-            options: {
-                responsiveAnimationDuration: 0,
-                elements: {
-                    line: {
-                        tension: 0
-                    }
-                },
-                animation: {
-                    duration: 0
-                },
-                responsive: this.isResponsive,
-                maintainAspectRation: false,
-                steppedLine: true,
-                //cubicInterpolationMode: "",
-                title: {
-                    display: true,
-                    text: this.label
-                },
-                tooltips: {
-                    enabled: false,
-                    mode: 'index',
-                    intersect: false,
-                },
-                /*hover: {
-                    mode: 'nearest',
-                    intersect: true
-        },*/
-                ticks: {
-                    source: 'labels'
-                },
-                scales: {
-                    xAxes: [{
-                            display: true,
-                            type: 'time',
-                            distribution: 'series',
-                            time: {
-                                unit: 'second',
-                                displayFormats: {
-                                    second: 'ss'
+        this.timeout = setTimeout(function () {
+            console.log("PLOTTER ID " + _this.idPlot);
+            //if( parseInt(this.idPlot) == 1) 
+            //  this.isResponsive = false;
+            //else 
+            _this.isResponsive = true;
+            _this.canvas = document.getElementById(_this.getId());
+            _this.ctx = _this.canvas.getContext('2d');
+            _this.myChart = new chart_js__WEBPACK_IMPORTED_MODULE_1__(_this.ctx, {
+                type: 'line',
+                data: _this.data,
+                options: {
+                    responsiveAnimationDuration: 0,
+                    elements: {
+                        line: {
+                            tension: 0
+                        }
+                    },
+                    animation: {
+                        duration: 0
+                    },
+                    responsive: _this.isResponsive,
+                    maintainAspectRatio: false,
+                    steppedLine: true,
+                    //cubicInterpolationMode: "",
+                    title: {
+                        display: true,
+                        text: _this.label
+                    },
+                    tooltips: {
+                        enabled: false,
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    /*hover: {
+                      mode: 'nearest',
+                      intersect: true
+                    },*/
+                    ticks: {
+                        source: 'labels'
+                    },
+                    scales: {
+                        xAxes: [{
+                                display: false,
+                                type: 'time',
+                                distribution: 'series',
+                                time: {
+                                    unit: 'second',
+                                    displayFormats: {
+                                        second: 'ss'
+                                    }
+                                },
+                                scaleLabel: {
+                                    display: false,
+                                    labelString: 'Time'
                                 }
-                            },
-                            scaleLabel: {
+                            }],
+                        yAxes: [{
+                                beginAtZero: true,
                                 display: true,
-                                labelString: 'Time'
-                            }
-                        }],
-                    yAxes: [{
-                            beginAtZero: true,
-                            display: true,
-                            ticks: {
-                                stepSize: 0.5
-                            },
-                            scaleLabel: {
-                                display: true,
-                            }
-                        }]
+                                ticks: {
+                                    stepSize: 0.5
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                }
+                            }]
+                    }
                 }
+            });
+            var isRegistered = _this.robotService.isPlotterComponentRegistered(parseInt(_this.idPlot));
+            if (!isRegistered) {
+                _this.robotService.registerPlotterComponent(parseInt(_this.idPlot), _this.fields);
             }
-        });
-        this.robotService.registerPlotterComponent(parseInt(this.idPlot), this.fields);
-        this.robotService.currentPlotAddDatamsg.get(parseInt(this.idPlot)).subscribe(function (msg) {
-            if (msg == null)
-                return;
-            if (_this.isfrozen)
-                return;
-            _this.data.labels.push(new Date());
-            for (var _i = 0, msg_1 = msg; _i < msg_1.length; _i++) {
-                var pdata = msg_1[_i];
-                var name = pdata["name"];
-                if (name == null)
+            //else
+            //this.robotService.advertisePlotComponent(parseInt(this.idPlot));
+            _this.subPlotAddDatamsg = _this.robotService.currentPlotAddDatamsg.get(parseInt(_this.idPlot)).subscribe(function (msg) {
+                console.log("ADDDATA");
+                console.log(msg);
+                if (msg == null)
                     return;
-                var i = _this.map.get(name);
-                var value = pdata["value"];
-                value = Math.round(value * 100) / 100;
-                //console.log("ACCESS TO pos "+ i +" value "+value);
-                _this.addDataToDataset(_this.data.datasets[i], value);
+                if (_this.isfrozen)
+                    return;
+                _this.data.labels.push(new Date());
+                for (var _i = 0, msg_1 = msg; _i < msg_1.length; _i++) {
+                    var pdata = msg_1[_i];
+                    var name = pdata["name"];
+                    if (name == null)
+                        return;
+                    var i = _this.map.get(name);
+                    if (i == null)
+                        continue;
+                    var value = pdata["value"];
+                    value = Math.round(value * 100) / 100;
+                    console.log("ACCESS TO pos " + i + " value " + value);
+                    _this.addDataToDataset(_this.data.datasets[i], value);
+                }
+            });
+            _this.subPlotAddmsg = _this.robotService.currentPlotAddmsg.get(parseInt(_this.idPlot)).subscribe(function (msg) {
+                if (msg == null)
+                    return;
+                console.log("ADDDMSG");
+                console.log(msg);
+                var topic = msg["topic"];
+                if (topic == null)
+                    return;
+                var id = msg["id"];
+                var name = msg["name"];
+                _this.addDataset(id);
+                var i = _this.data.datasets.length - 1;
+                _this.map.set(id, i);
+                console.log("ADD plot at " + "pos " + i + " name " + name);
+            });
+            _this.subPlotClearmsg = _this.robotService.currentClearmsg.get(parseInt(_this.idPlot)).subscribe(function (msg) {
+                if (msg == null)
+                    return;
+                if (msg["msg"] == null)
+                    return;
+                console.log("CLEAR DATA CALLED");
+                //console.log(msg);
+                _this.clearData();
+            });
+            if (isRegistered) {
+                _this.robotService.advertisePlotComponent(parseInt(_this.idPlot));
             }
-        });
-        this.robotService.currentPlotAddmsg.get(parseInt(this.idPlot)).subscribe(function (msg) {
-            if (msg == null)
-                return;
-            var topic = msg["topic"];
-            if (topic == null)
-                return;
-            var id = msg["id"];
-            var name = msg["name"];
-            _this.addDataset(name + "/" + topic);
-            var i = _this.data.datasets.length - 1;
-            _this.map.set(id, i);
-            //console.log("ADD plot at "+ "pos "+i+" name "+name);
-        });
-        this.robotService.currentClearmsg.get(parseInt(this.idPlot)).subscribe(function (msg) {
-            if (msg == null)
-                return;
-            _this.clearData();
-        });
+        }, 100);
+    };
+    PlotterComponent.prototype.ngOnDestroy = function () {
+        clearTimeout(this.timeout);
+        if (this.subPlotAddDatamsg != null)
+            this.subPlotAddDatamsg.unsubscribe();
+        if (this.subPlotAddmsg != null)
+            this.subPlotAddmsg.unsubscribe();
+        if (this.subPlotClearmsg != null)
+            this.subPlotClearmsg.unsubscribe();
+        clearInterval(this.interval);
+        this.robotService = null;
+        this.map = null;
     };
     PlotterComponent.prototype.setScale = function (val) {
         this.myChart.options.scales.yAxes[0].ticks.stepSize = val;
@@ -1391,7 +2078,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  plugin-list\n</p>\n<li *ngFor=\"let item of plugins\"> {{item.Name}} {{item.Status}}\n    <button type=\"button\" (click)=\"onStart(item.Name)\">Start</button> \n    <button type=\"button\" (click)=\"onStop(item.Name)\">Stop</button> \n     <input type=\"text\"  #cmd>\n     <button type=\"button\" (click)=\"onCmd(item.Name, cmd.value)\">Cmd</button> \n  </li>\n"
+module.exports = "<p>\n\n</p>\n<li *ngFor=\"let item of plugins\"> {{item.Name}} {{item.Status}}\n    <button type=\"button\" (click)=\"onStart(item.Name)\">Start</button> \n    <button type=\"button\" (click)=\"onStop(item.Name)\">Stop</button> \n     <input type=\"text\"  #cmd>\n     <button type=\"button\" (click)=\"onCmd(item.Name, cmd.value)\">Cmd</button> \n  </li>\n"
 
 /***/ }),
 
@@ -1450,7 +2137,7 @@ var PluginListComponent = /** @class */ (function () {
         var _this = this;
         this.service.getAll()
             .subscribe(function (response) {
-            console.log(response);
+            //console.log(response);
             for (var _i = 0, _a = response["Plugins"]; _i < _a.length; _i++) {
                 var o = _a[_i];
                 _this.plugins.push({ Name: o["Name"], Status: o["Status"] });
@@ -1650,8 +2337,8 @@ var HttpService = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RobotStateService", function() { return RobotStateService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _websocket_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./websocket.service */ "./src/app/services/websocket.service.ts");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _websocket_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./websocket.service */ "./src/app/services/websocket.service.ts");
 /*
  * Copyright (C) 2017 IIT-ADVR
  * Author:  Giuseppe Rigano
@@ -1682,11 +2369,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var RobotStateService = /** @class */ (function () {
     function RobotStateService(wsService) {
         var _this = this;
         this.wsService = wsService;
-        this.parsedMsg = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]({});
+        this.parsedMsg = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]({});
         this.currentmsg = this.parsedMsg.asObservable();
         this.plotMap = new Map();
         this.plotArrayMap = new Map();
@@ -1697,10 +2385,26 @@ var RobotStateService = /** @class */ (function () {
         this.currentPlotAddDatamsg = new Map();
         this.plotClearMsg = new Map();
         this.currentClearmsg = new Map();
-        this.selectJointName = "";
-        this.selectJointId = 0;
+        this.selectJointSensorName = "";
+        this.selectJointSensorId = 0;
+        this.isJoint = true;
+        this.JointMsg = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]({});
+        this.currentJointmsg = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"]();
+        this.barAddDataMsg = new Map();
+        this.currentBarAddDatamsg = new Map();
+        this.currentTopicBar = "temperature";
+        this.CanvasState = {
+            scene: null,
+            camera: null,
+            controls: null,
+            linkMap: null,
+            jointMap: null,
+            renderer: null,
+            state: 0
+        };
         this.robot = new Map();
         this.robotSensor = new Map();
+        this.registerSelectedJoint();
         this.connectWebSocket();
         this.wsService.messages.subscribe(function (msg) {
             _this.parseMsg(msg);
@@ -1724,15 +2428,36 @@ var RobotStateService = /** @class */ (function () {
     RobotStateService.prototype.publishMsg = function (msg) {
         this.parsedMsg.next(msg);
     };
+    RobotStateService.prototype.registerSelectedJoint = function () {
+        this.currentJointmsg = this.JointMsg.asObservable();
+    };
     RobotStateService.prototype.registerPlotterComponent = function (id, fields) {
-        this.plotAddDataMsg.set(id, new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]({}));
+        this.plotAddDataMsg.set(id, new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]({}));
         this.currentPlotAddDatamsg.set(id, this.plotAddDataMsg.get(id).asObservable());
-        this.plotAddMsg.set(id, new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]({}));
+        this.plotAddMsg.set(id, new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]({}));
         this.currentPlotAddmsg.set(id, this.plotAddMsg.get(id).asObservable());
-        this.plotClearMsg.set(id, new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]({}));
+        this.plotClearMsg.set(id, new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]({}));
         this.currentClearmsg.set(id, this.plotClearMsg.get(id).asObservable());
         if (fields != null)
             this.topicPlotMap.set(id, fields);
+    };
+    RobotStateService.prototype.isPlotterComponentRegistered = function (id) {
+        if (this.currentPlotAddDatamsg == null)
+            return false;
+        if (this.currentPlotAddDatamsg.get(id) != null)
+            return true;
+        else
+            return false;
+    };
+    RobotStateService.prototype.registerBarChartComponent = function (id) {
+        this.barAddDataMsg.set(id, new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]({}));
+        this.currentBarAddDatamsg.set(id, this.barAddDataMsg.get(id).asObservable());
+    };
+    RobotStateService.prototype.getJointId = function (param) {
+        var obj = this.robot.get(param);
+        if (obj == null)
+            return null;
+        return obj.id;
     };
     RobotStateService.prototype.parseMsg = function (msg) {
         var _this = this;
@@ -1753,6 +2478,9 @@ var RobotStateService = /** @class */ (function () {
             var velrefs = robot["vel_ref"];
             var torrefs = robot["eff_ref"];
             var auxs = robot["aux"];
+            //var barTopic = robot[this.currentTopicBar];
+            //if (barTopic != null)
+            this.barAddDataMsg.get(0).next({ "robot": robot, "topic": this.currentTopicBar });
             var _loop_1 = function (i) {
                 obj = {
                     name: nameList[i],
@@ -1860,8 +2588,10 @@ var RobotStateService = /** @class */ (function () {
         this.publishMsg({ "robot": this.robot, "sensor": this.robotSensor });
         this.plotArrayMap.forEach(function (value, key) {
             if (value != null && value.length != 0) {
-                _this.plotAddDataMsg.get(key).next(value);
-                _this.plotArrayMap.set(key, []);
+                if (_this.plotAddDataMsg.get(key) != null) {
+                    _this.plotAddDataMsg.get(key).next(value);
+                    _this.plotArrayMap.set(key, []);
+                }
             }
         });
     };
@@ -1882,14 +2612,29 @@ var RobotStateService = /** @class */ (function () {
         if (this.plotArrayMap.get(idPlot) == null)
             this.plotArrayMap.set(idPlot, new Array());
         var addMsgItem = this.plotAddMsg.get(idPlot);
-        addMsgItem.next(obj);
+        if (addMsgItem != null)
+            addMsgItem.next(obj);
+    };
+    RobotStateService.prototype.advertiseSelectedJoint = function (param) {
+        this.JointMsg.next(param);
+    };
+    RobotStateService.prototype.advertisePlotComponent = function (idPlot) {
+        var addMsgItem = this.plotAddMsg.get(idPlot);
+        var plotItem = this.plotMap.get(idPlot);
+        plotItem.forEach(function (value, mkey) {
+            console.log("ADVERTISE key " + mkey + " val" + value);
+            var obj = { "topic": value, "id": mkey, "name": mkey };
+            //TODO PRENDE SOLO ULTIMO EVENTO!!
+            if (addMsgItem != null)
+                addMsgItem.next(obj);
+        });
     };
     RobotStateService.prototype.plotState = function (id, name) {
         var _this = this;
         this.topicPlotMap.forEach(function (value, key) {
             var clearItem = _this.plotClearMsg.get(key);
             if (clearItem != null)
-                clearItem.next({});
+                clearItem.next({ msg: "" });
             for (var _i = 0, value_1 = value; _i < value_1.length; _i++) {
                 var t = value_1[_i];
                 _this.addPlot(key, id, t, name);
@@ -1905,7 +2650,7 @@ var RobotStateService = /** @class */ (function () {
     };
     RobotStateService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __metadata("design:paramtypes", [_websocket_service__WEBPACK_IMPORTED_MODULE_1__["WebsocketService"]])
+        __metadata("design:paramtypes", [_websocket_service__WEBPACK_IMPORTED_MODULE_2__["WebsocketService"]])
     ], RobotStateService);
     return RobotStateService;
 }());
@@ -2249,6 +2994,243 @@ var SliderControlComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/tree-panel/tree-panel.component.css":
+/*!*****************************************************!*\
+  !*** ./src/app/tree-panel/tree-panel.component.css ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/tree-panel/tree-panel.component.html":
+/*!******************************************************!*\
+  !*** ./src/app/tree-panel/tree-panel.component.html ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div style=\"width:100%; height:100%\"\nfxLayout =\"column\"\nfxLayout.xs=\"column\"\nfxLayoutAlign=\"center stretch\"\nfxLayoutGap=\"5px\"\nfxLayoutGap.xs=\"0\">\n    <div class=\"item item-2\"  fxFlex=\"90\">\n        <div style=\" height:100%; overflow: scroll;\">\n            <mat-tree [dataSource]=\"dataSource\" [treeControl]=\"treeControl\">\n                <mat-tree-node *matTreeNodeDef=\"let node\" matTreeNodeToggle matTreeNodePadding>\n                  <button mat-icon-button disabled></button>\n                  <button (click)=\"setActiveDevice(node.type, node.isJoint)\" mat-button>{{node.devicename}} : {{node.type}}</button>\n                </mat-tree-node>\n              \n                <mat-tree-node *matTreeNodeDef=\"let node;when: hasChild\" matTreeNodePadding>\n                  <button mat-icon-button matTreeNodeToggle\n                          [attr.aria-label]=\"'toggle ' + node.filename\">\n                    <mat-icon class=\"mat-icon-rtl-mirror\">\n                      {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}\n                    </mat-icon>\n                  </button>\n                  <button (click)=\"setActiveDevice(node.type,node.isJoint)\" mat-button>{{node.devicename}} : {{node.type}}</button>\n                </mat-tree-node>\n            </mat-tree>\n        </div> \n    </div>\n    <div class=\"item item-3\"  fxFlex=\"10\" >\n        <div style=\"width:100%; height:100%\">\n            <div style=\"width:100%; height:100%\">\n                   {{selectedDevice}} <button  style=\"margin-left: 20px;\" *ngIf=\"isJoint\" mat-raised-button color=\"primary\" type=\"button\" (click)=\"plotState(jointId,selectedDevice)\">PlotState</button>\n            </div> \n        </div> \n    </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/tree-panel/tree-panel.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/tree-panel/tree-panel.component.ts ***!
+  \****************************************************/
+/*! exports provided: DeviceNode, DeviceFlatNode, FileDatabase, TreePanelComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeviceNode", function() { return DeviceNode; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeviceFlatNode", function() { return DeviceFlatNode; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FileDatabase", function() { return FileDatabase; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TreePanelComponent", function() { return TreePanelComponent; });
+/* harmony import */ var _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/cdk/tree */ "./node_modules/@angular/cdk/esm5/tree.es5.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material_tree__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/tree */ "./node_modules/@angular/material/esm5/tree.es5.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _services_http_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../services/http.service */ "./src/app/services/http.service.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _common_not_foud_error__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../common/not-foud-error */ "./src/app/common/not-foud-error.ts");
+/* harmony import */ var _services_robot_state_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../services/robot-state.service */ "./src/app/services/robot-state.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+var DeviceNode = /** @class */ (function () {
+    function DeviceNode() {
+    }
+    return DeviceNode;
+}());
+
+/** Flat node with expandable and level information */
+var DeviceFlatNode = /** @class */ (function () {
+    function DeviceFlatNode() {
+    }
+    return DeviceFlatNode;
+}());
+
+var FileDatabase = /** @class */ (function () {
+    function FileDatabase(http) {
+        this.dataChange = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"]([]);
+        this.service = new _services_http_service__WEBPACK_IMPORTED_MODULE_4__["HttpService"](http);
+        this.service.setURL("/state");
+        this.initialize();
+    }
+    Object.defineProperty(FileDatabase.prototype, "data", {
+        get: function () { return this.dataChange.value; },
+        enumerable: true,
+        configurable: true
+    });
+    FileDatabase.prototype.getData = function () {
+        var _this = this;
+        this.service.get("/state")
+            .subscribe(function (response) {
+            var robot = response["Robot"];
+            var joints = robot["joint_name"];
+            var sensors = response["Sensors"];
+            var ft = sensors["ft_name"];
+            /*var obj = {
+    
+                "Robot": {
+                  "chain_i0": ["namej0",
+                              "nasmej1",
+                              "namej1",
+                              "namej1",
+                              "namej1",
+                              "namej1",
+                              "namej5"],
+                  "chain_i1": ["namej0",
+                              "namej1"]
+                },
+                "Sensor": ["sensor0",
+                          "sensor1"]
+            
+            };*/
+            var obj = {
+                "Robot": joints,
+                "Sensor": ft
+            };
+            var stringjson = JSON.stringify(obj);
+            var dataObject = JSON.parse(stringjson);
+            var data = _this.buildFileTree(dataObject, 0, false);
+            // Notify the change.
+            _this.dataChange.next(data);
+        }, function (error) {
+            if (error instanceof _common_not_foud_error__WEBPACK_IMPORTED_MODULE_6__["NotFoundError"]) {
+                //expected error
+                //deleted
+                //this.form.setErrors(error.json());
+            }
+            else {
+                //unexpected error
+                throw error;
+            }
+        });
+    };
+    FileDatabase.prototype.initialize = function () {
+        // Parse the string to json object.
+        this.getData();
+    };
+    FileDatabase.prototype.buildFileTree = function (value, level, isJoint) {
+        var data = [];
+        for (var k in value) {
+            var v = value[k];
+            var node = new DeviceNode();
+            node.devicename = "" + k;
+            if (v === null || v === undefined) {
+                // no action
+            }
+            else if (typeof v === 'object') {
+                if (node.devicename == "Robot")
+                    node.children = this.buildFileTree(v, level + 1, true);
+                else
+                    node.children = this.buildFileTree(v, level + 1, false);
+            }
+            else {
+                node.type = v;
+                if (isJoint)
+                    node.isJoint = true;
+                else
+                    node.isJoint = false;
+            }
+            data.push(node);
+        }
+        return data;
+    };
+    FileDatabase = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClient"]])
+    ], FileDatabase);
+    return FileDatabase;
+}());
+
+var TreePanelComponent = /** @class */ (function () {
+    function TreePanelComponent(database, robotService) {
+        var _this = this;
+        this.selectedDevice = "";
+        this.isJoint = true;
+        this.transformer = function (node, level) {
+            var flatNode = new DeviceFlatNode();
+            flatNode.devicename = node.devicename;
+            flatNode.type = node.type;
+            flatNode.level = level;
+            flatNode.isJoint = node.isJoint;
+            flatNode.expandable = !!node.children;
+            return flatNode;
+        };
+        this._getLevel = function (node) { return node.level; };
+        this._isExpandable = function (node) { return node.expandable; };
+        this._getChildren = function (node) {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["of"])(node.children);
+        };
+        this.hasChild = function (_, _nodeData) { return _nodeData.expandable; };
+        this.robotService = robotService;
+        this.robotService.currentJointmsg.subscribe(function (msg) {
+            _this.selectedDevice = msg;
+            _this.isJoint = _this.robotService.isJoint;
+        });
+        this.treeFlattener = new _angular_material_tree__WEBPACK_IMPORTED_MODULE_2__["MatTreeFlattener"](this.transformer, this._getLevel, this._isExpandable, this._getChildren);
+        this.treeControl = new _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_0__["FlatTreeControl"](this._getLevel, this._isExpandable);
+        this.dataSource = new _angular_material_tree__WEBPACK_IMPORTED_MODULE_2__["MatTreeFlatDataSource"](this.treeControl, this.treeFlattener);
+        database.dataChange.subscribe(function (data) {
+            _this.dataSource.data = data;
+        });
+    }
+    TreePanelComponent.prototype.ngOnInit = function () {
+    };
+    TreePanelComponent.prototype.setActiveDevice = function (param, param1) {
+        this.selectedDevice = param;
+        //this.isJoint = this.robotService.isJoint;
+        this.robotService.selectJointSensorName = param;
+        if (param1 != null) {
+            this.robotService.isJoint = param1;
+            this.isJoint = this.robotService.isJoint;
+        }
+        if (param1 != null && param1) {
+            this.jointId = this.robotService.getJointId(param);
+            this.robotService.selectJointSensorId = this.jointId;
+            this.robotService.selectJointSensorName = param;
+        }
+    };
+    TreePanelComponent.prototype.plotState = function (id, name) {
+        if (this.isJoint) {
+            this.robotService.plotState(this.robotService.selectJointSensorId, this.robotService.selectJointSensorName);
+        }
+    };
+    TreePanelComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-tree-panel',
+            template: __webpack_require__(/*! ./tree-panel.component.html */ "./src/app/tree-panel/tree-panel.component.html"),
+            styles: [__webpack_require__(/*! ./tree-panel.component.css */ "./src/app/tree-panel/tree-panel.component.css")],
+            providers: [FileDatabase]
+        }),
+        __metadata("design:paramtypes", [FileDatabase, _services_robot_state_service__WEBPACK_IMPORTED_MODULE_7__["RobotStateService"]])
+    ], TreePanelComponent);
+    return TreePanelComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/environments/environment.ts":
 /*!*****************************************!*\
   !*** ./src/environments/environment.ts ***!
@@ -2279,18 +3261,21 @@ var environment = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm5/platform-browser-dynamic.js");
-/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! hammerjs */ "./node_modules/hammerjs/hammer.js");
+/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(hammerjs__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser-dynamic */ "./node_modules/@angular/platform-browser-dynamic/fesm5/platform-browser-dynamic.js");
+/* harmony import */ var _app_app_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app/app.module */ "./src/app/app.module.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./environments/environment */ "./src/environments/environment.ts");
 
 
 
 
-if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].production) {
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
+
+if (_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].production) {
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["enableProdMode"])();
 }
-Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"]);
+Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_3__["AppModule"]);
 
 
 /***/ }),
