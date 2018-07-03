@@ -845,7 +845,7 @@ module.exports = "<div class=\"canvas\" #container></div>"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CanvasComponent", function() { return CanvasComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var three__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! three */ "./node_modules/three/build/three.module.js");
+/* harmony import */ var three_full__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! three-full */ "./node_modules/three-full/builds/Three.es.js");
 /* harmony import */ var _services_http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../services/http.service */ "./src/app/services/http.service.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _common_not_foud_error__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../common/not-foud-error */ "./src/app/common/not-foud-error.ts");
@@ -882,44 +882,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-var OrbitControls = __webpack_require__(/*! three-orbit-controls */ "./node_modules/three-orbit-controls/index.js")(three__WEBPACK_IMPORTED_MODULE_1__);
+var OrbitControls = __webpack_require__(/*! three-orbit-controls */ "./node_modules/three-orbit-controls/index.js")(three_full__WEBPACK_IMPORTED_MODULE_1__);
 //import * as STLLoader from 'three-stl-loader';
-var STLLoader = __webpack_require__(/*! three-stl-loader */ "./node_modules/three-stl-loader/index.js")(three__WEBPACK_IMPORTED_MODULE_1__);
+var STLLoader = __webpack_require__(/*! three-stl-loader */ "./node_modules/three-stl-loader/index.js")(three_full__WEBPACK_IMPORTED_MODULE_1__);
 //declare var ColladaLoader : any;
 //var ColladaLoader = require('three-collada-loader')(THREE);
 //import {ColladaLoader} from "three";
-///var coll_loader = new ColladaLoader();
-var loader = new STLLoader();
+var coll_loader = new three_full__WEBPACK_IMPORTED_MODULE_1__["ColladaLoader"]();
+var stl_loader = new STLLoader();
 
 var CanvasComponent = /** @class */ (function () {
-    /*private robotState = {
-      name: "",
-      id: 0,
-      motorPos: 0,
-      linkPos: 0,
-      motorVel: 0,
-      linkVel: 0,
-      temp: 0,
-      effort: 0,
-      stiff: 0,
-      damp: 0,
-      fault: 0,
-      aux : 0,
-      refPos: 0,
-      refVel: 0,
-      refTor: 0
-    }
-
-    private robotSensorState = {
-      name: "",
-      id: 0,
-      forcex: 0,
-      forcey: 0,
-      forcez: 0,
-      torquex: 0,
-      torquey: 0,
-      torquez: 0,
-    }*/
     function CanvasComponent(http, robotService) {
         var _this = this;
         this.title = 'app';
@@ -938,57 +910,51 @@ var CanvasComponent = /** @class */ (function () {
             if (MouseEvent.which === 1)
                 _this.CheckIntersection();
         };
-        console.log(three__WEBPACK_IMPORTED_MODULE_1__);
+        console.log(three_full__WEBPACK_IMPORTED_MODULE_1__);
         this.isModelLoaded = true;
         this.service = new _services_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"](http);
         this.service.setURL("/model");
         this.robotService = robotService;
-        /* this.robot = new Map<string, any>();
-         this.robotSensor = new Map<string, any>();
-         this.robotService.currentmsg.subscribe(msg => {
-           this.robot = msg["robot"];
-           this.robotSensor = msg["sensor"];
-           if(this.robot != null){
-             var item = this.robot.get(this.selectJoint);
-             if (item != null)
-               this.robotState = item;
-           }
-   
-           this.robotService.selectJointName = this.selectJoint;
-           if(this.isJoint)
-             this.robotService.selectJointId = this.robotState.id;
-           else
-             this.robotService.selectJointId = this.robotSensorState.id;
-             
-   
-           if (this.robotSensor!= null && this.selectedObject != null){
-             var userdata = this.selectedObject.userData;
-             if (userdata != null){
-               var sensor = userdata["name"];
-               var items = this.robotSensor.get(sensor);
-               if (items != null)
-                 this.robotSensorState = items;
-             }
-           }
-           
-       });*/
+        this.sub = this.robotService.currentmsg.subscribe(function (msg) {
+            var robot = msg["robot"];
+            if (robot != null) {
+                robot.forEach(function (value, mkey) {
+                    var angle = value.motorPos;
+                    var joint = _this.jointmap.get(value.name);
+                    if (joint == null)
+                        return;
+                    var userdata = joint.userData;
+                    if (userdata != null) {
+                        var axis = userdata["axis"];
+                        if (axis != null) {
+                            // console.log("SET ROT "+nameList[i]+ " axis "+ axis+ " angle "+angle);
+                            var delta = new three_full__WEBPACK_IMPORTED_MODULE_1__["Quaternion"]().setFromAxisAngle(new three_full__WEBPACK_IMPORTED_MODULE_1__["Vector3"](axis[0], axis[1], axis[2]), angle);
+                            var origRot = userdata["quaternion"];
+                            joint.quaternion.multiplyQuaternions(origRot, delta);
+                            //joint.setRotationFromAxisAngle(new THREE.Vector3(axis[0],axis[1],axis[2]),angle);
+                            //joint.rotateOnAxis(new THREE.Vector3(axis[0],axis[1],axis[2]),0.01);
+                        }
+                    }
+                });
+            }
+        });
     }
     CanvasComponent.prototype.createNodeLink = function (pos, rot_axis, angle, scale) {
-        var tmp = new three__WEBPACK_IMPORTED_MODULE_1__["Mesh"]();
-        tmp.position.set(pos[0], pos[1], pos[2]);
+        var tmp = new three_full__WEBPACK_IMPORTED_MODULE_1__["Mesh"]();
         if (rot_axis != null) {
-            tmp.setRotationFromAxisAngle(new three__WEBPACK_IMPORTED_MODULE_1__["Vector3"](rot_axis[0], rot_axis[1], rot_axis[2]), angle);
+            tmp.setRotationFromAxisAngle(new three_full__WEBPACK_IMPORTED_MODULE_1__["Vector3"](rot_axis[0], rot_axis[1], rot_axis[2]), angle);
         }
+        tmp.position.set(pos[0], pos[1], pos[2]);
         if (scale != null)
             tmp.scale.set(1, 1, 1);
         return tmp;
     };
     CanvasComponent.prototype.createNodeJoint = function (pos, rot_axis, angle) {
-        var tmp = new three__WEBPACK_IMPORTED_MODULE_1__["Object3D"]();
-        tmp.position.set(pos[0], pos[1], pos[2]);
+        var tmp = new three_full__WEBPACK_IMPORTED_MODULE_1__["Object3D"]();
         if (rot_axis != null) {
-            tmp.setRotationFromAxisAngle(new three__WEBPACK_IMPORTED_MODULE_1__["Vector3"](rot_axis[0], rot_axis[1], rot_axis[2]), angle);
+            tmp.setRotationFromAxisAngle(new three_full__WEBPACK_IMPORTED_MODULE_1__["Vector3"](rot_axis[0], rot_axis[1], rot_axis[2]), angle);
         }
+        tmp.position.set(pos[0], pos[1], pos[2]);
         return tmp;
     };
     CanvasComponent.prototype.parseJoints = function (joints) {
@@ -1013,7 +979,8 @@ var CanvasComponent = /** @class */ (function () {
             }
             var raxis = joint["Axis"];
             var nodel1 = this.createNodeJoint(pos, axis, angle);
-            nodel1.userData = { "axis": raxis, "name": name };
+            var origRot = new three_full__WEBPACK_IMPORTED_MODULE_1__["Quaternion"]().copy(nodel1.quaternion);
+            nodel1.userData = { "axis": raxis, "name": name, "quaternion": origRot };
             var clink = this.linkmap.get(child);
             var plink = this.linkmap.get(parent);
             nodel1.add(clink);
@@ -1042,16 +1009,19 @@ var CanvasComponent = /** @class */ (function () {
             var mesh = link["Mesh"];
             var material = link["Material"];
             var scale = link["Scale"];
-            var nodel = this.createNodeLink(pos, axis, angle, scale);
+            var linkNode = this.createNodeLink([0, 0, 0], null, null, null);
+            var meshNode = this.createNodeLink(pos, axis, angle, scale);
+            meshNode.name = name;
             if (mesh != null)
-                nodel.userData = { "mesh": mesh, "scale": scale, "load": false };
-            this.linkmap.set(name, nodel);
+                meshNode.userData = { "mesh": mesh, "scale": scale, "load": false, "IDlink": 0, "realMesh": "" };
+            linkNode.add(meshNode);
+            this.linkmap.set(name, linkNode);
             var sensor = link["Sensor"];
             if (sensor != null) {
                 var marker = this.addSensorMarker([0, 0, 0], 0.08);
-                nodel.geometry = marker.geometry;
-                nodel.material = marker.material;
-                nodel.userData = { "name": name };
+                linkNode.geometry = marker.geometry;
+                linkNode.material = marker.material;
+                linkNode.userData = { "name": name };
             }
         }
     };
@@ -1088,19 +1058,30 @@ var CanvasComponent = /** @class */ (function () {
             */
             //load meshes
             _this.linkmap.forEach(function (value, key) {
-                if (value.userData != null) {
-                    var mesh = value.userData["mesh"];
+                var child = value.children[0];
+                if (child == null)
+                    return;
+                if (child.userData != null) {
+                    var mesh = child.userData["mesh"];
                     if (mesh != null) {
                         var ext = mesh.substr(mesh.length - 3);
                         if (ext != null)
                             if (ext.toUpperCase() == "STL") {
                                 mesh = mesh.substr(10);
                                 mesh = "/robots/" + mesh;
-                                loader.load(mesh, function (geometry, id) {
+                                stl_loader.load(mesh, function (geometry, id) {
                                     if (id === void 0) { id = key; }
                                     _this.loadMesh(geometry, id);
                                 });
                             }
+                        if (ext.toUpperCase() == "DAE") {
+                            mesh = mesh.substr(10);
+                            mesh = "/robots/" + mesh;
+                            coll_loader.load(mesh, function (geometry, id) {
+                                if (id === void 0) { id = key; }
+                                _this.loadCollada(geometry, id);
+                            });
+                        }
                     }
                 }
             });
@@ -1119,63 +1100,72 @@ var CanvasComponent = /** @class */ (function () {
     CanvasComponent.prototype.ngOnInit = function () {
         this.container = this.elementRef.nativeElement;
         //console.log(this.container);
-        this.raycaster = new three__WEBPACK_IMPORTED_MODULE_1__["Raycaster"]();
-        this.mouse = new three__WEBPACK_IMPORTED_MODULE_1__["Vector2"]();
+        this.raycaster = new three_full__WEBPACK_IMPORTED_MODULE_1__["Raycaster"]();
+        this.mouse = new three_full__WEBPACK_IMPORTED_MODULE_1__["Vector2"]();
         var isInit = this.init();
         if (!isInit)
             this.getData();
     };
     CanvasComponent.prototype.addVectorMarker = function () {
-        var material = new three__WEBPACK_IMPORTED_MODULE_1__["LineBasicMaterial"]({ color: 0x0000ff });
-        var geometry = new three__WEBPACK_IMPORTED_MODULE_1__["Geometry"]();
-        geometry.vertices.push(new three__WEBPACK_IMPORTED_MODULE_1__["Vector3"](0, 0, 0));
-        geometry.vertices.push(new three__WEBPACK_IMPORTED_MODULE_1__["Vector3"](0, 10, 0));
-        var line = new three__WEBPACK_IMPORTED_MODULE_1__["Line"](geometry, material);
+        var material = new three_full__WEBPACK_IMPORTED_MODULE_1__["LineBasicMaterial"]({ color: 0x0000ff });
+        var geometry = new three_full__WEBPACK_IMPORTED_MODULE_1__["Geometry"]();
+        geometry.vertices.push(new three_full__WEBPACK_IMPORTED_MODULE_1__["Vector3"](0, 0, 0));
+        geometry.vertices.push(new three_full__WEBPACK_IMPORTED_MODULE_1__["Vector3"](0, 10, 0));
+        var line = new three_full__WEBPACK_IMPORTED_MODULE_1__["Line"](geometry, material);
         return line;
     };
     CanvasComponent.prototype.addSensorMarker = function (pos, size) {
-        var geometry = new three__WEBPACK_IMPORTED_MODULE_1__["BoxGeometry"](size, size, size);
-        var material = new three__WEBPACK_IMPORTED_MODULE_1__["MeshBasicMaterial"]({ color: 0x00ff00 });
-        var cube = new three__WEBPACK_IMPORTED_MODULE_1__["Mesh"](geometry, material);
+        var geometry = new three_full__WEBPACK_IMPORTED_MODULE_1__["BoxGeometry"](size, size, size);
+        var material = new three_full__WEBPACK_IMPORTED_MODULE_1__["MeshBasicMaterial"]({ color: 0x00ff00 });
+        var cube = new three_full__WEBPACK_IMPORTED_MODULE_1__["Mesh"](geometry, material);
         cube.position.set(pos[0], pos[1], pos[2]);
         return cube;
-    };
-    CanvasComponent.prototype.setVelRef = function (param) {
-        this.vval = param;
-        //this.selectedObject.rotateOnAxis(new THREE.Vector3(0,0,1),param);
-        /*var userdata = this.selectedObject.parent.userData;
-        if (userdata != null){
-           var axis = userdata["axis"];
-           //this.selectedObject.setRotationFromAxisAngle(new THREE.Vector3(axis[0],axis[1],axis[2]),param);
-        }*/
     };
     CanvasComponent.prototype.loadMesh = function (geometry, id) {
         var material;
         //console.log("ID "+id);
         if (geometry.hasColors) {
-            material = new three__WEBPACK_IMPORTED_MODULE_1__["MeshPhongMaterial"]({ opacity: geometry.alpha, vertexColors: three__WEBPACK_IMPORTED_MODULE_1__["VertexColors"] });
+            material = new three_full__WEBPACK_IMPORTED_MODULE_1__["MeshPhongMaterial"]({ opacity: geometry.alpha, vertexColors: three_full__WEBPACK_IMPORTED_MODULE_1__["VertexColors"] });
         }
         else {
-            material = new three__WEBPACK_IMPORTED_MODULE_1__["MeshPhongMaterial"]({ color: 0xAAAAAA, specular: 0x111111, shininess: 200 });
+            material = new three_full__WEBPACK_IMPORTED_MODULE_1__["MeshPhongMaterial"]({ color: 0xAAAAAA, specular: 0x111111, shininess: 200 });
         }
         //geometry.computeFaceNormals();
-        var mesh = new three__WEBPACK_IMPORTED_MODULE_1__["Mesh"](geometry, material);
-        material.side = three__WEBPACK_IMPORTED_MODULE_1__["DoubleSide"];
-        //THREE.EventDispatcher.call( mesh );
-        //mesh.addEventListener('click', function(event) {alert("GOT THE EVENT");});
-        //mesh.dispatchEvent({type:'click'});
+        var mesh = new three_full__WEBPACK_IMPORTED_MODULE_1__["Mesh"](geometry, material);
+        material.side = three_full__WEBPACK_IMPORTED_MODULE_1__["DoubleSide"];
         mesh.castShadow = true;
         mesh.receiveShadow = true;
         if (this.linkmap != null) {
-            var my = this.linkmap.get(id);
+            var link = this.linkmap.get(id);
+            var my = link.children[0];
+            if (my == null)
+                return;
             my.geometry = mesh.geometry;
+            link.userData["realMesh"] = my;
             var scale = my.userData["scale"];
             if (scale != null)
                 my.geometry.scale(scale[0], scale[1], scale[2]);
             my.material = mesh.material;
             geometry.computeFaceNormals();
             geometry.computeVertexNormals();
+            my.userData["IDlink"] = id;
             my.userData["load"] = true;
+        }
+    };
+    CanvasComponent.prototype.loadCollada = function (geometry, id) {
+        if (this.linkmap != null) {
+            var my = this.linkmap.get(id);
+            var meshNode = my.children[0];
+            var obj = geometry.scene;
+            my.add(geometry.scene);
+            geometry.scene.children[0].userData = meshNode.userData;
+            geometry.scene.children[0].userData["IDlink"] = id;
+            my.userData["realMesh"] = geometry.scene.children[0];
+            geometry.scene.position.set(meshNode.position.x, meshNode.position.y, meshNode.position.z);
+            //geometry.scene.scale.set()
+            geometry.scene.rotation.set(meshNode.rotation.x, meshNode.rotation.y, meshNode.rotation.z);
+            var objtodelete = this.scene.getObjectByName(meshNode.name);
+            this.scene.remove(objtodelete);
         }
     };
     CanvasComponent.prototype.init = function () {
@@ -1206,20 +1196,20 @@ var CanvasComponent = /** @class */ (function () {
             status = true;
         }
         else {
-            this.scene = new three__WEBPACK_IMPORTED_MODULE_1__["Scene"]();
-            this.camera = new three__WEBPACK_IMPORTED_MODULE_1__["PerspectiveCamera"](view.angle, view.aspect, view.near, view.far);
-            this.renderer = new three__WEBPACK_IMPORTED_MODULE_1__["WebGLRenderer"]();
+            this.scene = new three_full__WEBPACK_IMPORTED_MODULE_1__["Scene"]();
+            this.camera = new three_full__WEBPACK_IMPORTED_MODULE_1__["PerspectiveCamera"](view.angle, view.aspect, view.near, view.far);
+            this.renderer = new three_full__WEBPACK_IMPORTED_MODULE_1__["WebGLRenderer"]();
             this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-            this.scene.background = new three__WEBPACK_IMPORTED_MODULE_1__["Color"](0x72645b);
+            this.scene.background = new three_full__WEBPACK_IMPORTED_MODULE_1__["Color"](0x72645b);
             this.scene.add(this.camera);
             //this.scene.add(new THREE.AxisHelper(20));
             // lights
-            var light = new three__WEBPACK_IMPORTED_MODULE_1__["PointLight"](0xffffff, 0.8);
+            var light = new three_full__WEBPACK_IMPORTED_MODULE_1__["PointLight"](0xffffff, 0.8);
             this.camera.add(light);
             this.camera.position.set(1, 0.5, 2);
-            this.camera.lookAt(new three__WEBPACK_IMPORTED_MODULE_1__["Vector3"](0, 0, 0));
+            this.camera.lookAt(new three_full__WEBPACK_IMPORTED_MODULE_1__["Vector3"](0, 0, 0));
             //this.camera.up.set(0,0,1);
-            this.scene.add(new three__WEBPACK_IMPORTED_MODULE_1__["AmbientLight"](0x222222));
+            this.scene.add(new three_full__WEBPACK_IMPORTED_MODULE_1__["AmbientLight"](0x222222));
             this.renderer.setSize(screen.width, screen.height);
             status = false;
         }
@@ -1245,7 +1235,7 @@ var CanvasComponent = /** @class */ (function () {
         }, 100);
     };
     CanvasComponent.prototype.disposeNode = function (node) {
-        if (node instanceof three__WEBPACK_IMPORTED_MODULE_1__["Mesh"]) {
+        if (node instanceof three_full__WEBPACK_IMPORTED_MODULE_1__["Mesh"]) {
             node.parent = undefined;
             if (node.geometry) {
                 node.geometry.dispose();
@@ -1267,7 +1257,7 @@ var CanvasComponent = /** @class */ (function () {
                 material.dispose();
             }
         }
-        else if (node instanceof three__WEBPACK_IMPORTED_MODULE_1__["Object3D"]) {
+        else if (node instanceof three_full__WEBPACK_IMPORTED_MODULE_1__["Object3D"]) {
             node.parent.remove(node);
             node.parent = undefined;
         }
@@ -1280,6 +1270,7 @@ var CanvasComponent = /** @class */ (function () {
         }
     };
     CanvasComponent.prototype.ngOnDestroy = function () {
+        this.sub.unsubscribe();
         cancelAnimationFrame(this.idAnimationFrame);
         clearTimeout(this.timeout);
         window.removeEventListener('resize', this.OnWindowResize);
@@ -1337,9 +1328,11 @@ var CanvasComponent = /** @class */ (function () {
             if (self.jointmap != null)
                 joint = self.jointmap.get(self.robotService.selectJointSensorName);
             if (joint != null) {
-                self.selectedObject = joint.children[0];
+                self.selectedObject = joint.children[0].userData["realMesh"];
                 self.selectMaterial = self.selectedObject.material;
-                self.selectedObject.material = new three__WEBPACK_IMPORTED_MODULE_1__["MeshPhongMaterial"]({ color: 0xFFFF, specular: 0x111111, shininess: 200 });
+                //console.log((<THREE.Mesh>self.selectedObject).material);
+                // (<THREE.Mesh>self.selectedObject).material.color.setHex(0xFFFF);
+                self.selectedObject.material = new three_full__WEBPACK_IMPORTED_MODULE_1__["MeshPhongMaterial"]({ color: 0xFFFF, specular: 0x111111, shininess: 200 });
             }
             else {
                 var sensor = null;
@@ -1348,7 +1341,7 @@ var CanvasComponent = /** @class */ (function () {
                 if (sensor != null) {
                     self.selectedObject = sensor;
                     self.selectMaterial = self.selectedObject.material;
-                    self.selectedObject.material = new three__WEBPACK_IMPORTED_MODULE_1__["MeshPhongMaterial"]({ color: 0xFFFF, specular: 0x111111, shininess: 200 });
+                    self.selectedObject.material = new three_full__WEBPACK_IMPORTED_MODULE_1__["MeshPhongMaterial"]({ color: 0xFFFF, specular: 0x111111, shininess: 200 });
                 }
             }
         }());
@@ -1359,16 +1352,21 @@ var CanvasComponent = /** @class */ (function () {
         //console.log(this.scene.children);
         if (intersects.length > 0) {
             var objs = intersects[0].object;
-            //console.log(this.selectedObject);
-            var userdata = objs.parent.userData;
+            //console.log(objs);
+            var userdata = objs.userData;
             if (userdata != null) {
-                if (this.jointmap.get(userdata["name"]) != null) {
-                    var name = userdata["name"];
-                    var id = this.robotService.getJointId(name);
-                    if (id != null) {
-                        this.robotService.isJoint = true;
-                        this.robotService.selectJointSensorName = name;
-                        this.robotService.selectJointSensorId = id;
+                var link = this.linkmap.get(userdata["IDlink"]);
+                if (link != null) {
+                    var jntName = link.parent.userData["name"];
+                    var jnt = this.jointmap.get(jntName);
+                    if (jnt != null) {
+                        var name = jnt.userData["name"];
+                        var id = this.robotService.getJointId(name);
+                        if (id != null) {
+                            this.robotService.isJoint = true;
+                            this.robotService.selectJointSensorName = name;
+                            this.robotService.selectJointSensorId = id;
+                        }
                     }
                 }
             }
@@ -1924,15 +1922,8 @@ var PlotterComponent = /** @class */ (function () {
                     }
                 }
             });
-            var isRegistered = _this.robotService.isPlotterComponentRegistered(parseInt(_this.idPlot));
-            if (!isRegistered) {
-                _this.robotService.registerPlotterComponent(parseInt(_this.idPlot), _this.fields);
-            }
-            //else
-            //this.robotService.advertisePlotComponent(parseInt(this.idPlot));
+            _this.robotService.registerPlotterComponent(parseInt(_this.idPlot), _this.fields);
             _this.subPlotAddDatamsg = _this.robotService.currentPlotAddDatamsg.get(parseInt(_this.idPlot)).subscribe(function (msg) {
-                console.log("ADDDATA");
-                console.log(msg);
                 if (msg == null)
                     return;
                 if (_this.isfrozen)
@@ -1944,41 +1935,30 @@ var PlotterComponent = /** @class */ (function () {
                     if (name == null)
                         return;
                     var i = _this.map.get(name);
-                    if (i == null)
-                        continue;
                     var value = pdata["value"];
                     value = Math.round(value * 100) / 100;
-                    console.log("ACCESS TO pos " + i + " value " + value);
+                    //console.log("ACCESS TO pos "+ i +" value "+value);
                     _this.addDataToDataset(_this.data.datasets[i], value);
                 }
             });
             _this.subPlotAddmsg = _this.robotService.currentPlotAddmsg.get(parseInt(_this.idPlot)).subscribe(function (msg) {
                 if (msg == null)
                     return;
-                console.log("ADDDMSG");
-                console.log(msg);
                 var topic = msg["topic"];
                 if (topic == null)
                     return;
                 var id = msg["id"];
                 var name = msg["name"];
-                _this.addDataset(id);
+                _this.addDataset(name + "/" + topic);
                 var i = _this.data.datasets.length - 1;
                 _this.map.set(id, i);
-                console.log("ADD plot at " + "pos " + i + " name " + name);
+                //console.log("ADD plot at "+ "pos "+i+" name "+name);
             });
             _this.subPlotClearmsg = _this.robotService.currentClearmsg.get(parseInt(_this.idPlot)).subscribe(function (msg) {
                 if (msg == null)
                     return;
-                if (msg["msg"] == null)
-                    return;
-                console.log("CLEAR DATA CALLED");
-                //console.log(msg);
                 _this.clearData();
             });
-            if (isRegistered) {
-                _this.robotService.advertisePlotComponent(parseInt(_this.idPlot));
-            }
         }, 100);
     };
     PlotterComponent.prototype.ngOnDestroy = function () {
@@ -2441,14 +2421,6 @@ var RobotStateService = /** @class */ (function () {
         if (fields != null)
             this.topicPlotMap.set(id, fields);
     };
-    RobotStateService.prototype.isPlotterComponentRegistered = function (id) {
-        if (this.currentPlotAddDatamsg == null)
-            return false;
-        if (this.currentPlotAddDatamsg.get(id) != null)
-            return true;
-        else
-            return false;
-    };
     RobotStateService.prototype.registerBarChartComponent = function (id) {
         this.barAddDataMsg.set(id, new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]({}));
         this.currentBarAddDatamsg.set(id, this.barAddDataMsg.get(id).asObservable());
@@ -2516,23 +2488,6 @@ var RobotStateService = /** @class */ (function () {
                         }
                     }
                 });
-                //var plotId = ids[i] +"/"+ 
-                //this.plotMap.get()
-                //push to vector
-                //publish out
-                //this.plotAddDataMsg.next(obj);
-                /*var angle = motorList[i];
-                var joint = this.jointmap.get(nameList[i]);
-                var userdata = joint.userData;
-                if (userdata != null){
-                  var axis = userdata["axis"];
-                  var isloaded = joint.children[0].userData["load"];
-                  if (isloaded && axis != null){
-                    // console.log("SET ROT "+nameList[i]+ " axis "+ axis+ " angle "+angle);
-                    //joint.setRotationFromAxisAngle(new THREE.Vector3(axis[0],axis[1],axis[2]),angle);
-                    //joint.rotateOnAxis(new THREE.Vector3(axis[0],axis[1],axis[2]),angle);
-                  }
-                }*/
             };
             var this_1 = this, obj, keys;
             for (var i = 0; i < nameList.length; i++) {
@@ -2588,10 +2543,8 @@ var RobotStateService = /** @class */ (function () {
         this.publishMsg({ "robot": this.robot, "sensor": this.robotSensor });
         this.plotArrayMap.forEach(function (value, key) {
             if (value != null && value.length != 0) {
-                if (_this.plotAddDataMsg.get(key) != null) {
-                    _this.plotAddDataMsg.get(key).next(value);
-                    _this.plotArrayMap.set(key, []);
-                }
+                _this.plotAddDataMsg.get(key).next(value);
+                _this.plotArrayMap.set(key, []);
             }
         });
     };
@@ -2612,29 +2565,17 @@ var RobotStateService = /** @class */ (function () {
         if (this.plotArrayMap.get(idPlot) == null)
             this.plotArrayMap.set(idPlot, new Array());
         var addMsgItem = this.plotAddMsg.get(idPlot);
-        if (addMsgItem != null)
-            addMsgItem.next(obj);
+        addMsgItem.next(obj);
     };
     RobotStateService.prototype.advertiseSelectedJoint = function (param) {
         this.JointMsg.next(param);
-    };
-    RobotStateService.prototype.advertisePlotComponent = function (idPlot) {
-        var addMsgItem = this.plotAddMsg.get(idPlot);
-        var plotItem = this.plotMap.get(idPlot);
-        plotItem.forEach(function (value, mkey) {
-            console.log("ADVERTISE key " + mkey + " val" + value);
-            var obj = { "topic": value, "id": mkey, "name": mkey };
-            //TODO PRENDE SOLO ULTIMO EVENTO!!
-            if (addMsgItem != null)
-                addMsgItem.next(obj);
-        });
     };
     RobotStateService.prototype.plotState = function (id, name) {
         var _this = this;
         this.topicPlotMap.forEach(function (value, key) {
             var clearItem = _this.plotClearMsg.get(key);
             if (clearItem != null)
-                clearItem.next({ msg: "" });
+                clearItem.next({});
             for (var _i = 0, value_1 = value; _i < value_1.length; _i++) {
                 var t = value_1[_i];
                 _this.addPlot(key, id, t, name);
