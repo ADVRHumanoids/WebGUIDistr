@@ -460,6 +460,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bar_chart_bar_chart_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./bar-chart/bar-chart.component */ "./src/app/bar-chart/bar-chart.component.ts");
 /* harmony import */ var _angular_material_slider__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/material/slider */ "./node_modules/@angular/material/esm5/slider.es5.js");
 /* harmony import */ var _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/material/slide-toggle */ "./node_modules/@angular/material/esm5/slide-toggle.es5.js");
+/* harmony import */ var _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/material/snack-bar */ "./node_modules/@angular/material/esm5/snack-bar.es5.js");
 /*
  * Copyright (C) 2017 IIT-ADVR
  * Author:  Giuseppe Rigano
@@ -484,6 +485,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -548,7 +550,8 @@ var AppModule = /** @class */ (function () {
                 _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_25__["MatButtonToggleModule"],
                 _angular_material_tree__WEBPACK_IMPORTED_MODULE_26__["MatTreeModule"],
                 _angular_material_slider__WEBPACK_IMPORTED_MODULE_28__["MatSliderModule"],
-                _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_29__["MatSlideToggleModule"]
+                _angular_material_slide_toggle__WEBPACK_IMPORTED_MODULE_29__["MatSlideToggleModule"],
+                _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_30__["MatSnackBarModule"]
             ],
             providers: [
                 _services_http_service__WEBPACK_IMPORTED_MODULE_1__["HttpService"],
@@ -1578,7 +1581,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\" height:100%; overflow: scroll;\" *ngIf=\"isJoint;else sensor\">\n  <mat-card style=\"margin-top: 10px\" class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"ID: {{robotState.id}}\">\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"15\" value=\"Name: {{robotState.name}}\">  \n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content >\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Motor Position:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.motorPos}}> \n            <button  mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'motorPos',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Link Position:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.linkPos}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'linkPos',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p> \n\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Motor Velocity:\">\n            <input disabled matInput style=\"width: 50px;\" value={{robotState.motorVel}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'motorVel',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Link Velocity:\">\n            <input  disabled matInput style=\"width: 50px;\" value= {{robotState.linkVel}}>\n            <button mat-icon-button  type=\"button\" (click)=\"addPlot(robotState.id,'linkVel',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Stiffness:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.stiff}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'stiff',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Damping:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.damp}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'damp',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Torque:\">  \n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.effort}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'effort',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Temperature:\">  \n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.temp}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'temp',robotState.name)\">\n             <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n        </p>\n\n        <p>            \n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Aux:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.aux}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'aux',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n\n        <p>\n        <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Fault:\">\n        <!--<input  disabled matInput style=\"width: 250px;\" value={{robotState.fault}}> -->\n        <textarea disabled  matInput\n            cdkTextareaAutosize\n            #autosize=\"cdkTextareaAutosize\"\n            cdkAutosizeMinRows=\"2\"\n            cdkAutosizeMaxRows=\"5\"\n            value={{robotState.fault}}>\n        </textarea>\n        </p>\n    </mat-card-content>\n  </mat-card>\n\n<mat-card style=\"margin-top: 10px\" class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"Control\">\n            <mat-slide-toggle #Toggle\n            style=\"margin-left:20px\" \n            (change)=\"isControlEnable = ! isControlEnable; setControl()\"\n            color=\"primary\"\n            [checked]=\"isControlEnable\"\n            >Enable</mat-slide-toggle>       \n            <button  style=\"margin-left:60px\"  *ngIf=\"isControlEnable;\" mat-raised-button  type=\"button\" (click)=\"setPosRef(Pos.value); setVelRef(Vel.value); setEffortRef(Torque.value); setStiffRef(Stiff.value); setDampRef(Damp.value); sendVal(robotState.id)\">Send</button>\n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content >\n        <div  [hidden]=\"isControlEnable\">\n                <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Position:\">\n                        <mat-slider #PosOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.ulim\"\n                        [min]=\"limit.llim\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.refPos\">\n                        </mat-slider>\n                    {{robotState.refPos}}\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n                        <mat-slider #VelOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.vellim\"\n                        [min]=\"-limit.vellim\"\n                        [step]=\"step\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.refVel\">\n                    </mat-slider>\n                    {{robotState.refVel}}\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n                        <mat-slider #TorqueOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.efflim\"\n                        [min]=\"-limit.efflim\"\n                        [step]=\"step\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.refTor\">\n                    </mat-slider>\n                    {{robotState.refTor}}\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n                        <mat-slider #StiffOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"step\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.stiff\">\n                    </mat-slider>\n                    {{robotState.stiff}}\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\" size=\"7\" value=\"Damping:\">\n                        <mat-slider  #DampOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"step\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.damp\">\n                    </mat-slider>\n                    {{robotState.damp}}\n                    </p>  \n        </div>\n\n        <div  [hidden]=\"!isControlEnable\">\n\n                <p>\n                        <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Position:\">\n                        <mat-slider #Pos\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.ulim\"\n                        [min]=\"limit.llim\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"pval\"\n                        (change) = \"advertisePosition(robotState.name,Pos.value)\"\n                        (input) = \"advertisePosition(robotState.name,Pos.value)\">\n                        </mat-slider>\n                    {{Pos.value}}\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n                        <mat-slider #Vel\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.vellim\"\n                        [min]=\"-limit.vellim\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"vval\">\n                    </mat-slider>\n                    {{Vel.value}}\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n                        <mat-slider #Torque\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.efflim\"\n                        [min]=\"-limit.efflim\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"eval\">\n                    </mat-slider>\n                    {{Torque.value}}\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n                        <mat-slider #Stiff\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"0.1\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"sval\">\n                    </mat-slider>\n                    {{Stiff.value}}\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Damping:\">\n                        <mat-slider #Damp\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"0.1\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"dval\">\n                    </mat-slider>\n                    {{Damp.value}}\n                    </p>  \n        </div>\n\n    </mat-card-content>\n  </mat-card>\n\n</div>\n\n\n<ng-template #sensor>\n    <mat-card class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"ID: {{robotSensorState.id}}\">\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"15\" value=\"Name: {{robotSensorState.name}}\">           \n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content>\n    <p>Force: </p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"x:\">\n\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.forcex}}>\n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorState.id,'forcex',robotSensorState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.forcey}}>\n            <button mat-icon-button  type=\"button\" (click)=\"addPlot(robotSensorState.id,'forcey',robotSensorState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.forcez}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorState.id,'forcez',robotSensorState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n    <p>Torque:</p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" value=\"x:\"> \n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.torquex}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorState.id,'torquex',robotSensorState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.torquey}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorState.id,'torquey',robotSensorState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorState.torquez}}>  \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorState.id,'torquez',robotSensorState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon></button>      \n        </p>\n        </mat-card-content>\n    </mat-card>\n</ng-template>\n      \n<ng-template #ControlOFF>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Position:\">\n    <mat-slider #PosOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.refPos\">\n    </mat-slider>\n{{robotState.refPos}}\n</p> \n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n    <mat-slider #VelOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.refVel\">\n</mat-slider>\n{{robotState.refVel}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n    <mat-slider #TorqueOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.refTor\">\n</mat-slider>\n{{robotState.refTor}}\n</p> \n<p>\n    <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n    <mat-slider #StiffOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.stiff\">\n</mat-slider>\n{{robotState.stiff}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\" size=\"7\" value=\"Damping:\">\n    <mat-slider  #DampOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.damp\">\n</mat-slider>\n{{robotState.damp}}\n</p>  \n</ng-template>     \n\n<ng-template #ControlON>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Position:\">\n    <mat-slider #Pos\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.refPos\">\n    </mat-slider>\n{{Pos.value}}\n</p> \n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n    <mat-slider #Vel\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.refVel\">\n</mat-slider>\n{{Vel.value}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n    <mat-slider #Torque\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.refTor\">\n</mat-slider>\n{{Torque.value}}\n</p> \n<p>\n    <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n    <mat-slider #Stiff\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.stiff\">\n</mat-slider>\n{{Stiff.value}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Damping:\">\n    <mat-slider #Damp\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.damp\">\n</mat-slider>\n{{Damp.value}}\n</p>        \n</ng-template>   "
+module.exports = "<div style=\" height:100%; overflow: scroll;\" *ngIf=\"isJoint;else sensor\">\n  <mat-card style=\"margin-top: 10px\" class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"ID: {{robotState.id}}\">\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"15\" value=\"Name: {{robotState.name}}\">  \n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content >\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Motor Position:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.motorPos}}> \n            <button  mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'motorPos',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Link Position:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.linkPos}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'linkPos',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p> \n\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Motor Velocity:\">\n            <input disabled matInput style=\"width: 50px;\" value={{robotState.motorVel}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'motorVel',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Link Velocity:\">\n            <input  disabled matInput style=\"width: 50px;\" value= {{robotState.linkVel}}>\n            <button mat-icon-button  type=\"button\" (click)=\"addPlot(robotState.id,'linkVel',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Stiffness:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.stiff}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'stiff',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Damping:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.damp}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'damp',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Torque:\">  \n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.effort}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'effort',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Temperature:\">  \n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.temp}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'temp',robotState.name)\">\n             <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n        </p>\n\n        <p>            \n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Aux:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotState.aux}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'aux',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n\n        <p>\n        <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Fault:\">\n        <!--<input  disabled matInput style=\"width: 250px;\" value={{robotState.fault}}> -->\n        <textarea disabled  matInput\n            cdkTextareaAutosize\n            #autosize=\"cdkTextareaAutosize\"\n            cdkAutosizeMinRows=\"2\"\n            cdkAutosizeMaxRows=\"5\"\n            value={{robotState.fault}}>\n        </textarea>\n        </p>\n    </mat-card-content>\n  </mat-card>\n\n<mat-card style=\"margin-top: 10px\" class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"Control\">\n            <mat-slide-toggle #Toggle\n            style=\"margin-left:20px\" \n            (change)=\"isControlEnable = ! isControlEnable; setControl()\"\n            color=\"primary\"\n            [checked]=\"isControlEnable\"\n            >Enable</mat-slide-toggle>       \n            <button  style=\"margin-left:60px\"  *ngIf=\"isControlEnable;\" mat-raised-button  type=\"button\" (click)=\"setPosRef(Pos.value); setVelRef(Vel.value); setEffortRef(Torque.value); setStiffRef(Stiff.value); setDampRef(Damp.value); sendVal(robotState.id)\">Send</button>\n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content >\n        <div  [hidden]=\"isControlEnable\">\n                <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Position:\">\n                        <mat-slider #PosOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.ulim\"\n                        [min]=\"limit.llim\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.refPos\">\n                        </mat-slider>\n                    {{robotState.refPos}}\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n                        <mat-slider #VelOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.vellim\"\n                        [min]=\"-limit.vellim\"\n                        [step]=\"step\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.refVel\">\n                    </mat-slider>\n                    {{robotState.refVel}}\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n                        <mat-slider #TorqueOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.efflim\"\n                        [min]=\"-limit.efflim\"\n                        [step]=\"step\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.refTor\">\n                    </mat-slider>\n                    {{robotState.refTor}}\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n                        <mat-slider #StiffOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"step\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.stiff\">\n                    </mat-slider>\n                    {{robotState.stiff}}\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\" size=\"7\" value=\"Damping:\">\n                        <mat-slider  #DampOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"step\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.damp\">\n                    </mat-slider>\n                    {{robotState.damp}}\n                    </p>  \n        </div>\n\n        <div  [hidden]=\"!isControlEnable\">\n\n                <p>\n                        <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Position:\">\n                        <mat-slider #Pos\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.ulim\"\n                        [min]=\"limit.llim\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"pval\"\n                        (change) = \"advertisePosition(robotState.name,Pos.value)\"\n                        (input) = \"advertisePosition(robotState.name,Pos.value)\">\n                        </mat-slider>\n                    {{Pos.value}}\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n                        <mat-slider #Vel\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.vellim\"\n                        [min]=\"-limit.vellim\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"vval\">\n                    </mat-slider>\n                    {{Vel.value}}\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n                        <mat-slider #Torque\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.efflim\"\n                        [min]=\"-limit.efflim\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"eval\">\n                    </mat-slider>\n                    {{Torque.value}}\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n                        <mat-slider #Stiff\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"0.1\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"sval\">\n                    </mat-slider>\n                    {{Stiff.value}}\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Damping:\">\n                        <mat-slider #Damp\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"0.1\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"dval\">\n                    </mat-slider>\n                    {{Damp.value}}\n                    </p>  \n        </div>\n\n    </mat-card-content>\n  </mat-card>\n\n</div>\n\n\n<ng-template #imu>\n    <mat-card class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"ID: {{robotSensorIMUState.id}}\">\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"15\" value=\"Name: {{robotSensorIMUState.name}}\">           \n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content>\n    <p>Angular velocity: </p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"x:\">\n\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorIMUState.ang_velx}}>\n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'ang_velx',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorIMUState.ang_vely}}>\n            <button mat-icon-button  type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'ang_vely',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorIMUState.ang_velz}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'ang_velz',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n    <p>Linear acceleration:</p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" value=\"x:\"> \n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorIMUState.lin_accx}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'lin_accx',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorIMUState.lin_accy}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'lin_accy',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorIMUState.lin_accz}}>  \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'lin_accz',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon></button>      \n        </p>\n        <p>Orientation:</p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" value=\"x:\"> \n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorIMUState.orientationx}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'orientationx',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorIMUState.orientationy}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'orientationy',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorIMUState.orientationz}}>  \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'orientationz',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon></button> \n\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"w:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorIMUState.orientationw}}>  \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'orientationw',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon></button>       \n        </p>\n    </mat-card-content>\n</mat-card>\n</ng-template>\n\n<ng-template #ft>\n    <mat-card class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"ID: {{robotSensorFTState.id}}\">\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"15\" value=\"Name: {{robotSensorFTState.name}}\">           \n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content>\n        <p>Force: </p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"x:\">\n\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorFTState.forcex}}>\n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'forcex',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorFTState.forcey}}>\n            <button mat-icon-button  type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'forcey',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorFTState.forcez}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'forcez',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n    <p>Torque:</p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" value=\"x:\"> \n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorFTState.torquex}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'torquex',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorFTState.torquey}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'torquey',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled matInput style=\"width: 50px;\" value={{robotSensorFTState.torquez}}>  \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'torquez',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon></button>      \n        </p>\n    </mat-card-content>\n    </mat-card>\n</ng-template>\n\n<ng-template #sensor>\n    <div *ngIf=\"sensorType=='ft' then ft; else imu\"></div>\n</ng-template>\n      \n<ng-template #ControlOFF>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Position:\">\n    <mat-slider #PosOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.refPos\">\n    </mat-slider>\n{{robotState.refPos}}\n</p> \n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n    <mat-slider #VelOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.refVel\">\n</mat-slider>\n{{robotState.refVel}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n    <mat-slider #TorqueOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.refTor\">\n</mat-slider>\n{{robotState.refTor}}\n</p> \n<p>\n    <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n    <mat-slider #StiffOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.stiff\">\n</mat-slider>\n{{robotState.stiff}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\" size=\"7\" value=\"Damping:\">\n    <mat-slider  #DampOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.damp\">\n</mat-slider>\n{{robotState.damp}}\n</p>  \n</ng-template>     \n\n<ng-template #ControlON>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Position:\">\n    <mat-slider #Pos\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.refPos\">\n    </mat-slider>\n{{Pos.value}}\n</p> \n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n    <mat-slider #Vel\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.refVel\">\n</mat-slider>\n{{Vel.value}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n    <mat-slider #Torque\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.refTor\">\n</mat-slider>\n{{Torque.value}}\n</p> \n<p>\n    <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n    <mat-slider #Stiff\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.stiff\">\n</mat-slider>\n{{Stiff.value}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Damping:\">\n    <mat-slider #Damp\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.damp\">\n</mat-slider>\n{{Damp.value}}\n</p>        \n</ng-template>   "
 
 /***/ }),
 
@@ -1643,7 +1646,7 @@ var ControlPanelComponent = /** @class */ (function () {
             refVel: 0,
             refTor: 0
         };
-        this.robotSensorState = {
+        this.robotSensorFTState = {
             name: "",
             id: 0,
             forcex: 0,
@@ -1653,7 +1656,22 @@ var ControlPanelComponent = /** @class */ (function () {
             torquey: 0,
             torquez: 0,
         };
+        this.robotSensorIMUState = {
+            name: "",
+            id: 0,
+            ang_velx: 0,
+            ang_vely: 0,
+            ang_velz: 0,
+            lin_accx: 0,
+            lin_accy: 0,
+            lin_accz: 0,
+            orientationx: 0,
+            orientationy: 0,
+            orientationz: 0,
+            orientationw: 0
+        };
         this.isJoint = true;
+        this.sensorType = "";
         this.isControlEnable = false;
         this.robotService = robotService;
         this.robot = new Map();
@@ -1679,7 +1697,11 @@ var ControlPanelComponent = /** @class */ (function () {
             if (_this.robotSensor != null && !_this.robotService.isJoint) {
                 var items = _this.robotSensor.get(_this.robotService.selectJointSensorName);
                 if (items != null) {
-                    _this.robotSensorState = items;
+                    _this.sensorType = items.type;
+                    if (items.type == "ft")
+                        _this.robotSensorFTState = items;
+                    else if (items.type == "imu")
+                        _this.robotSensorIMUState = items;
                     _this.isJoint = false;
                 }
             }
@@ -2379,6 +2401,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var _websocket_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./websocket.service */ "./src/app/services/websocket.service.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /*
  * Copyright (C) 2017 IIT-ADVR
  * Author:  Giuseppe Rigano
@@ -2410,10 +2433,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var RobotStateService = /** @class */ (function () {
-    function RobotStateService(wsService) {
-        var _this = this;
+    function RobotStateService(wsService, snackBar) {
         this.wsService = wsService;
+        this.snackBar = snackBar;
         this.parsedMsg = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]({});
         this.currentmsg = this.parsedMsg.asObservable();
         this.plotMap = new Map();
@@ -2435,6 +2459,7 @@ var RobotStateService = /** @class */ (function () {
         this.barAddDataMsg = new Map();
         this.currentBarAddDatamsg = new Map();
         this.currentTopicBar = "temperature";
+        this.connectionAttempt = 5;
         this.limits = new Map();
         this.CanvasState = {
             scene: null,
@@ -2450,24 +2475,43 @@ var RobotStateService = /** @class */ (function () {
         this.registerSelectedJoint();
         this.registerCtrlSelectedJoint();
         this.connectWebSocket();
-        this.wsService.messages.subscribe(function (msg) {
-            _this.parseMsg(msg);
-            _this.sendMsg();
-        }, this.onError, this.onClose);
     }
     RobotStateService.prototype.onError = function (err) {
-        console.log("WebSocket Error occur " + err);
+        console.log("WebSocket Error occur ");
+        console.log(err);
+        this.snackBar.open("OFF-LINE", null, {
+            duration: 3000
+        });
+        this.sub.unsubscribe();
+        this.reconnect();
+    };
+    RobotStateService.prototype.reconnect = function () {
+        var _this = this;
+        this.timeout = setTimeout(function () {
+            console.log("WebSocket reconnect attempt");
+            _this.connectWebSocket();
+        }, 5000);
     };
     RobotStateService.prototype.onClose = function () {
         console.log("WebSocket closed by server");
+        this.snackBar.open("OFF-LINE", null, {
+            duration: 3000
+        });
+        this.sub.unsubscribe();
+        this.reconnect();
     };
     RobotStateService.prototype.connectWebSocket = function () {
+        var _this = this;
         console.log("WebSocket trying connect");
-        clearInterval(this.interval);
+        clearTimeout(this.timeout);
         var ip = window.location.origin;
         ip = ip.substr(7);
         var WS_URL = "ws://" + ip + "/websocket";
         this.wsService.connect(WS_URL);
+        this.sub = this.wsService.messages.subscribe(function (msg) {
+            _this.parseMsg(msg);
+            _this.sendMsg();
+        }, function (err) { return _this.onError(err); }, function () { return _this.onClose(); });
     };
     RobotStateService.prototype.publishMsg = function (msg) {
         this.parsedMsg.next(msg);
@@ -2564,18 +2608,20 @@ var RobotStateService = /** @class */ (function () {
         }
         var sensors = msg["Sensors"];
         if (sensors != null) {
-            var nameList = sensors["ft_name"];
-            var ids = sensors["ft_id"];
-            var forces = sensors["force"];
-            var torques = sensors["torque"];
+            var fts = sensors["fts"];
+            var nameList = fts["ft_name"];
+            var ids = fts["ft_id"];
+            var forces = fts["force"];
+            var torques = fts["torque"];
             var forcesv = [0, 0, 0];
             var torquesv = [0, 0, 0];
             var _loop_2 = function (i) {
                 if (forces != null)
                     forcesv = forces[i]["Vector"];
-                if (forces != null)
+                if (torques != null)
                     torquesv = torques[i]["Vector"];
                 objs = {
+                    type: "ft",
                     name: nameList[i],
                     id: ids[i],
                     forcex: forcesv[0],
@@ -2606,6 +2652,60 @@ var RobotStateService = /** @class */ (function () {
             var this_2 = this, objs, keys;
             for (var i = 0; i < nameList.length; i++) {
                 _loop_2(i);
+            }
+            //IMU
+            var imus = sensors["imus"];
+            var nameList = imus["imu_name"];
+            var ids = imus["imu_id"];
+            var ang_vel = imus["ang_vel"];
+            var lin_acc = imus["lin_acc"];
+            var orientation = imus["orientation"];
+            var ang_velv = [0, 0, 0];
+            var lin_accv = [0, 0, 0];
+            var orientationv = [0, 0, 0, 0];
+            var _loop_3 = function (i) {
+                if (ang_vel != null)
+                    ang_velv = ang_vel[i]["Vector"];
+                if (lin_acc != null)
+                    lin_accv = lin_acc[i]["Vector"];
+                if (orientation != null)
+                    orientationv = orientation[i]["Vector"];
+                objimu = {
+                    type: "imu",
+                    name: nameList[i],
+                    id: ids[i],
+                    ang_velx: ang_velv[0],
+                    ang_vely: ang_velv[1],
+                    ang_velz: ang_velv[2],
+                    lin_accx: lin_accv[0],
+                    lin_accy: lin_accv[1],
+                    lin_accz: lin_accv[2],
+                    orientationx: orientationv[0],
+                    orientationy: orientationv[1],
+                    orientationz: orientationv[2],
+                    orientationw: orientationv[3]
+                };
+                this_3.robotSensor.set(nameList[i], objimu);
+                keys = Object.keys(objimu);
+                this_3.plotMap.forEach(function (value, mkey) {
+                    //var plotItem = this.plotMap.get(1);
+                    if (value != null) {
+                        for (var _i = 0, keys_3 = keys; _i < keys_3.length; _i++) {
+                            var key = keys_3[_i];
+                            var topic = value.get(ids[i] + "/" + key);
+                            if (topic != null) {
+                                var pobj = { "name": ids[i] + "/" + key, "value": objimu[topic] };
+                                var array = _this.plotArrayMap.get(mkey);
+                                if (array != null)
+                                    array.push(pobj);
+                            }
+                        }
+                    }
+                });
+            };
+            var this_3 = this, objimu, keys;
+            for (var i = 0; i < nameList.length; i++) {
+                _loop_3(i);
             }
         }
         this.publishMsg({ "robot": this.robot, "sensor": this.robotSensor });
@@ -2662,7 +2762,7 @@ var RobotStateService = /** @class */ (function () {
     };
     RobotStateService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
-        __metadata("design:paramtypes", [_websocket_service__WEBPACK_IMPORTED_MODULE_2__["WebsocketService"]])
+        __metadata("design:paramtypes", [_websocket_service__WEBPACK_IMPORTED_MODULE_2__["WebsocketService"], _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatSnackBar"]])
     ], RobotStateService);
     return RobotStateService;
 }());
@@ -2684,6 +2784,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /*
  * Copyright (C) 2017 IIT-ADVR
  * Author:  Giuseppe Rigano
@@ -2714,19 +2815,27 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var WebsocketService = /** @class */ (function () {
-    function WebsocketService() {
+    function WebsocketService(snackBar) {
+        this.snackBar = snackBar;
     }
     WebsocketService.prototype.connectInternal = function (url) {
-        if (!this.subject) {
-            this.subject = this.create(url);
-            console.log("Successfully connected: " + url);
-        }
+        this.subject = this.create(url);
         return this.subject;
     };
+    WebsocketService.prototype.onOpen = function () {
+        console.log("Successfully connected: ");
+        this.snackBar.open("ON-LINE", null, {
+            duration: 3000
+        });
+    };
     WebsocketService.prototype.create = function (url) {
+        var _this = this;
         var ws = new WebSocket(url);
+        ws.onopen = function () { return _this.onOpen(); };
         var observable = rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"].create(function (obs) {
+            //ws.onopen.bind(this.onOpen);
             ws.onmessage = obs.next.bind(obs);
             ws.onerror = obs.error.bind(obs);
             ws.onclose = obs.complete.bind(obs);
@@ -2750,7 +2859,7 @@ var WebsocketService = /** @class */ (function () {
     };
     WebsocketService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_3__["MatSnackBar"]])
     ], WebsocketService);
     return WebsocketService;
 }());
@@ -3098,7 +3207,10 @@ var FileDatabase = /** @class */ (function () {
             var robot = response["Robot"];
             var joints = robot["joint_name"];
             var sensors = response["Sensors"];
-            var ft = sensors["ft_name"];
+            var fts = sensors["fts"];
+            var ft = fts["ft_name"];
+            var imus = sensors["imus"];
+            var imu = imus["imu_name"];
             /*var obj = {
     
                 "Robot": {
@@ -3118,7 +3230,7 @@ var FileDatabase = /** @class */ (function () {
             };*/
             var obj = {
                 "Robot": joints,
-                "Sensor": ft
+                "Sensor": { "fts": ft, "imus": imu }
             };
             var stringjson = JSON.stringify(obj);
             var dataObject = JSON.parse(stringjson);
