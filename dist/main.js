@@ -889,7 +889,6 @@ var CanvasComponent = /** @class */ (function () {
         this.faultMap = new Map();
         this.OnWindowResize = function (EventListener) {
             _this.resize();
-            _this.render();
         };
         this.Onclick = function (MouseEvent) {
             var rect = _this.renderer.domElement.getBoundingClientRect();
@@ -1183,7 +1182,7 @@ var CanvasComponent = /** @class */ (function () {
         };
         var status = false;
         //Load state
-        if (this.robotService.CanvasState.state != 0) {
+        if (this.robotService.CanvasState.state == 1) {
             if (this.robotService.CanvasState.camera != null)
                 this.camera = this.robotService.CanvasState.camera;
             if (this.robotService.CanvasState.controls != null)
@@ -1274,7 +1273,7 @@ var CanvasComponent = /** @class */ (function () {
     };
     CanvasComponent.prototype.ngOnDestroy = function () {
         this.sub.unsubscribe();
-        cancelAnimationFrame(this.idAnimationFrame);
+        var id = cancelAnimationFrame(this.idAnimationFrame);
         clearTimeout(this.timeout);
         window.removeEventListener('resize', this.OnWindowResize);
         this.container.removeEventListener('click', this.Onclick);
@@ -1328,15 +1327,19 @@ var CanvasComponent = /** @class */ (function () {
                 self.selectedObject.material = self.selectMaterial;
             }
             self.faultMap.forEach(function (value, key) {
+                if (self.jointmap == null)
+                    return;
                 var jnt = self.jointmap.get(key);
                 var mesh = jnt.children[0].userData["realMesh"];
                 if (value != "") {
                     if (mesh != null)
-                        mesh.material = new three_full__WEBPACK_IMPORTED_MODULE_1__["MeshPhongMaterial"]({ color: 0xFF545E, specular: 0x111111, shininess: 200 });
+                        mesh.material.color.setHex(0xFF545E);
+                    //(<THREE.Mesh>mesh).material = new THREE.MeshPhongMaterial( { color: 0xFF545E, specular: 0x111111, shininess: 200 } );
                 }
                 else {
                     if (mesh != null)
                         mesh.material.color.setHex(0xAAAAAA);
+                    //self.faultMap.delete(value);            
                 }
             });
             var joint = null;
@@ -3145,7 +3148,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"width:100%; height:100%\"\nfxLayout =\"column\"\nfxLayout.xs=\"column\"\nfxLayoutAlign=\"center stretch\"\nfxLayoutGap=\"5px\"\nfxLayoutGap.xs=\"0\">\n    <div class=\"item item-2\"  fxFlex=\"90\">\n        <div style=\" height:100%; overflow: scroll;\">\n            <mat-tree [dataSource]=\"dataSource\" [treeControl]=\"treeControl\">\n                <mat-tree-node *matTreeNodeDef=\"let node\" matTreeNodeToggle matTreeNodePadding>\n                  <button mat-icon-button disabled></button>\n                  <button (click)=\"setActiveDevice(node.type, node.isJoint)\" mat-button>{{node.devicename}} : {{node.type}}</button>\n                </mat-tree-node>\n              \n                <mat-tree-node *matTreeNodeDef=\"let node;when: hasChild\" matTreeNodePadding>\n                  <button mat-icon-button matTreeNodeToggle\n                          [attr.aria-label]=\"'toggle ' + node.filename\">\n                    <mat-icon class=\"mat-icon-rtl-mirror\">\n                      {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}\n                    </mat-icon>\n                  </button>\n                  <button (click)=\"setActiveDevice(node.type,node.isJoint)\" mat-button>{{node.devicename}} : {{node.type}}</button>\n                </mat-tree-node>\n            </mat-tree>\n        </div> \n    </div>\n    <div class=\"item item-3\"  fxFlex=\"10\" >\n        <div style=\"width:100%; height:100%\">\n            <div style=\"width:100%; height:100%\">\n                   {{selectedDevice}} <button  style=\"margin-left: 20px;\" *ngIf=\"isJoint\" mat-raised-button color=\"primary\" type=\"button\" (click)=\"plotState(jointId,selectedDevice)\">PlotState</button>\n            </div> \n        </div> \n    </div>\n</div>"
+module.exports = "<div style=\"width:100%; height:100%\"\nfxLayout =\"column\"\nfxLayout.xs=\"column\"\nfxLayoutAlign=\"center stretch\"\nfxLayoutGap=\"5px\"\nfxLayoutGap.xs=\"0\">\n    <div class=\"item item-2\"  fxFlex=\"90\">\n        <div style=\" height:100%; overflow: scroll;\">\n            <mat-tree [dataSource]=\"dataSource\" [treeControl]=\"treeControl\">\n                <mat-tree-node *matTreeNodeDef=\"let node\" matTreeNodeToggle matTreeNodePadding>\n                  <button mat-icon-button disabled></button>\n                  <button (click)=\"setActiveDevice(node.type, node.isJoint)\" mat-button>{{node.devicename}} : {{node.type}}</button>\n                </mat-tree-node>\n              \n                <mat-tree-node *matTreeNodeDef=\"let node;when: hasChild\" matTreeNodePadding>\n                  <button mat-icon-button matTreeNodeToggle\n                          [attr.aria-label]=\"'toggle ' + node.filename\">\n                    <mat-icon class=\"mat-icon-rtl-mirror\">\n                      {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}\n                    </mat-icon>\n                  </button>\n                  <button (click)=\"setActiveDevice(node.type,node.isJoint)\" mat-button>{{node.devicename}} : {{node.type}}</button>\n                </mat-tree-node>\n            </mat-tree>\n        </div> \n    </div>\n    <div class=\"item item-3\"  fxFlex=\"10\" >\n        <div style=\"width:100%; height:100%\">\n            <div style=\"width:100%; height:100%\">\n                   {{selectedDevice}} <button  style=\"float: right;\" *ngIf=\"isJoint\" mat-raised-button color=\"primary\" type=\"button\" (click)=\"plotState(jointId,selectedDevice)\">PlotState</button>\n            </div> \n        </div> \n    </div>\n</div>"
 
 /***/ }),
 
