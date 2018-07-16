@@ -1674,6 +1674,7 @@ var ControlPanelComponent = /** @class */ (function () {
                 var item = _this.robot.get(_this.robotService.selectJointSensorName);
                 if (item != null) {
                     _this.robotState = item;
+                    _this.roundValue(_this.robotState);
                     _this.isJoint = true;
                     var limit = _this.robotService.limits.get(_this.robotService.selectJointSensorName);
                     if (limit != null)
@@ -1684,10 +1685,14 @@ var ControlPanelComponent = /** @class */ (function () {
                 var items = _this.robotSensor.get(_this.robotService.selectJointSensorName);
                 if (items != null) {
                     _this.sensorType = items.type;
-                    if (items.type == "ft")
+                    if (items.type == "ft") {
                         _this.robotSensorFTState = items;
-                    else if (items.type == "imu")
+                        _this.roundValue(_this.robotSensorFTState);
+                    }
+                    else if (items.type == "imu") {
                         _this.robotSensorIMUState = items;
+                        _this.roundValue(_this.robotSensorIMUState);
+                    }
                     _this.isJoint = false;
                 }
             }
@@ -1700,6 +1705,14 @@ var ControlPanelComponent = /** @class */ (function () {
         this.robot = null;
         this.robotService = null;
         this.robotSensor = null;
+    };
+    ControlPanelComponent.prototype.roundValue = function (item) {
+        for (var _i = 0, _a = Object.keys(item); _i < _a.length; _i++) {
+            var key = _a[_i];
+            if (typeof item[key] == "string")
+                continue;
+            item[key] = Math.round(item[key] * 100) / 100;
+        }
     };
     ControlPanelComponent.prototype.ngOnInit = function () {
         /*this.service.get("/chains")
@@ -2472,6 +2485,11 @@ var RobotStateService = /** @class */ (function () {
         this.registerCtrlSelectedJoint();
         this.connectWebSocket();
     }
+    RobotStateService.prototype.ngOnDestroy = function () {
+        clearTimeout(this.timeout);
+        this.sub.unsubscribe();
+        console.log("destory ser");
+    };
     RobotStateService.prototype.changeView = function (param) {
         //console.log("enableModelView"+ param);
         if (param == "Model") {
@@ -2584,19 +2602,19 @@ var RobotStateService = /** @class */ (function () {
                 obj = {
                     name: nameList[i],
                     id: ids[i],
-                    motorPos: Math.round(motors[i] * 100) / 100,
-                    linkPos: Math.round(links[i] * 100) / 100,
-                    motorVel: Math.round(motorsv[i] * 100) / 100,
-                    linkVel: Math.round(linksv[i] * 100) / 100,
+                    motorPos: motors[i],
+                    linkPos: links[i],
+                    motorVel: motorsv[i],
+                    linkVel: linksv[i],
                     temp: temps[i],
-                    effort: Math.round(efforts[i] * 100) / 100,
-                    stiff: Math.round(stiffs[i] * 100) / 100,
-                    damp: Math.round(damps[i] * 100) / 100,
+                    effort: efforts[i],
+                    stiff: stiffs[i],
+                    damp: damps[i],
                     fault: faults[i],
-                    aux: Math.round(auxs[i] * 100) / 100,
-                    refPos: Math.round(posrefs[i] * 100) / 100,
-                    refVel: Math.round(velrefs[i] * 100) / 100,
-                    refTor: Math.round(torrefs[i] * 100) / 100
+                    aux: auxs[i],
+                    refPos: posrefs[i],
+                    refVel: velrefs[i],
+                    refTor: torrefs[i]
                 };
                 this_1.robot.set(nameList[i], obj);
                 keys = Object.keys(obj);
