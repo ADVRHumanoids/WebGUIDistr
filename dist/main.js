@@ -1893,7 +1893,7 @@ module.exports = "/*#myChart{\n    margin-top: 64px;\n}*/"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"width:100%; height:100%\"\nfxLayout =\"column\"\nfxLayout.xs=\"column\"\nfxLayoutAlign=\"center stretch\"\nfxLayoutGap=\"2px\"\nfxLayoutGap.xs=\"0\">\n  <div class=\"item item-1\"  fxFlex=\"80\" >\n    <div style=\" height:100%\">\n      <canvas [id]=\"getId()\"></canvas>\n    </div> \n  </div>\n  <div class=\"item item-2\"  fxFlex=\"20\" >\n    <div style=\" height:100%\">\n      <div >\n        <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"clearData()\">Clear</button> \n        <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"freeze()\">Pause</button>\n        Scale <input #Scale name=\"range\" step=\"0.1\" (change)=\"setScale(Scale.value)\" style=\" width:50px\" > \n        Sample <input #Sample name=\"range\" step=\"0.1\" (change)=\"setSample(Sample.value)\" style=\" width:50px\"> \n      </div> \n    </div>\n  </div>\n</div>\n"
+module.exports = "<div style=\"width:100%; height:100%\"\nfxLayout =\"column\"\nfxLayout.xs=\"column\"\nfxLayoutAlign=\"center stretch\"\nfxLayoutGap=\"2px\"\nfxLayoutGap.xs=\"0\">\n  <div class=\"item item-1\"  fxFlex=\"80\" >\n    <div style=\" height:100%\">\n      <canvas [id]=\"getId()\"></canvas>\n    </div> \n  </div>\n  <div class=\"item item-2\"  fxFlex=\"20\" >\n    <div style=\" height:100%\">\n      <div >\n        <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"clearData()\">Clear</button> \n        <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"freeze()\">Pause</button>\n        Scale <input #Scale name=\"range\" step=\"0.1\" (change)=\"setScale(Scale.value)\" style=\" width:50px\" > \n        Sample <input #Sample name=\"range\" step=\"0.1\" value = {{samples}} (change)=\"setSample(Sample.value)\" style=\" width:50px\"> \n      </div> \n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1943,7 +1943,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var PlotterComponent = /** @class */ (function () {
     function PlotterComponent(robotService) {
-        var _this = this;
+        this.isloaded = false;
+        this.labels = new Array();
+        this.datas = new Map();
         this.chartColors = {
             red: 'rgb(255, 99, 132)',
             orange: 'rgb(255, 159, 64)',
@@ -1963,17 +1965,6 @@ var PlotterComponent = /** @class */ (function () {
             datasets: []
         };
         this.map = new Map();
-        this.interval = setInterval(function () {
-            if (_this.isfrozen)
-                return;
-            if (_this.data.labels.length > _this.samples)
-                _this.data.labels.splice(0, 1);
-            for (var _i = 0, _a = _this.data.datasets; _i < _a.length; _i++) {
-                var d = _a[_i];
-                if (d.data.length > _this.samples)
-                    d.data.splice(0, 1);
-            }
-        }, 10);
     }
     PlotterComponent.prototype.getId = function () {
         return "myChart" + this.idPlot;
@@ -2051,12 +2042,31 @@ var PlotterComponent = /** @class */ (function () {
                 }
             });
             _this.robotService.registerPlotterComponent(parseInt(_this.idPlot), _this.fields);
+            _this.robotService.plotUpdateMap.set(parseInt(_this.idPlot), function () {
+                if (_this.isfrozen)
+                    return;
+                if (_this.data.datasets.length == 0)
+                    return;
+                if (_this.isloaded) {
+                    _this.data.labels.push(new Date());
+                    var llblength = _this.data.labels.length;
+                    if (llblength > _this.samples)
+                        _this.data.labels.splice(0, llblength - _this.samples);
+                    for (var i = 0; i < _this.data.datasets.length; i++) {
+                        var val = _this.datas.get(i);
+                        _this.data.datasets[i].data.push(val);
+                        var datailength = _this.data.datasets[i].data.length;
+                        if (datailength > _this.samples)
+                            _this.data.datasets[i].data.splice(0, datailength - _this.samples);
+                    }
+                    _this.myChart.update();
+                }
+            });
             _this.subPlotAddDatamsg = _this.robotService.currentPlotAddDatamsg.get(parseInt(_this.idPlot)).subscribe(function (msg) {
                 if (msg == null)
                     return;
                 if (_this.isfrozen)
                     return;
-                _this.data.labels.push(new Date());
                 for (var _i = 0, msg_1 = msg; _i < msg_1.length; _i++) {
                     var pdata = msg_1[_i];
                     var name = pdata["name"];
@@ -2066,7 +2076,7 @@ var PlotterComponent = /** @class */ (function () {
                     var value = pdata["value"];
                     value = Math.round(value * 100) / 100;
                     //console.log("ACCESS TO pos "+ i +" value "+value);
-                    _this.addDataToDataset(_this.data.datasets[i], value);
+                    _this.addDataToDataset(i, value);
                 }
             });
             _this.subPlotAddmsg = _this.robotService.currentPlotAddmsg.get(parseInt(_this.idPlot)).subscribe(function (msg) {
@@ -2087,6 +2097,7 @@ var PlotterComponent = /** @class */ (function () {
                     return;
                 _this.clearData();
             });
+            _this.isloaded = true;
         }, 100);
     };
     PlotterComponent.prototype.ngOnDestroy = function () {
@@ -2097,7 +2108,8 @@ var PlotterComponent = /** @class */ (function () {
             this.subPlotAddmsg.unsubscribe();
         if (this.subPlotClearmsg != null)
             this.subPlotClearmsg.unsubscribe();
-        clearInterval(this.interval);
+        //clearInterval(this.interval);
+        this.robotService.plotUpdateMap.set(parseInt(this.idPlot), null);
         this.robotService = null;
         this.map = null;
     };
@@ -2134,12 +2146,10 @@ var PlotterComponent = /** @class */ (function () {
             d.data = [];
         }
         this.data.datasets.push(data);
-        this.myChart.update();
     };
-    PlotterComponent.prototype.addDataToDataset = function (dataset, value) {
-        dataset.data.push(value);
+    PlotterComponent.prototype.addDataToDataset = function (index, value) {
+        this.datas.set(index, value);
         //console.log("label "+ dataset.label+ " "+dataset.data.length);
-        this.myChart.update();
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -2502,6 +2512,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var RobotStateService = /** @class */ (function () {
     function RobotStateService(wsService, snackBar, http) {
+        var _this = this;
         this.wsService = wsService;
         this.snackBar = snackBar;
         this.parsedMsg = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]({});
@@ -2532,6 +2543,7 @@ var RobotStateService = /** @class */ (function () {
         this.allPlotsViewFlag = false;
         this.controlPanelViewFlag = false;
         this.toggleModel = "Model";
+        this.plotUpdateMap = new Map();
         this.CanvasState = {
             scene: null,
             camera: null,
@@ -2548,15 +2560,23 @@ var RobotStateService = /** @class */ (function () {
         this.registerSelectedJoint();
         this.registerCtrlSelectedJoint();
         this.connectWebSocket();
+        this.interval = setInterval(function () {
+            _this.plotUpdateMap.forEach(function (mycallback, key) {
+                if (mycallback != null) {
+                    mycallback();
+                }
+            });
+        }, 20); //50Hz
     }
     RobotStateService.prototype.ngOnDestroy = function () {
         this.dispose();
     };
     RobotStateService.prototype.dispose = function () {
-        console.log("DESTROY SERVICE");
+        //console.log("DESTROY SERVICE");
         if (this.wsService != null)
             this.wsService.close();
         clearTimeout(this.timeout);
+        clearInterval(this.interval);
         if (this.sub != null)
             this.sub.unsubscribe();
         window.removeEventListener('unload', this.dispose);
@@ -2595,18 +2615,14 @@ var RobotStateService = /** @class */ (function () {
             console.log("WebSocket reconnect attempt");
             _this.service.get("/plugins")
                 .subscribe(function (response) {
-                console.log("OK PL");
-                //this.wsService.close();
+                console.log("Server Reachable");
                 _this.connectWebSocket();
             }, function (error) {
                 _this.snackBar.open("OFF-LINE", null, {
                     duration: 3000
                 });
-                console.log(error);
                 _this.reconnect();
             });
-            //this.wsService.close();
-            //this.connectWebSocket();     
         }, 5000);
     };
     RobotStateService.prototype.onClose = function () {
@@ -2951,16 +2967,13 @@ var WebsocketService = /** @class */ (function () {
     };
     WebsocketService.prototype.create = function (url) {
         var _this = this;
-        console.log("before ws");
+        //console.log("before ws");
         if (this.ws != null) {
             //this.ws.close();
             delete this.ws;
             this.ws = null;
         }
         this.ws = new WebSocket(url);
-        console.log(this.ws);
-        console.log("after ws");
-        console.log(this.ws.readyState);
         this.ws.onopen = function () { return _this.onOpen(); };
         var observable = rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"].create(function (obs) {
             //ws.onopen.bind(this.onOpen);
