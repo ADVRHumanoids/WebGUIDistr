@@ -329,7 +329,7 @@ module.exports = "/*.mat-expansion-panel{\n    background: #3f51b5;\n    bottom:
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n\n<mat-toolbar color=\"primary\">\n    <div  *ngIf=\"true ; then pageMenu\"></div>\n    <span style=\"width:100%;\" >ROBOT WEB GUI</span>    \n    <button mat-raised-button color=\"primary\"\n        [matBadge]=\"robotService.nBadgeLogger\" matBadgePosition=\"before\" matBadgeColor=\"accent\"\n        (click)=\"openDialog()\">\n        Logger\n    </button>\n    <div  *ngIf=\"true ; then ViewMenu\"></div>      \n</mat-toolbar>\n\n<!--<app-logger style=\" height:100%\"></app-logger> -->\n<!--<mat-toolbar style=\"top:64px; z-index:1000; margin-top:2px; width:250px; height:30px\" color=\"primary\">\n    <div >\n        ciao{{selectedDevice}} <div  *ngIf=\"true ; then JntMenu\"></div>     \n        <button  style=\"float: right;\" *ngIf=\"isJoint\" mat-raised-button color=\"primary\" type=\"button\" (click)=\"plotState(jointId,selectedDevice)\">PlotState</button>\n    </div>\n</mat-toolbar>-->\n\n<router-outlet></router-outlet>             \n\n<ng-template #pageMenu> \n    <div style=\"margin-left: 0\">\n        <button mat-icon-button [matMenuTriggerFor]=\"menu\">\n            <mat-icon>menu</mat-icon>\n        </button>\n        <mat-menu #menu=\"matMenu\" xPosition=\"before\" yPosition=\"below\" [overlapTrigger]=\"false\">\n            <button mat-menu-item \n            routerLink=\"\"\n            routerLinkActive=\"active current\">                \n                <span>Home</span>\n            </button>\n            <!--<button mat-menu-item \n            routerLink=\"/singleJointDashBoard\"\n            routerLinkActive=\"active current\">\n                <mat-icon>dialpad</mat-icon>\n                <span>Joint</span>\n            </button>-->\n            <button mat-menu-item \n            routerLink=\"/xbotPlugins\"\n            routerLinkActive=\"active current\">\n                <span>XbotPlugins</span>\n            </button>\n        </mat-menu>\n    </div>\n</ng-template>\n\n<ng-template #ViewMenu>\n    <div style=\"margin-right: 0\">\n        <button mat-icon-button [matMenuTriggerFor]=\"viewMenu\">\n            <mat-icon>more_vert</mat-icon>\n        </button>\n        <mat-menu #viewMenu=\"matMenu\" xPosition=\"after\" yPosition=\"below\" [overlapTrigger]=\"false\" > \n            <div mat-menu-item >\n                <mat-checkbox (change) =\"robotService.countView(robotService.modelViewFlag)\" [(ngModel)]=\"robotService.modelViewFlag\">Show Model</mat-checkbox>\n            </div>\n            <div mat-menu-item>\n                <mat-checkbox (change) =\"robotService.countView(robotService.plotterViewFlag)\" [(ngModel)]=\"robotService.plotterViewFlag\">Show Plotter</mat-checkbox>\n            </div>\n            <div mat-menu-item>\n                <mat-checkbox  (change) =\"robotService.countView(robotService.controlPanelViewFlag)\" [(ngModel)]=\"robotService.controlPanelViewFlag\">Show Details</mat-checkbox>        \n            </div>            \n        </mat-menu>\n    </div>\n</ng-template>"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n\n<mat-toolbar color=\"primary\">\n    <div  *ngIf=\"true ; then pageMenu\"></div>\n    <span style=\"width:100%;\" >ROBOT WEB GUI</span>    \n    <button mat-raised-button color=\"primary\"\n        [matBadge]=\"robotService.nBadgeLogger\" matBadgePosition=\"before\" matBadgeColor=\"accent\"\n        (click)=\"openDialog()\">\n        Logger\n    </button>\n    <div  *ngIf=\"true ; then ViewMenu\"></div>  \n    <a aria-label=\"Robot Web GUI on github\" [href]=\"l\" title=\"GitHub\"><mat-icon class=\"mat-icon\" role=\"img\" svgicon=\"logos:github\" aria-hidden=\"true\"><svg focusable=\"false\" viewBox=\"0 0 51.8 50.4\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M25.9,0.2C11.8,0.2,0.3,11.7,0.3,25.8c0,11.3,7.3,20.9,17.5,24.3c1.3,0.2,1.7-0.6,1.7-1.2c0-0.6,0-2.6,0-4.8c-7.1,1.5-8.6-3-8.6-3c-1.2-3-2.8-3.7-2.8-3.7c-2.3-1.6,0.2-1.6,0.2-1.6c2.6,0.2,3.9,2.6,3.9,2.6c2.3,3.9,6,2.8,7.5,2.1c0.2-1.7,0.9-2.8,1.6-3.4c-5.7-0.6-11.7-2.8-11.7-12.7c0-2.8,1-5.1,2.6-6.9c-0.3-0.7-1.1-3.3,0.3-6.8c0,0,2.1-0.7,7,2.6c2-0.6,4.2-0.9,6.4-0.9c2.2,0,4.4,0.3,6.4,0.9c4.9-3.3,7-2.6,7-2.6c1.4,3.5,0.5,6.1,0.3,6.8c1.6,1.8,2.6,4.1,2.6,6.9c0,9.8-6,12-11.7,12.6c0.9,0.8,1.7,2.4,1.7,4.7c0,3.4,0,6.2,0,7c0,0.7,0.5,1.5,1.8,1.2c10.2-3.4,17.5-13,17.5-24.3C51.5,11.7,40.1,0.2,25.9,0.2z\"></path></svg></mat-icon></a>   \n</mat-toolbar>\n\n<!--<app-logger style=\" height:100%\"></app-logger> -->\n<!--<mat-toolbar style=\"top:64px; z-index:1000; margin-top:2px; width:250px; height:30px\" color=\"primary\">\n    <div >\n        ciao{{selectedDevice}} <div  *ngIf=\"true ; then JntMenu\"></div>     \n        <button  style=\"float: right;\" *ngIf=\"isJoint\" mat-raised-button color=\"primary\" type=\"button\" (click)=\"plotState(jointId,selectedDevice)\">PlotState</button>\n    </div>\n</mat-toolbar>-->\n\n<router-outlet></router-outlet>             \n\n<ng-template #pageMenu> \n    <div style=\"margin-left: 0\">\n        <button mat-icon-button [matMenuTriggerFor]=\"menu\">\n            <mat-icon>menu</mat-icon>\n        </button>\n        <mat-menu #menu=\"matMenu\" xPosition=\"before\" yPosition=\"below\" [overlapTrigger]=\"false\">\n            <button mat-menu-item \n            routerLink=\"\"\n            routerLinkActive=\"active current\">                \n                <span>Home</span>\n            </button>\n            <!--<button mat-menu-item \n            routerLink=\"/singleJointDashBoard\"\n            routerLinkActive=\"active current\">\n                <mat-icon>dialpad</mat-icon>\n                <span>Joint</span>\n            </button>-->\n            <button mat-menu-item \n            routerLink=\"/xbotPlugins\"\n            routerLinkActive=\"active current\">\n                <span>XbotPlugins</span>\n            </button>\n        </mat-menu>\n    </div>\n</ng-template>\n\n<ng-template #ViewMenu>\n    <div style=\"margin-right: 0\">\n        <button mat-icon-button [matMenuTriggerFor]=\"viewMenu\">\n            <mat-icon>more_vert</mat-icon>\n        </button>\n        <mat-menu #viewMenu=\"matMenu\" xPosition=\"after\" yPosition=\"below\" [overlapTrigger]=\"false\" > \n            <div mat-menu-item >\n                <mat-checkbox (change) =\"robotService.countView(robotService.modelViewFlag)\" [(ngModel)]=\"robotService.modelViewFlag\">Show Model</mat-checkbox>\n            </div>\n            <div mat-menu-item>\n                <mat-checkbox (change) =\"robotService.countView(robotService.plotterViewFlag)\" [(ngModel)]=\"robotService.plotterViewFlag\">Show Plotter</mat-checkbox>\n            </div>\n            <div mat-menu-item>\n                <mat-checkbox  (change) =\"robotService.countView(robotService.controlPanelViewFlag)\" [(ngModel)]=\"robotService.controlPanelViewFlag\">Show Details</mat-checkbox>        \n            </div>            \n        </mat-menu>\n    </div>\n</ng-template>"
 
 /***/ }),
 
@@ -381,26 +381,20 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var AppComponent = /** @class */ (function () {
     function AppComponent(robotService, dialog) {
+        var _this = this;
         this.dialog = dialog;
+        this.isLoggerOpened = false;
         this.robotService = robotService;
+        this.l = atob("aHR0cHM6Ly9naXRodWIuY29tL3BlcHBlcmlnL3dlYkdVSQ==");
+        this.sub = this.robotService.currentFaultAddmsg.subscribe(function (msg) {
+            if (msg != null) {
+                var fault = msg["fault"];
+                if (fault && !_this.isLoggerOpened) {
+                    _this.openDialog();
+                }
+            }
+        });
     }
-    /*changeViewPanel(param){
-      //console.log("enableModelView"+ param);
-      this.toggleGlobal = param;
-      if (param == "Global"){
-        this.robotService.controlPanelViewFlag = false;
-      }
-      else if (param == "Single"){
-        this.robotService.controlPanelViewFlag = true;
-      }
-    }
-  
-    onLinkClick(event: MatTabChangeEvent) {
-      //console.log('event => ', event);
-      this.tabIndex = event.index;
-      //console.log('index => ', event.index);
-      //console.log('tab => ', event.tab);
-    }*/
     AppComponent.prototype.openDialog = function () {
         var _this = this;
         //this.robotService.nBadgeLogger = 0;
@@ -408,9 +402,11 @@ var AppComponent = /** @class */ (function () {
             width: '70%',
             height: '80%',
         });
+        this.isLoggerOpened = dialogRef != null;
         dialogRef.afterClosed().subscribe(function (result) {
             console.log('The dialog was closed');
             _this.robotService.nBadgeLogger = 0;
+            _this.isLoggerOpened = false;
         });
     };
     AppComponent = __decorate([
@@ -477,8 +473,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_table__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! @angular/material/table */ "./node_modules/@angular/material/esm5/table.es5.js");
 /* harmony import */ var _angular_material_paginator__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! @angular/material/paginator */ "./node_modules/@angular/material/esm5/paginator.es5.js");
 /* harmony import */ var _angular_material_sort__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! @angular/material/sort */ "./node_modules/@angular/material/esm5/sort.es5.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
+/* harmony import */ var _angular_material_radio__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! @angular/material/radio */ "./node_modules/@angular/material/esm5/radio.es5.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
 /*
  * Copyright (C) 2017 IIT-ADVR
  * Author:  Giuseppe Rigano
@@ -503,6 +500,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -561,9 +561,11 @@ var AppModule = /** @class */ (function () {
                 _tree_panel_tree_panel_component__WEBPACK_IMPORTED_MODULE_14__["TreePanelComponent"],
                 _bar_chart_bar_chart_component__WEBPACK_IMPORTED_MODULE_27__["BarChartComponent"],
                 _logger_logger_component__WEBPACK_IMPORTED_MODULE_32__["LoggerComponent"],
-                _home_home_component__WEBPACK_IMPORTED_MODULE_40__["HomeComponent"]
+                _home_home_component__WEBPACK_IMPORTED_MODULE_41__["HomeComponent"],
+                _plotter_plotter_component__WEBPACK_IMPORTED_MODULE_12__["PlDialogComponent"],
+                _bar_chart_bar_chart_component__WEBPACK_IMPORTED_MODULE_27__["BarDialogComponent"]
             ],
-            entryComponents: [_logger_logger_component__WEBPACK_IMPORTED_MODULE_32__["LoggerComponent"]],
+            entryComponents: [_logger_logger_component__WEBPACK_IMPORTED_MODULE_32__["LoggerComponent"], _plotter_plotter_component__WEBPACK_IMPORTED_MODULE_12__["PlDialogComponent"], _bar_chart_bar_chart_component__WEBPACK_IMPORTED_MODULE_27__["BarChartComponent"], _bar_chart_bar_chart_component__WEBPACK_IMPORTED_MODULE_27__["BarDialogComponent"]],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["BrowserModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"],
@@ -590,10 +592,11 @@ var AppModule = /** @class */ (function () {
                 _angular_material_paginator__WEBPACK_IMPORTED_MODULE_37__["MatPaginatorModule"],
                 _angular_material_table__WEBPACK_IMPORTED_MODULE_36__["MatTableModule"],
                 _angular_material_sort__WEBPACK_IMPORTED_MODULE_38__["MatSortModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_39__["RouterModule"].forRoot([
+                _angular_material_radio__WEBPACK_IMPORTED_MODULE_39__["MatRadioModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_40__["RouterModule"].forRoot([
                     {
                         path: '',
-                        component: _home_home_component__WEBPACK_IMPORTED_MODULE_40__["HomeComponent"]
+                        component: _home_home_component__WEBPACK_IMPORTED_MODULE_41__["HomeComponent"]
                     },
                     {
                         path: 'xbotPlugins',
@@ -640,7 +643,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"width:100%; height:100%\"\nfxLayout =\"column\"\nfxLayout.xs=\"column\"\nfxLayoutAlign=\"center stretch\"\nfxLayoutGap=\"2px\"\nfxLayoutGap.xs=\"0\">\n  <div class=\"item item-1\"  fxFlex=70 >\n    <div style=\" height:100%\">\n      <canvas [id]=\"getId()\"></canvas>\n    </div> \n  </div>\n  <div class=\"item item-2\"  fxFlex=\"5\" >\n      <div style=\" height:100%\">\n        <div >\n          MinScale <input #MinScale name=\"range\" step=\"0.1\" (change)=\"setMinScale(MinScale.value)\" style=\" width:50px\" >\n          MaxScale <input #MaxScale name=\"range\" step=\"0.1\" (change)=\"setMaxScale(MaxScale.value)\" style=\" width:50px\" >  \n        </div> \n      </div>\n    </div>\n    <mat-toolbar color=\"primary\">\n        <div style=\" margin-right:auto; margin-left: auto;\"> \n          <span>TOPICS</span>\n        </div>        \n    </mat-toolbar>\n  <div class=\"item item-3\"  fxFlex=25 >\n    <div style=\" height:100%; overflow: scroll;\">\n      <mat-list role=\"list\">\n          <mat-list-item style=\" width:100%;\" *ngFor=\"let litem of topics\">\n              <button (click) =\"setTopic(litem)\" style=\" width:100%;\"  mat-button> {{litem}}</button>\n          </mat-list-item>\n      </mat-list>\n    </div> \n  </div>\n</div>\n"
+module.exports = "<div style=\"width:100%; height:100%;\"\nfxLayout =\"column\"\nfxLayoutAlign=\"center stretch\"\nfxLayoutGap=\"2px\">\n  <div style=\"width:100%; height:100%; position:relative;\" class=\"item item-1\"  fxFlex=75 >\n    <div style=\"position:absolute; top:0; right:0; z-index:10\">\n        <button mat-icon-button (click)=\"openDialog()\">\n            <mat-icon aria-label=\"Settings\">settings</mat-icon>\n          </button>\n    </div> \n    <div id=\"wrapCanvas\"style=\" width:100%; height:100%; position:absolute; top:0; right:0;\">\n      <canvas [id]=\"getId()\"></canvas>\n    </div>     \n  </div>\n    <mat-toolbar color=\"primary\">\n        <div style=\" margin-right:auto; margin-left: auto;\"> \n          <span>METRICS</span>\n        </div>        \n    </mat-toolbar>\n  <div class=\"item item-3\"  fxFlex=25 >\n    <div style=\" height:100%; overflow: scroll;\">\n      <mat-list role=\"list\">\n          <mat-list-item style=\" width:100%;\" *ngFor=\"let litem of topics\">\n              <button (click) =\"setTopic(litem)\" style=\" width:100%;\"  mat-button> {{litem}}</button>\n          </mat-list-item>\n      </mat-list>\n    </div> \n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -648,16 +651,20 @@ module.exports = "<div style=\"width:100%; height:100%\"\nfxLayout =\"column\"\n
 /*!**************************************************!*\
   !*** ./src/app/bar-chart/bar-chart.component.ts ***!
   \**************************************************/
-/*! exports provided: BarChartComponent */
+/*! exports provided: BarDialogComponent, BarChartComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BarDialogComponent", function() { return BarDialogComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BarChartComponent", function() { return BarChartComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/src/chart.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _services_robot_state_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../services/robot-state.service */ "./src/app/services/robot-state.service.ts");
+/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! chartjs-plugin-datalabels */ "./node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js");
+/* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _services_robot_state_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../services/robot-state.service */ "./src/app/services/robot-state.service.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /*
  * Copyright (C) 2017 IIT-ADVR
  * Author:  Giuseppe Rigano
@@ -685,14 +692,51 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 
 
+
+
+
+var BarDialogComponent = /** @class */ (function () {
+    function BarDialogComponent(dialogRef, data, robotService) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.robotService = robotService;
+    }
+    BarDialogComponent.prototype.onNoClick = function () {
+        this.dialogRef.close();
+    };
+    BarDialogComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-bardialog',
+            template: __webpack_require__(/*! ./bardialog.component.html */ "./src/app/bar-chart/bardialog.component.html"),
+            styles: [__webpack_require__(/*! ./bardialog.component.css */ "./src/app/bar-chart/bardialog.component.css")]
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_4__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogRef"], Object, _services_robot_state_service__WEBPACK_IMPORTED_MODULE_3__["RobotStateService"]])
+    ], BarDialogComponent);
+    return BarDialogComponent;
+}());
 
 var BarChartComponent = /** @class */ (function () {
-    function BarChartComponent(robotService) {
+    function BarChartComponent(robotService, dialog) {
         var _this = this;
-        this.topics = [];
+        this.dialog = dialog;
+        this.topics = ["motor_position", "link_position", "motor_velocity", "link_velocity",
+            "effort", "stiffness", "damping", "pos_ref", "vel_ref", "eff_ref", "aux", "temperature"];
+        this.nselected = -1;
+        this.isAbsolute = false;
+        this.showLabel = false;
+        this.showBarValue = false;
+        this.skip = false;
         this.mapTopicLimit = new Map();
+        this.mapTopicReference = new Map();
+        this.limitHidden = [false, false];
+        this.barTypes = ["bar", "horizontalBar"];
+        this.barTypeSelected = "bar";
         this.chartColors = {
             red: 'rgb(255, 99, 132)',
             orange: 'rgb(255, 159, 64)',
@@ -717,12 +761,18 @@ var BarChartComponent = /** @class */ (function () {
         this.mapTopicLimit.set("eff_ref", "efflim");
         this.mapTopicLimit.set("temperature", "templim");
         this.mapTopicLimit.set("aux", "auxlim");
+        this.mapTopicReference.set("link_position", "pos_ref");
+        this.mapTopicReference.set("motor_position", "pos_ref");
+        this.mapTopicReference.set("link_velocity", "vel_ref");
+        this.mapTopicReference.set("motor_velocity", "vel_ref");
+        this.mapTopicReference.set("effort", "eff_ref");
         if (this.label == null)
             this.label = "Plotter";
         this.data = {
             labels: [],
             datasets: []
         };
+        chart_js__WEBPACK_IMPORTED_MODULE_1__["plugins"].unregister(chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_2__);
     }
     BarChartComponent.prototype.setTopic = function (topic) {
         this.robotService.currentTopicBar = topic;
@@ -741,21 +791,52 @@ var BarChartComponent = /** @class */ (function () {
         //this.subPlotClearmsg.unsubscribe();
         this.robotService = null;
         this.map = null;
+        this.myChart.destroy();
         window.removeEventListener('resize', this.OnWindowResize);
         //REMOVE HOSTLISTENER
         //REMOVE SETINTERVAL
+    };
+    BarChartComponent.prototype.updateBarType = function (event) {
+        this.skip = true;
+        this.myChart.clear();
+        this.myChart.destroy();
+        this.myChart = null;
+        if (this.barTypeSelected == "bar")
+            this.myChart = new chart_js__WEBPACK_IMPORTED_MODULE_1__(this.ctx, this.configChart);
+        else
+            this.myChart = new chart_js__WEBPACK_IMPORTED_MODULE_1__(this.ctx, this.configChartHoriz);
+        this.myChart.resize();
+        this.nselected = -1;
+        this.clearData();
+        this.skip = false;
+    };
+    BarChartComponent.prototype.updateLabel = function (event) {
+        this.configChart.options.scales["xAxes"][0].display = event.checked;
+        this.configChartHoriz.options.scales["yAxes"][0].display = event.checked;
     };
     BarChartComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
         this.timeout = setTimeout(function () {
             console.log("CHART ID " + _this.idPlot);
-            _this.isResponsive = true;
-            _this.canvas = document.getElementById(_this.getId());
-            _this.ctx = _this.canvas.getContext('2d');
-            _this.myChart = new chart_js__WEBPACK_IMPORTED_MODULE_1__(_this.ctx, {
-                type: 'bar',
+            _this.configChart = {
+                plugins: [chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_2__],
+                type: "bar",
                 data: _this.data,
                 options: {
+                    plugins: {
+                        datalabels: {
+                            formatter: function (value, context) {
+                                if (value == 0)
+                                    return "";
+                                if (context.datasetIndex == 1 || context.datasetIndex == 2)
+                                    return "";
+                                return Math.round(value * 100) / 100;
+                            },
+                            display: function (context) {
+                                return _this.showBarValue;
+                            }
+                        }
+                    },
                     events: ['click'],
                     responsiveAnimationDuration: 0,
                     animation: {
@@ -774,7 +855,8 @@ var BarChartComponent = /** @class */ (function () {
                         intersect: true,
                         callbacks: {
                             afterLabel: function (tooltipItem, data) {
-                                _this.robotService.selectJointSensorName = tooltipItem.xLabel;
+                                _this.robotService.selectJointSensorName = tooltipItem.xLabel.toString();
+                                _this.robotService.isJoint = true;
                                 _this.robotService.advertiseSelectedJoint(_this.robotService.selectJointSensorName);
                                 return "";
                             }
@@ -784,13 +866,14 @@ var BarChartComponent = /** @class */ (function () {
                       mode: 'nearest',
                       intersect: true
                     },*/
-                    scaleBeginAtZero: false,
+                    //scaleBeginAtZero: false,
                     scales: {
                         xAxes: [{
                                 stacked: true,
-                                display: false,
+                                display: _this.showLabel,
+                                ticks: {},
                                 scaleLabel: {
-                                    display: true,
+                                    display: false,
                                     labelString: 'Joints'
                                 }
                             }],
@@ -807,24 +890,118 @@ var BarChartComponent = /** @class */ (function () {
                             }]
                     }
                 }
-            });
+            };
+            _this.configChartHoriz = {
+                plugins: [chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_2__],
+                type: "horizontalBar",
+                data: _this.data,
+                options: {
+                    plugins: {
+                        datalabels: {
+                            formatter: function (value, context) {
+                                if (value == 0)
+                                    return "";
+                                if (context.datasetIndex == 1 || context.datasetIndex == 2)
+                                    return "";
+                                return Math.round(value * 100) / 100;
+                            },
+                            display: function (context) {
+                                return _this.showBarValue;
+                            }
+                        }
+                    },
+                    events: ['click'],
+                    responsiveAnimationDuration: 0,
+                    animation: {
+                        duration: 0
+                    },
+                    responsive: _this.isResponsive,
+                    maintainAspectRatio: false,
+                    //cubicInterpolationMode: "",
+                    title: {
+                        display: true,
+                        text: _this.label
+                    },
+                    tooltips: {
+                        enabled: true,
+                        mode: 'index',
+                        intersect: true,
+                        callbacks: {
+                            afterLabel: function (tooltipItem, data) {
+                                _this.robotService.selectJointSensorName = tooltipItem.yLabel.toString();
+                                _this.robotService.isJoint = true;
+                                _this.robotService.advertiseSelectedJoint(_this.robotService.selectJointSensorName);
+                                return "";
+                            }
+                        }
+                    },
+                    /*hover: {
+                      mode: 'nearest',
+                      intersect: true
+                    },*/
+                    //scaleBeginAtZero: false,
+                    scales: {
+                        xAxes: [{
+                                //stacked: true,
+                                display: true,
+                                ticks: {},
+                                scaleLabel: {
+                                    display: false,
+                                    labelString: 'Joints'
+                                }
+                            }],
+                        yAxes: [{
+                                stacked: true,
+                                display: _this.showLabel,
+                                ticks: {
+                                    //stepSize: 0.5
+                                    beginAtZero: true,
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                }
+                            }]
+                    }
+                }
+            };
+            _this.isResponsive = true;
+            _this.canvas = document.getElementById(_this.getId());
+            _this.ctx = _this.canvas.getContext('2d');
+            _this.myChart = new chart_js__WEBPACK_IMPORTED_MODULE_1__(_this.ctx, _this.configChart);
             _this.robotService.registerBarChartComponent(parseInt(_this.idPlot));
             _this.subPlotAddDatamsg = _this.robotService.currentBarAddDatamsg.get(parseInt(_this.idPlot)).subscribe(function (msg) {
                 if (msg == null)
+                    return;
+                if (_this.skip)
                     return;
                 if (msg != null) {
                     //console.log(msg);
                     var topicname = msg["topic"];
                     var robot = msg["robot"];
+                    var selected = msg["selected"];
                     if (robot == null)
                         return;
                     //console.log(robot);
-                    var joint = robot["joint_name"];
-                    var topic = robot[topicname];
-                    var keys = Object.keys(robot);
-                    _this.topics = keys;
-                    _this.addDataset(joint);
-                    if (_this.currentTopic != topicname) {
+                    //var joint = robot["joint_name"];
+                    var joint = new Array();
+                    //var allJoint = robot["joint_name"];
+                    for (var _i = 0, selected_1 = selected; _i < selected_1.length; _i++) {
+                        var entry = selected_1[_i];
+                        var isj = entry["isJoint"];
+                        if (isj != null && isj == true)
+                            joint.push(entry["type"]);
+                    }
+                    //var keys =  Object.keys(robot);
+                    //this.topics = keys;
+                    if (_this.nselected != joint.length) {
+                        if (_this.data.datasets.length != 0) {
+                            _this.limitHidden[0] = !_this.myChart.isDatasetVisible(1);
+                            _this.limitHidden[1] = !_this.myChart.isDatasetVisible(2);
+                        }
+                        _this.clearData();
+                        _this.addDatasets(joint);
+                    }
+                    if (_this.nselected != joint.length || _this.currentTopic != topicname) {
                         _this.currentTopic = topicname;
                         var limitType = _this.mapTopicLimit.get(topicname);
                         for (var i = 0; i < joint.length; i++) {
@@ -842,9 +1019,33 @@ var BarChartComponent = /** @class */ (function () {
                             }
                         }
                         _this.updateLimits(_this.ulimvec, _this.llimvec);
+                        _this.nselected = joint.length;
+                        if (_this.mapTopicReference.get(topicname) != null) {
+                            if (_this.data.datasets[3] != null)
+                                _this.data.datasets.pop();
+                            _this.addDataset(joint, "reference", null);
+                        }
+                        else {
+                            if (_this.data.datasets[3] != null)
+                                _this.data.datasets.pop();
+                            _this.myChart.update(0);
+                        }
                     }
                     _this.setLabel(topicname);
-                    _this.addDataToDataset(topic);
+                    _this.addDataToDataset(topicname);
+                    if (_this.data.datasets[3] != null && _this.data.datasets[3].length != 0) {
+                        var j = 0;
+                        for (var _a = 0, _b = _this.data.labels; _a < _b.length; _a++) {
+                            var entry = _b[_a];
+                            var obj = _this.robotService.getJointObj(entry);
+                            var tmp = obj[_this.mapTopicReference.get(topicname)];
+                            if (_this.isAbsolute)
+                                tmp = Math.abs(tmp);
+                            _this.data.datasets[3].data[j] = tmp;
+                            j++;
+                        }
+                        _this.myChart.update(0);
+                    }
                 }
             });
             window.addEventListener('resize', _this.OnWindowResize);
@@ -855,40 +1056,28 @@ var BarChartComponent = /** @class */ (function () {
         this.data.labels = [];
         this.data.datasets = [];
         this.robotService.clearPlot(parseInt(this.idPlot));
-        this.myChart.update();
+        this.myChart.update(0);
     };
-    BarChartComponent.prototype.addDataset = function (msg) {
-        if (this.data.labels != null && this.data.labels.length == 0) {
-            var ol = Object.keys(this.chartColors);
-            var colorName = ol[this.data.datasets.length % ol.length];
-            var data = {
-                label: "",
-                backgroundColor: this.chartColors[colorName],
-                borderColor: this.chartColors[colorName],
-                borderWidth: 1,
-                data: new Array(msg.length)
-            }; //msg["value"]
-            this.data.labels = msg;
-            this.data.datasets.push(data);
-            var dataULimit = {
-                label: "ULimit",
-                backgroundColor: 'rgb(255, 179, 179)',
-                borderColor: 'rgb(255, 179, 179)',
-                borderWidth: 1,
-                data: new Array(msg.length)
-            }; //msg["value"]
-            this.data.datasets.push(dataULimit);
-            var dataLLimit = {
-                label: "LLimit",
-                backgroundColor: 'rgb(255, 179, 179)',
-                borderColor: 'rgb(255, 179, 179)',
-                borderWidth: 1,
-                data: new Array(msg.length)
-            }; //msg["value"]
-            this.data.datasets.push(dataLLimit);
-            this.ulimvec = new Array(msg.length);
-            this.llimvec = new Array(msg.length);
-        }
+    BarChartComponent.prototype.addDataset = function (msg, label, backcolor) {
+        var ol = Object.keys(this.chartColors);
+        var colorName = ol[this.data.datasets.length % ol.length];
+        var data = {
+            label: label,
+            backgroundColor: backcolor != null ? backcolor : this.chartColors[colorName],
+            borderColor: backcolor != null ? backcolor : this.chartColors[colorName],
+            borderWidth: 1,
+            data: new Array(msg.length)
+        }; //msg["value"]
+        this.data.labels = msg;
+        this.data.datasets.push(data);
+        console.log(this.chartColors[colorName]);
+    };
+    BarChartComponent.prototype.addDatasets = function (msg) {
+        this.addDataset(msg, "", 'rgb(255, 99, 132,0.5)');
+        this.addDataset(msg, "LLimit", 'rgba(255, 179, 179,0.5)');
+        this.addDataset(msg, "ULimit", 'rgba(255, 179, 179,0.5)');
+        this.ulimvec = new Array(msg.length);
+        this.llimvec = new Array(msg.length);
     };
     BarChartComponent.prototype.setLabel = function (label) {
         this.data.datasets[0].label = label;
@@ -899,18 +1088,35 @@ var BarChartComponent = /** @class */ (function () {
     BarChartComponent.prototype.setMaxScale = function (val) {
         this.myChart.options.scales.yAxes[0].ticks.max = parseFloat(val);
     };
-    BarChartComponent.prototype.addDataToDataset = function (msg) {
-        for (var i = 0; i < this.data.labels.length; i++) {
-            this.data.datasets[0].data[i] = msg[i];
+    BarChartComponent.prototype.addDataToDataset = function (topicname) {
+        var i = 0;
+        for (var _i = 0, _a = this.data.labels; _i < _a.length; _i++) {
+            var entry = _a[_i];
+            var obj = this.robotService.getJointObj(entry);
+            var tmp = obj[topicname];
+            if (this.isAbsolute)
+                tmp = Math.abs(tmp);
+            this.data.datasets[0].data[i] = tmp;
+            i++;
         }
         this.myChart.update(0);
     };
     BarChartComponent.prototype.updateLimits = function (ulim, llim) {
         for (var i = 0; i < this.data.labels.length; i++) {
-            this.data.datasets[1].data[i] = ulim[i];
-            this.data.datasets[2].data[i] = llim[i];
+            this.data.datasets[1].data[i] = llim[i];
+            this.data.datasets[2].data[i] = ulim[i];
         }
         //this.myChart.update(0);
+    };
+    BarChartComponent.prototype.openDialog = function () {
+        var dialogRef = this.dialog.open(BarDialogComponent, {
+            width: '40%',
+            height: '30%',
+            data: this
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log('The dialog was closed');
+        });
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
@@ -926,12 +1132,34 @@ var BarChartComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./bar-chart.component.html */ "./src/app/bar-chart/bar-chart.component.html"),
             styles: [__webpack_require__(/*! ./bar-chart.component.css */ "./src/app/bar-chart/bar-chart.component.css")]
         }),
-        __metadata("design:paramtypes", [_services_robot_state_service__WEBPACK_IMPORTED_MODULE_2__["RobotStateService"]])
+        __metadata("design:paramtypes", [_services_robot_state_service__WEBPACK_IMPORTED_MODULE_3__["RobotStateService"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialog"]])
     ], BarChartComponent);
     return BarChartComponent;
 }());
 
 
+
+/***/ }),
+
+/***/ "./src/app/bar-chart/bardialog.component.css":
+/*!***************************************************!*\
+  !*** ./src/app/bar-chart/bardialog.component.css ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/*#myChart{\n    margin-top: 64px;\n}*/"
+
+/***/ }),
+
+/***/ "./src/app/bar-chart/bardialog.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/bar-chart/bardialog.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = " <mat-toolbar color=\"primary\">\n    <span style=\"width:100%;\" >Settings</span>       \n</mat-toolbar>\n<div class=\"item item-2\">\n      <div style=\" height:100%\">       \n            <div style=\"float:left; padding:10px\">\n                    MinScale <input #MinScale name=\"range\" step=\"0.1\" (change)=\"data.setMinScale(MinScale.value)\" style=\" width:50px\" >\n            </div>\n            <div style=\"float:left; padding:10px\">\n                    MaxScale <input #MaxScale name=\"range\" step=\"0.1\" (change)=\"data.setMaxScale(MaxScale.value)\" style=\" width:50px\" >  \n            </div> \n            <mat-checkbox style=\"padding:5px\" [(ngModel)]=\"data.isAbsolute\" >Show Magnitude</mat-checkbox>\n            <mat-checkbox style=\"padding:5px\" [(ngModel)]=\"data.showLabel\" (change)=\"data.updateLabel($event)\" >Show Label</mat-checkbox>\n            <mat-checkbox style=\"padding:5px\"[(ngModel)]=\"data.showBarValue\" >Show Bar Value</mat-checkbox>\n            <mat-radio-group aria-label=\"Select an option\" (change)=\"data.updateBarType($event)\" [(ngModel)]=\"data.barTypeSelected\">\n            <mat-radio-button style=\"padding:5px\" value=\"bar\">Vertical Bar</mat-radio-button>\n                <mat-radio-button style=\"padding:5px\" value=\"horizontalBar\">Horizontal Bar</mat-radio-button>\n            </mat-radio-group>\n              \n            \n        </div>       \n</div>\n \n\n \n\n"
 
 /***/ }),
 
@@ -1015,13 +1243,13 @@ var coll_loader = new three_full__WEBPACK_IMPORTED_MODULE_1__["ColladaLoader"]()
 var stl_loader = new STLLoader();
 
 var CanvasComponent = /** @class */ (function () {
+    //private faultMap = new Map<string,string>();
     function CanvasComponent(http, robotService) {
         var _this = this;
         this.title = 'app';
         this.linkmap = new Map();
         this.jointmap = new Map();
         this.order = 'XYZ';
-        this.faultMap = new Map();
         this.OnWindowResize = function (EventListener) {
             _this.resize();
         };
@@ -1049,16 +1277,18 @@ var CanvasComponent = /** @class */ (function () {
             var robot = msg["robot"];
             if (robot != null) {
                 robot.forEach(function (value, mkey) {
-                    var angle = value.motorPos;
-                    var joint = _this.jointmap.get(value.name);
+                    var angle = value.motor_position;
+                    var joint = _this.jointmap.get(value.joint_name);
                     if (joint == null)
                         return;
-                    _this.faultMap.set(value.name, value.fault);
+                    //this.faultMap.set(value.name,value.fault);
+                    //TODO use faultmap to check if updatemesh is needed 
+                    _this.updateMeshColor(value.joint_name, value.fault_string);
                     var userdata = joint.userData;
                     if (userdata != null) {
                         var axis = userdata["axis"];
                         if (_this.msgCtrl != null)
-                            if (_this.msgCtrl["name"] == value.name)
+                            if (_this.msgCtrl["name"] == value.joint_name)
                                 angle = _this.msgCtrl["value"];
                         if (axis != null) {
                             // console.log("SET ROT "+nameList[i]+ " axis "+ axis+ " angle "+angle);
@@ -1073,6 +1303,47 @@ var CanvasComponent = /** @class */ (function () {
             }
         });
     }
+    CanvasComponent.prototype.updateMeshColor = function (key, value) {
+        if (this.selectedObject != null) {
+            this.selectedObject.material = this.selectMaterial;
+        }
+        var jnt = this.jointmap.get(key);
+        var mesh = jnt.children[0].userData["realMesh"];
+        if (value != "") {
+            if (mesh != null) {
+                var mat = mesh.material;
+                if (mat != null && mat.color != null)
+                    mat.color.setHex(0xFF545E);
+                //(<THREE.Mesh>mesh).material = new THREE.MeshPhongMaterial( { color: 0xFF545E, specular: 0x111111, shininess: 200 } );
+            }
+        }
+        else {
+            if (mesh != null) {
+                var mat = mesh.material;
+                if (mat != null && mat.color != null)
+                    mat.color.setHex(0xAAAAAA);
+            }
+            //self.faultMap.delete(value);     
+            var joint = null;
+            if (this.jointmap != null)
+                joint = this.jointmap.get(this.robotService.selectJointSensorName);
+            if (joint != null) {
+                this.selectedObject = joint.children[0].userData["realMesh"];
+                this.selectMaterial = this.selectedObject.material;
+                this.selectedObject.material = new three_full__WEBPACK_IMPORTED_MODULE_1__["MeshPhongMaterial"]({ color: 0xFFFF, specular: 0x111111, shininess: 200 });
+            }
+            else {
+                var sensor = null;
+                if (this.linkmap != null)
+                    sensor = this.linkmap.get(this.robotService.selectJointSensorName);
+                if (sensor != null) {
+                    this.selectedObject = sensor;
+                    this.selectMaterial = this.selectedObject.material;
+                    this.selectedObject.material = new three_full__WEBPACK_IMPORTED_MODULE_1__["MeshPhongMaterial"]({ color: 0xFFFF, specular: 0x111111, shininess: 200 });
+                }
+            }
+        }
+    };
     CanvasComponent.prototype.createNodeLink = function (pos, rot_axis, angle, scale) {
         var tmp = new three_full__WEBPACK_IMPORTED_MODULE_1__["Mesh"]();
         if (rot_axis != null) {
@@ -1462,49 +1733,6 @@ var CanvasComponent = /** @class */ (function () {
             self.idAnimationFrame = requestAnimationFrame(render);
             if (self.scene != null && self.camera != null)
                 self.renderer.render(self.scene, self.camera);
-            if (self.selectedObject != null) {
-                self.selectedObject.material = self.selectMaterial;
-            }
-            self.faultMap.forEach(function (value, key) {
-                if (self.jointmap == null)
-                    return;
-                var jnt = self.jointmap.get(key);
-                var mesh = jnt.children[0].userData["realMesh"];
-                if (value != "") {
-                    if (mesh != null) {
-                        var mat = mesh.material;
-                        if (mat != null && mat.color != null)
-                            mat.color.setHex(0xFF545E);
-                        //(<THREE.Mesh>mesh).material = new THREE.MeshPhongMaterial( { color: 0xFF545E, specular: 0x111111, shininess: 200 } );
-                    }
-                }
-                else {
-                    if (mesh != null) {
-                        var mat = mesh.material;
-                        if (mat != null && mat.color != null)
-                            mat.color.setHex(0xAAAAAA);
-                    }
-                    //self.faultMap.delete(value);            
-                }
-            });
-            var joint = null;
-            if (self.jointmap != null)
-                joint = self.jointmap.get(self.robotService.selectJointSensorName);
-            if (joint != null) {
-                self.selectedObject = joint.children[0].userData["realMesh"];
-                self.selectMaterial = self.selectedObject.material;
-                self.selectedObject.material = new three_full__WEBPACK_IMPORTED_MODULE_1__["MeshPhongMaterial"]({ color: 0xFFFF, specular: 0x111111, shininess: 200 });
-            }
-            else {
-                var sensor = null;
-                if (self.linkmap != null)
-                    sensor = self.linkmap.get(self.robotService.selectJointSensorName);
-                if (sensor != null) {
-                    self.selectedObject = sensor;
-                    self.selectMaterial = self.selectedObject.material;
-                    self.selectedObject.material = new three_full__WEBPACK_IMPORTED_MODULE_1__["MeshPhongMaterial"]({ color: 0xFFFF, specular: 0x111111, shininess: 200 });
-                }
-            }
         }());
     };
     CanvasComponent.prototype.CheckIntersection = function () {
@@ -1712,7 +1940,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\" height:100%; overflow: scroll;\" *ngIf=\"isJoint;else sensor\">\n  <mat-card style=\"margin-top: 10px\" class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"ID: {{robotState.id}}\">\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"15\" value=\"Name: {{robotState.name}}\">  \n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content >\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Motor Position:\">\n            <input  disabled style=\"width: 50px;\" value={{robotState.motorPos}}> \n            <button  mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'motorPos',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Link Position:\">\n            <input  disabled style=\"width: 50px;\" value={{robotState.linkPos}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'linkPos',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p> \n\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Motor Velocity:\">\n            <input disabled style=\"width: 50px;\" value={{robotState.motorVel}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'motorVel',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Link Velocity:\">\n            <input  disabled style=\"width: 50px;\" value= {{robotState.linkVel}}>\n            <button mat-icon-button  type=\"button\" (click)=\"addPlot(robotState.id,'linkVel',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Stiffness:\">\n            <input  disabled style=\"width: 50px;\" value={{robotState.stiff}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'stiff',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Damping:\">\n            <input  disabled style=\"width: 50px;\" value={{robotState.damp}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'damp',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Torque:\">  \n            <input  disabled style=\"width: 50px;\" value={{robotState.effort}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'effort',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Temperature:\">  \n            <input  disabled style=\"width: 50px;\" value={{robotState.temp}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'temp',robotState.name)\">\n             <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n        </p>\n\n        <p>            \n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Aux:\">\n            <input  disabled style=\"width: 50px;\" value={{robotState.aux}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.id,'aux',robotState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n\n        <p>\n        <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Fault:\">\n        <!--<input  disabled style=\"width: 250px;\" value={{robotState.fault}}> -->\n        <textarea disabled\n            cdkTextareaAutosize\n            #autosize=\"cdkTextareaAutosize\"\n            cdkAutosizeMinRows=\"2\"\n            cdkAutosizeMaxRows=\"5\"\n            value={{robotState.fault}}>\n        </textarea>\n        </p>\n    </mat-card-content>\n  </mat-card>\n\n<mat-card style=\"margin-top: 10px\" class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"Control\">\n            <mat-slide-toggle #Toggle\n            style=\"margin-left:20px\" \n            (change)=\"isControlEnable = ! isControlEnable; setControl()\"\n            color=\"primary\"\n            [checked]=\"isControlEnable\"\n            >Enable</mat-slide-toggle>       \n            <button  style=\"margin-left:60px\"  *ngIf=\"isControlEnable;\" mat-raised-button  type=\"button\" (click)=\"setPosRef(Pos.value); setVelRef(Vel.value); setEffortRef(Torque.value); setStiffRef(Stiff.value); setDampRef(Damp.value); sendVal(robotState.id)\">Send</button>\n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content >\n        <div  [hidden]=\"isControlEnable\">\n                <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Position:\">\n                        <mat-slider #PosOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.poslim.ulim\"\n                        [min]=\"limit.poslim.llim\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.refPos\">\n                        </mat-slider>\n                    {{robotState.refPos}}\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n                        <mat-slider #VelOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.vellim.ulim\"\n                        [min]=\"limit.vellim.llim\"\n                        [step]=\"step\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.refVel\">\n                    </mat-slider>\n                    {{robotState.refVel}}\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n                        <mat-slider #TorqueOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.efflim.ulim\"\n                        [min]=\"limit.efflim.llim\"\n                        [step]=\"step\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.refTor\">\n                    </mat-slider>\n                    {{robotState.refTor}}\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n                        <mat-slider #StiffOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"step\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.stiff\">\n                    </mat-slider>\n                    {{robotState.stiff}}\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\" size=\"7\" value=\"Damping:\">\n                        <mat-slider  #DampOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"step\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.damp\">\n                    </mat-slider>\n                    {{robotState.damp}}\n                    </p>  \n        </div>\n\n        <div  [hidden]=\"!isControlEnable\">\n\n                <p>\n                        <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Position:\">\n                        <mat-slider #Pos\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.poslim.ulim\"\n                        [min]=\"limit.poslim.llim\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"pval\"\n                        (change) = \"advertisePosition(robotState.name,Pos.value)\"\n                        (input) = \"advertisePosition(robotState.name,Pos.value)\">\n                        </mat-slider>\n                        <input type=\"number\" [max]=\"limit.ulim\" [min]=\"limit.llim\" step=\"0.1\" placeholder=\"Value\" (change) = \"advertisePosition(robotState.name,Pos.value)\" [(ngModel)]=\"Pos.value\">\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n                        <mat-slider #Vel\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.vellim.ulim\"\n                        [min]=\"limit.vellim.llim\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"vval\">\n                    </mat-slider>\n                    <input type=\"number\" [max]=\"limit.vellim\" [min]=\"-limit.vellim\" step=\"0.1\" placeholder=\"Value\" [(ngModel)]=\"Vel.value\">\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\" step=\"0.1\" type=\"text\"  size=\"7\" value=\"Torque:\">\n                        <mat-slider #Torque\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.efflim.ulim\"\n                        [min]=\"limit.efflim.llim\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"eval\">\n                    </mat-slider>\n                    <input type=\"number\" [max]=\"limit.efflim\" [min]=\"-limit.efflim\" placeholder=\"Value\" [(ngModel)]=\"Torque.value\">\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n                        <mat-slider #Stiff\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"0.1\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"sval\">\n                    </mat-slider>\n                    <input type=\"number\"  [max]=\"10000.0\" [min]=\"0\" step=\"1\" placeholder=\"Value\" [(ngModel)]=\"Stiff.value\">\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Damping:\">\n                        <mat-slider #Damp\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"0.1\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"dval\">\n                    </mat-slider>\n                    <input type=\"number\" [max]=\"10000.0\" [min]=\"0\" step=\"1\" step=\"1\" placeholder=\"Value\" [(ngModel)]=\"Damp.value\">\n                    </p>  \n        </div>\n\n    </mat-card-content>\n  </mat-card>\n\n</div>\n\n\n<ng-template #imu>\n    <mat-card class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"ID: {{robotSensorIMUState.id}}\">\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"15\" value=\"Name: {{robotSensorIMUState.name}}\">           \n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content>\n    <p>Angular velocity: </p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"x:\">\n\n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.ang_velx}}>\n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'ang_velx',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.ang_vely}}>\n            <button mat-icon-button  type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'ang_vely',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.ang_velz}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'ang_velz',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n    <p>Linear acceleration:</p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" value=\"x:\"> \n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.lin_accx}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'lin_accx',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.lin_accy}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'lin_accy',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.lin_accz}}>  \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'lin_accz',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon></button>      \n        </p>\n        <p>Orientation:</p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" value=\"x:\"> \n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.orientationx}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'orientationx',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.orientationy}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'orientationy',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.orientationz}}>  \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'orientationz',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon></button> \n\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"w:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.orientationw}}>  \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'orientationw',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon></button>       \n        </p>\n    </mat-card-content>\n</mat-card>\n</ng-template>\n\n<ng-template #ft>\n    <mat-card class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"ID: {{robotSensorFTState.id}}\">\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"15\" value=\"Name: {{robotSensorFTState.name}}\">           \n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content>\n        <p>Force: </p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"x:\">\n\n            <input  disabled style=\"width: 50px;\" value={{robotSensorFTState.forcex}}>\n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'forcex',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorFTState.forcey}}>\n            <button mat-icon-button  type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'forcey',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorFTState.forcez}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'forcez',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n    <p>Torque:</p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" value=\"x:\"> \n            <input  disabled style=\"width: 50px;\" value={{robotSensorFTState.torquex}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'torquex',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorFTState.torquey}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'torquey',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorFTState.torquez}}>  \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'torquez',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon></button>      \n        </p>\n    </mat-card-content>\n    </mat-card>\n</ng-template>\n\n<ng-template #sensor>\n    <div *ngIf=\"sensorType=='ft' then ft; else imu\"></div>\n</ng-template>\n      \n<ng-template #ControlOFF>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Position:\">\n    <mat-slider #PosOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.refPos\">\n    </mat-slider>\n{{robotState.refPos}}\n</p> \n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n    <mat-slider #VelOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.refVel\">\n</mat-slider>\n{{robotState.refVel}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n    <mat-slider #TorqueOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.refTor\">\n</mat-slider>\n{{robotState.refTor}}\n</p> \n<p>\n    <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n    <mat-slider #StiffOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.stiff\">\n</mat-slider>\n{{robotState.stiff}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\" size=\"7\" value=\"Damping:\">\n    <mat-slider  #DampOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.damp\">\n</mat-slider>\n{{robotState.damp}}\n</p>  \n</ng-template>     \n\n<ng-template #ControlON>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Position:\">\n    <mat-slider #Pos\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.refPos\">\n    </mat-slider>\n{{Pos.value}}\n</p> \n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n    <mat-slider #Vel\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.refVel\">\n</mat-slider>\n{{Vel.value}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n    <mat-slider #Torque\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.refTor\">\n</mat-slider>\n{{Torque.value}}\n</p> \n<p>\n    <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n    <mat-slider #Stiff\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.stiff\">\n</mat-slider>\n{{Stiff.value}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Damping:\">\n    <mat-slider #Damp\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.damp\">\n</mat-slider>\n{{Damp.value}}\n</p>        \n</ng-template>   "
+module.exports = "<div style=\" height:100%; overflow: scroll;\" *ngIf=\"isJoint;else sensor\">\n  <mat-card style=\"margin-top: 10px\" class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"ID: {{robotState.joint_id}}\">\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"15\" value=\"Name: {{robotState.joint_name}}\">  \n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content >\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Motor Position:\">\n            <input  disabled style=\"width: 50px;\" value={{robotState.motor_position}}> \n            <button  mat-icon-button type=\"button\" (click)=\"addPlot(robotState.joint_id,'motor_position',robotState.joint_name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Link Position:\">\n            <input  disabled style=\"width: 50px;\" value={{robotState.link_position}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.joint_id,'link_position',robotState.joint_name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p> \n\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Motor Velocity:\">\n            <input disabled style=\"width: 50px;\" value={{robotState.motor_velocity}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.joint_id,'motor_velocity',robotState.joint_name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Link Velocity:\">\n            <input  disabled style=\"width: 50px;\" value= {{robotState.link_velocity}}>\n            <button mat-icon-button  type=\"button\" (click)=\"addPlot(robotState.joint_id,'link_velocity',robotState.joint_name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Stiffness:\">\n            <input  disabled style=\"width: 50px;\" value={{robotState.stiffness}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.joint_id,'stiffness',robotState.joint_name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Damping:\">\n            <input  disabled style=\"width: 50px;\" value={{robotState.damping}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.joint_id,'damping',robotState.joint_name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n\n        <p>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Torque:\">  \n            <input  disabled style=\"width: 50px;\" value={{robotState.effort}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.joint_id,'effort',robotState.joint_name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Temperature:\">  \n            <input  disabled style=\"width: 50px;\" value={{robotState.temperature}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.joint_id,'temperature',robotState.joint_name)\">\n             <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n        </p>\n\n        <p>            \n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Aux:\">\n            <input  disabled style=\"width: 50px;\" value={{robotState.aux}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotState.joint_id,'aux',robotState.joint_name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n\n        <p>\n        <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"7\" value=\"Fault:\">\n        <!--<input  disabled style=\"width: 250px;\" value={{robotState.fault_string}}> -->\n        <textarea disabled\n            cdkTextareaAutosize\n            #autosize=\"cdkTextareaAutosize\"\n            cdkAutosizeMinRows=\"2\"\n            cdkAutosizeMaxRows=\"5\"\n            value={{robotState.fault_string}}>\n        </textarea>\n        </p>\n    </mat-card-content>\n  </mat-card>\n\n<div  class=\"mat-elevation-z8\">\n    <table mat-table [dataSource]=\"dataSource\" matSort>  \n\n      <ng-container matColumnDef=\"TimeStamp\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> TimeStamp </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.TimeStamp}} </td>\n      </ng-container>  \n\n      <ng-container matColumnDef=\"Empty\">\n            <th mat-header-cell  *matHeaderCellDef mat-sort-header>  </th>\n            <td mat-cell *matCellDef=\"let row\"> </td>\n      </ng-container>\n\n      <ng-container matColumnDef=\"Event\">\n        <th mat-header-cell  *matHeaderCellDef mat-sort-header> Event </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.Event}} </td>\n      </ng-container>\n  \n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n      </tr>\n    </table>\n  \n    <mat-paginator [pageSizeOptions]=\"[5]\"></mat-paginator>\n</div> \n  \n<mat-card style=\"margin-top: 10px\" class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"Control\">\n            <mat-slide-toggle #Toggle\n            style=\"margin-left:20px\" \n            (change)=\"isControlEnable = ! isControlEnable; setControl()\"\n            color=\"primary\"\n            [checked]=\"isControlEnable\"\n            >Enable</mat-slide-toggle>       \n            <button  style=\"margin-left:60px\"  *ngIf=\"isControlEnable;\" mat-raised-button  type=\"button\" (click)=\"setPosRef(Pos.value); setVelRef(Vel.value); setEffortRef(Torque.value); setStiffRef(Stiff.value); setDampRef(Damp.value); sendVal(robotState.joint_id)\">Send</button>\n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content >\n        <div  [hidden]=\"isControlEnable\">\n                <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Position:\">\n                        <mat-slider #PosOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.poslim.ulim\"\n                        [min]=\"limit.poslim.llim\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.pos_ref\">\n                        </mat-slider>\n                        {{robotState.pos_ref}}\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n                        <mat-slider #VelOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.vellim.ulim\"\n                        [min]=\"limit.vellim.llim\"\n                        [step]=\"step\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.vel_ref\">\n                    </mat-slider>\n                    {{robotState.vel_ref}}\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n                        <mat-slider #TorqueOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.efflim.ulim\"\n                        [min]=\"limit.efflim.llim\"\n                        [step]=\"step\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.eff_ref\">\n                    </mat-slider>\n                    {{robotState.eff_ref}}\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n                        <mat-slider #StiffOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"step\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.stiffness\">\n                    </mat-slider>\n                    {{robotState.stiffness}}\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\" size=\"7\" value=\"Damping:\">\n                        <mat-slider  #DampOFF\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"step\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"robotState.damping\">\n                    </mat-slider>\n                    {{robotState.damping}}\n                    </p>  \n        </div>\n\n        <div  [hidden]=\"!isControlEnable\">\n\n                <p>\n                        <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Position:\">\n                        <mat-slider #Pos\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.poslim.ulim\"\n                        [min]=\"limit.poslim.llim\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"pval\"\n                        (change) = \"advertisePosition(robotState.joint_name,Pos.value)\"\n                        (input) = \"advertisePosition(robotState.joint_name,Pos.value)\">\n                        </mat-slider>\n                        <input type=\"number\" [max]=\"limit.ulim\" [min]=\"limit.llim\" step=\"0.1\" placeholder=\"Value\" (change) = \"advertisePosition(robotState.joint_name,Pos.value)\" [(ngModel)]=\"Pos.value\">\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n                        <mat-slider #Vel\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.vellim.ulim\"\n                        [min]=\"limit.vellim.llim\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"vval\">\n                    </mat-slider>\n                    <input type=\"number\" [max]=\"limit.vellim\" [min]=\"-limit.vellim\" step=\"0.1\" placeholder=\"Value\" [(ngModel)]=\"Vel.value\">\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\" step=\"0.1\" type=\"text\"  size=\"7\" value=\"Torque:\">\n                        <mat-slider #Torque\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=\"limit.efflim.ulim\"\n                        [min]=\"limit.efflim.llim\"\n                        [step]=\"0.1\"\n                        [thumbLabel]=\"false\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"eval\">\n                    </mat-slider>\n                    <input type=\"number\" [max]=\"limit.efflim\" [min]=\"-limit.efflim\" placeholder=\"Value\" [(ngModel)]=\"Torque.value\">\n                    </p> \n                    <p>\n                        <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n                        <mat-slider #Stiff\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"0.1\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"sval\">\n                    </mat-slider>\n                    <input type=\"number\"  [max]=\"10000.0\" [min]=\"0\" step=\"1\" placeholder=\"Value\" [(ngModel)]=\"Stiff.value\">\n                    </p>\n                    <p>\n                        <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Damping:\">\n                        <mat-slider #Damp\n                        class=\"example-margin\"\n                        [disabled]=\"disabled\"\n                        [max]=10000.0 \n                        [min]=0.0\n                        [thumbLabel]=\"false\"\n                        [step]=\"0.1\"\n                        [tickInterval]=\"tickInterval\"\n                        [(ngModel)]=\"dval\">\n                    </mat-slider>\n                    <input type=\"number\" [max]=\"10000.0\" [min]=\"0\" step=\"1\" step=\"1\" placeholder=\"Value\" [(ngModel)]=\"Damp.value\">\n                    </p>  \n        </div>\n\n    </mat-card-content>\n  </mat-card>\n\n</div>\n\n\n<ng-template #imu>\n    <mat-card class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"ID: {{robotSensorIMUState.id}}\">\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"15\" value=\"Name: {{robotSensorIMUState.name}}\">           \n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content>\n    <p>Angular velocity: </p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"x:\">\n\n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.ang_velx}}>\n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'ang_velx',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.ang_vely}}>\n            <button mat-icon-button  type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'ang_vely',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.ang_velz}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'ang_velz',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n    <p>Linear acceleration:</p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" value=\"x:\"> \n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.lin_accx}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'lin_accx',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.lin_accy}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'lin_accy',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.lin_accz}}>  \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'lin_accz',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon></button>      \n        </p>\n        <p>Orientation:</p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" value=\"x:\"> \n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.orientationx}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'orientationx',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.orientationy}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'orientationy',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.orientationz}}>  \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'orientationz',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon></button> \n\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"w:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorIMUState.orientationw}}>  \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorIMUState.id,'orientationw',robotSensorIMUState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon></button>       \n        </p>\n    </mat-card-content>\n</mat-card>\n</ng-template>\n\n<ng-template #ft>\n    <mat-card class=\"example-card\">\n    <mat-card-header>\n        <mat-card-title>\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"2\" value=\"ID: {{robotSensorFTState.id}}\">\n            <input readonly style=\"border:none\" type=\"text\" name=\"clock\" size=\"15\" value=\"Name: {{robotSensorFTState.name}}\">           \n        </mat-card-title>\n    </mat-card-header>\n    <mat-card-content>\n        <p>Force: </p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"x:\">\n\n            <input  disabled style=\"width: 50px;\" value={{robotSensorFTState.forcex}}>\n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'forcex',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button> \n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorFTState.forcey}}>\n            <button mat-icon-button  type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'forcey',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorFTState.forcez}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'forcez',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n        </p>\n    <p>Torque:</p>\n        <p>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" value=\"x:\"> \n            <input  disabled style=\"width: 50px;\" value={{robotSensorFTState.torquex}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'torquex',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"y:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorFTState.torquey}}> \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'torquey',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon>\n            </button>\n            <input readonly style=\"border:none; width: 20px\" type=\"text\" name=\"clock\" size=\"1\" value=\"z:\">\n            <input  disabled style=\"width: 50px;\" value={{robotSensorFTState.torquez}}>  \n            <button mat-icon-button type=\"button\" (click)=\"addPlot(robotSensorFTState.id,'torquez',robotSensorFTState.name)\">\n                <mat-icon aria-label=\"Plot\">show_chart</mat-icon></button>      \n        </p>\n    </mat-card-content>\n    </mat-card>\n</ng-template>\n\n<ng-template #sensor>\n    <div *ngIf=\"sensorType=='ft' then ft; else imu\"></div>\n</ng-template>\n      \n<ng-template #ControlOFF>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Position:\">\n    <mat-slider #PosOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.pos_ref\">\n    </mat-slider>\n{{robotState.pos_ref}}\n</p> \n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n    <mat-slider #VelOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.vel_ref\">\n</mat-slider>\n{{robotState.vel_ref}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n    <mat-slider #TorqueOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.eff_ref\">\n</mat-slider>\n{{robotState.eff_ref}}\n</p> \n<p>\n    <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n    <mat-slider #StiffOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.stiffness\">\n</mat-slider>\n{{robotState.stiffness}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\" size=\"7\" value=\"Damping:\">\n    <mat-slider  #DampOFF\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [(ngModel)]=\"robotState.damping\">\n</mat-slider>\n{{robotState.damping}}\n</p>  \n</ng-template>     \n\n<ng-template #ControlON>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Position:\">\n    <mat-slider #Pos\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.pos_ref\">\n    </mat-slider>\n{{Pos.value}}\n</p> \n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Velocity:\">\n    <mat-slider #Vel\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.vel_ref\">\n</mat-slider>\n{{Vel.value}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Torque:\">\n    <mat-slider #Torque\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=\"max\"\n    [min]=\"min\"\n    [step]=\"step\"\n    [thumbLabel]=\"false\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.eff_ref\">\n</mat-slider>\n{{Torque.value}}\n</p> \n<p>\n    <input readonly style=\"border:none\" type=\"text\"  size=\"7\" value=\"Stiffness:\">\n    <mat-slider #Stiff\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.stiffness\">\n</mat-slider>\n{{Stiff.value}}\n</p>\n<p>\n    <input readonly style=\"border:none\"  type=\"text\"  size=\"7\" value=\"Damping:\">\n    <mat-slider #Damp\n    class=\"example-margin\"\n    [disabled]=\"disabled\"\n    [max]=10000.0 \n    [min]=0.0\n    [thumbLabel]=\"false\"\n    [step]=\"step\"\n    [tickInterval]=\"tickInterval\"\n    [value]=\"robotState.damping\">\n</mat-slider>\n{{Damp.value}}\n</p>        \n</ng-template>   "
 
 /***/ }),
 
@@ -1731,6 +1959,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_not_foud_error__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../common/not-foud-error */ "./src/app/common/not-foud-error.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _services_http_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../services/http.service */ "./src/app/services/http.service.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1740,6 +1969,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -1760,21 +1990,21 @@ var ControlPanelComponent = /** @class */ (function () {
             vellim: { llim: 0, ulim: 0 }
         };
         this.robotState = {
-            name: "",
-            id: 0,
-            motorPos: 0,
-            linkPos: 0,
-            motorVel: 0,
-            linkVel: 0,
-            temp: 0,
+            joint_name: "",
+            joint_id: 0,
+            motor_position: 0,
+            link_position: 0,
+            motor_velocity: 0,
+            link_velocity: 0,
+            temperature: 0,
             effort: 0,
-            stiff: 0,
-            damp: 0,
-            fault: "",
+            stiffness: 0,
+            damping: 0,
+            fault_string: "",
             aux: 0,
-            refPos: 0,
-            refVel: 0,
-            refTor: 0
+            pos_ref: 0,
+            vel_ref: 0,
+            eff_ref: 0
         };
         this.robotSensorFTState = {
             name: "",
@@ -1803,11 +2033,14 @@ var ControlPanelComponent = /** @class */ (function () {
         this.isJoint = true;
         this.sensorType = "";
         this.isControlEnable = false;
+        this.isSorted = false;
+        this.displayedColumns = ['TimeStamp', 'Empty', 'Event'];
         this.robotService = robotService;
         this.robot = new Map();
         this.robotSensor = new Map();
         this.service = new _services_http_service__WEBPACK_IMPORTED_MODULE_4__["HttpService"](http);
         this.service.setURL("/singlejoint");
+        this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatTableDataSource"](this.getFaultMap());
         this.sub1 = this.robotService.currentJointmsg.subscribe(function (msg) {
             _this.setControl();
         });
@@ -1817,7 +2050,23 @@ var ControlPanelComponent = /** @class */ (function () {
             if (_this.robot != null && _this.robotService.isJoint) {
                 var item = _this.robot.get(_this.robotService.selectJointSensorName);
                 if (item != null) {
+                    if (item.id != _this.robotState.joint_id)
+                        _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatTableDataSource"](_this.getFaultMap());
                     _this.robotState = item;
+                    //TODO fare evento al cambiamento del item selezionato e cambiare il datasource   
+                    //this.dataSource = new MatTableDataSource(this.getFaultMap());
+                    if (_this.sort != null && !_this.isSorted) {
+                        _this.sort.sort({
+                            id: 'TimeStamp',
+                            start: 'desc'
+                        });
+                        _this.isSorted = true;
+                    }
+                    if (_this.table != null) {
+                        _this.table.renderRows();
+                        _this.dataSource.paginator = _this.paginator;
+                        _this.dataSource.sort = _this.sort;
+                    }
                     _this.roundValue(_this.robotState);
                     _this.isJoint = true;
                     var limit = _this.robotService.limits.get(_this.robotService.selectJointSensorName);
@@ -1862,35 +2111,8 @@ var ControlPanelComponent = /** @class */ (function () {
         }
     };
     ControlPanelComponent.prototype.ngOnInit = function () {
-        /*this.service.get("/chains")
-        .subscribe(
-          response => {
-             for (let o of response["Chains"]){
-               let p =o["Val"];
-               let chna =o["Chain"];
-                for (let u of p){
-                  this.chains.set(u["ID"],{ Chain: chna, Val:{ Name :u["Name"] , Id: u["ID"], JVal: u["Lval"],
-                  VVal: u["Vval"], EVal: u["Eval"], SVal: u["Sval"], DVal: u["Dval"], PRef: u["pos_ref"],
-                  VRef: u["vel_ref"], ERef: u["eff_ref"], Llimit: u["Llimit"], Ulimit: u["Ulimit"] } });
-                }
-            }
-          },
-          (error: AppError) => {
-    
-            //rimovo dal vettore
-            
-            if (error instanceof NotFoundError){
-              //expected error
-              //deleted
-              //this.form.setErrors(error.json());
-            }
-            else{
-              //unexpected error
-              throw error;
-    
-            }
-            
-           });*/
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
     };
     ControlPanelComponent.prototype.ngAfterViewInit = function () {
         window.dispatchEvent(new Event('resize'));
@@ -1929,7 +2151,7 @@ var ControlPanelComponent = /** @class */ (function () {
     };
     ControlPanelComponent.prototype.sendVal = function (id) {
         //{"joint":[{"id": 15, "val": 0},{"id": 16, "val": 0}]}
-        this.service.create({ "joint": [{ "id": Number(this.robotState.id), "pos": Number(this.pval),
+        this.service.create({ "joint": [{ "id": Number(this.robotState.joint_id), "pos": Number(this.pval),
                     "vel": Number(this.vval), "eff": Number(this.eval), "stiff": Number(this.sval),
                     "damp": Number(this.dval) }] })
             .subscribe(function (response) {
@@ -1948,16 +2170,34 @@ var ControlPanelComponent = /** @class */ (function () {
     };
     ControlPanelComponent.prototype.setControl = function () {
         if (this.isControlEnable) {
-            this.pval = this.robotState.refPos;
-            this.vval = this.robotState.refVel;
-            this.eval = this.robotState.refTor;
-            this.sval = this.robotState.stiff;
-            this.dval = this.robotState.damp;
+            this.pval = this.robotState.pos_ref;
+            this.vval = this.robotState.vel_ref;
+            this.eval = this.robotState.eff_ref;
+            this.sval = this.robotState.stiffness;
+            this.dval = this.robotState.damping;
         }
         else {
             this.advertisePosition(null, 0);
         }
     };
+    ControlPanelComponent.prototype.getFaultMap = function () {
+        var item = this.robotService.faultMap.get(this.robotService.selectJointSensorName);
+        if (item == null)
+            item = new Array();
+        return item;
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_5__["MatPaginator"]),
+        __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatPaginator"])
+    ], ControlPanelComponent.prototype, "paginator", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSort"]),
+        __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatSort"])
+    ], ControlPanelComponent.prototype, "sort", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_5__["MatTable"]),
+        __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatTable"])
+    ], ControlPanelComponent.prototype, "table", void 0);
     ControlPanelComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-control-panel',
@@ -1991,7 +2231,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div style=\"width:100%; height:100%; margin-top:5px\" class=\"containerModelPlot\"\nfxLayout =\"column\"\nfxLayoutAlign=\"start stretch\"\nfxLayoutGap=\"5px\">\n  <div class=\"item item-1\"  fxFlex=\"90\" >\n    <div style=\"height:100%\">\n      <div style=\"width:100%; height:100%\"\n      fxLayout =\"row\"\n      fxLayoutAlign=\"center stretch\"\n      fxLayoutGap=\"5px\">\n        <div class=\"item item-1\"  fxFlex=\"20\" >\n          <div style=\"width:100%; height:100%;\">\n               <div  *ngIf=\"true; then TreeView\"></div>\n          </div> \n        </div>\n        <div  *ngIf=\"true ; then SideContentView\"></div>\n      </div>\n    </div> \n  </div>\n</div>\n\n\n<ng-template #SideContentView> \n    <div class=\"item item-2\" fxFlexOrder=\"1\" [fxFlex]=\"countMainContentView(true)\" >\n        <div style=\"width:100%; height:100%\"\n        fxLayout =\"column\"\n        fxLayoutAlign=\"center stretch\"\n        fxLayoutGap=\"2px\">\n            <div  *ngIf=\"true;then globalChartView\"></div>\n        </div>       \n    </div>\n\n    <div class=\"item item-3\" fxFlexOrder=\"2\"  [fxFlex]=\"countMainContentView(false)\" >\n        <div style=\"height:100%\"> \n            <div style=\"width:100%; height:100%\"\n            fxLayout =\"column\"\n            fxLayoutAlign=\"center stretch\"\n            fxLayoutGap=\"2px\">\n            <div  *ngIf=\"robotService.plotterViewFlag ; then plotterView\"></div>\n            <div  *ngIf=\"robotService.modelViewFlag ; then modelView\"></div>\n            <div  *ngIf=\"robotService.controlPanelViewFlag ; then propertyJointView\"></div>\n            </div>\n        </div> \n    </div>\n</ng-template>\n\n<ng-template #propertyJointView>\n    <div class=\"item item-1\" fxFlexOrder=\"2\" [fxFlex]=\"100/robotService.viewCounter\" >\n        <div *ngIf=\"robotService.controlPanelViewFlag== true\" style=\" height:100%\">\n            <app-control-panel></app-control-panel>\n        </div> \n    </div>\n  </ng-template>\n\n<ng-template #globalChartView>\n    <div class=\"item item-1\"  fxFlexFill >\n        <div style=\" height:100%; width:100%\">\n            <app-bar-chart  idPlot=\"0\" ></app-bar-chart>\n        </div>\n    </div>\n  </ng-template>\n  \n<ng-template #plotterView>\n  <div class=\"item item-1\" fxFlexOrder=\"3\" [fxFlex]=\"100/robotService.viewCounter\" >\n      <div style=\"height:100%;\">\n          <app-plotter  idPlot=\"1\" ></app-plotter>\n      </div> \n  </div>\n</ng-template>\n\n<ng-template #modelView>\n    <div class=\"item item-1\" fxFlexOrder=\"1\" [fxFlex]=\"100/robotService.viewCounter\" >\n        <div style=\" height:100%\">\n            <app-canvas></app-canvas>\n        </div> \n    </div>\n</ng-template>\n\n<!--\n<ng-template #twoPlotView>\n    <div class=\"item item-1\"  fxFlex=\"50\" >\n        <div style=\" height:100%\">\n          <app-plotter idPlot=\"1\" ></app-plotter>\n        </div> \n    </div>\n    <div class=\"item item-2\"  fxFlex=\"50\" >\n        <div style=\" height:100%\">\n          <app-plotter idPlot=\"4\" label=\"Torque\"  [fields]=\"['effort','refTor']\"></app-plotter> \n        </div>\n    </div>  \n</ng-template>  \n\n<ng-template #LeftPlotView>\n\n        <div class=\"item item-2\"  fxFlex=\"50\" >\n            <div style=\" height:100%\">\n                <app-plotter idPlot=\"2\" label=\"Position\" [fields]=\"['motorPos','linkPos','refPos']\"></app-plotter>\n            </div> \n        </div>\n        <div class=\"item item-3\"  fxFlex=\"50\" >\n            <div style=\" height:100%\">\n                <app-plotter idPlot=\"3\" label=\"Velocity\"  [fields]=\"['motorVel','linkVel','refVel']\"></app-plotter> \n            </div> \n        </div>\n</ng-template>\n-->\n<ng-template #TreeView>\n    <app-tree-panel></app-tree-panel>\n</ng-template>\n"
+module.exports = "\n<div style=\"width:100%; height:100%; margin-top:5px\" class=\"containerModelPlot\"\nfxLayout =\"column\"\nfxLayoutAlign=\"start stretch\"\nfxLayoutGap=\"5px\">\n  <div class=\"item item-1\"  fxFlex=\"90\" >\n    <div style=\"height:100%\">\n      <div style=\"width:100%; height:100%\"\n      fxLayout =\"row\"\n      fxLayoutAlign=\"center stretch\"\n      fxLayoutGap=\"5px\">\n        <div class=\"item item-1\"  fxFlex=\"20\" >\n          <div style=\"width:100%; height:100%;\">            \n               <div  *ngIf=\"true; then TreeView\"></div>\n          </div> \n        </div>\n        <div  *ngIf=\"true ; then SideContentView\"></div>\n      </div>\n    </div> \n  </div>\n</div>\n\n\n<ng-template #SideContentView> \n    <div class=\"item item-2\" fxFlexOrder=\"1\" [fxFlex]=\"countMainContentView(true)\" >\n        <div style=\"width:100%; height:100%\"\n        fxLayout =\"column\"\n        fxLayoutAlign=\"center stretch\"\n        fxLayoutGap=\"2px\">\n            <div  *ngIf=\"true;then globalChartView\"></div>\n        </div>       \n    </div>\n\n    <div class=\"item item-3\" fxFlexOrder=\"2\"  [fxFlex]=\"countMainContentView(false)\" >\n        <div style=\"height:100%\"> \n            <div style=\"width:100%; height:100%\"\n            fxLayout =\"column\"\n            fxLayoutAlign=\"center stretch\"\n            fxLayoutGap=\"2px\">\n            <div  *ngIf=\"robotService.plotterViewFlag ; then plotterView\"></div>\n            <div  *ngIf=\"robotService.modelViewFlag ; then modelView\"></div>\n            <div  *ngIf=\"robotService.controlPanelViewFlag ; then propertyJointView\"></div>\n            </div>\n        </div> \n    </div>\n</ng-template>\n\n<ng-template #propertyJointView>\n    <div class=\"item item-1\" fxFlexOrder=\"2\" [fxFlex]=\"100/robotService.viewCounter\" >\n        <div *ngIf=\"robotService.controlPanelViewFlag== true\" style=\" height:100%\">\n            <app-control-panel></app-control-panel>\n        </div> \n    </div>\n  </ng-template>\n\n<ng-template #globalChartView>\n    <div class=\"item item-1\"  fxFlexFill >\n        <div style=\" height:100%; width:100%\">\n            <app-bar-chart  idPlot=\"0\" ></app-bar-chart>\n        </div>\n    </div>\n  </ng-template>\n  \n<ng-template #plotterView>\n  <div class=\"item item-1\" fxFlexOrder=\"3\" [fxFlex]=\"100/robotService.viewCounter\" >\n      <div style=\"height:100%; width:100%;\">\n          <app-plotter  idPlot=\"1\" ></app-plotter>\n      </div> \n  </div>\n</ng-template>\n\n<ng-template #modelView>\n    <div class=\"item item-1\" fxFlexOrder=\"1\" [fxFlex]=\"100/robotService.viewCounter\" >\n        <div style=\" height:100%\">\n            <app-canvas></app-canvas>\n        </div> \n    </div>\n</ng-template>\n\n<!--\n<ng-template #twoPlotView>\n    <div class=\"item item-1\"  fxFlex=\"50\" >\n        <div style=\" height:100%\">\n          <app-plotter idPlot=\"1\" ></app-plotter>\n        </div> \n    </div>\n    <div class=\"item item-2\"  fxFlex=\"50\" >\n        <div style=\" height:100%\">\n          <app-plotter idPlot=\"4\" label=\"Torque\"  [fields]=\"['effort','refTor']\"></app-plotter> \n        </div>\n    </div>  \n</ng-template>  \n\n<ng-template #LeftPlotView>\n\n        <div class=\"item item-2\"  fxFlex=\"50\" >\n            <div style=\" height:100%\">\n                <app-plotter idPlot=\"2\" label=\"Position\" [fields]=\"['motorPos','linkPos','refPos']\"></app-plotter>\n            </div> \n        </div>\n        <div class=\"item item-3\"  fxFlex=\"50\" >\n            <div style=\" height:100%\">\n                <app-plotter idPlot=\"3\" label=\"Velocity\"  [fields]=\"['motorVel','linkVel','refVel']\"></app-plotter> \n            </div> \n        </div>\n</ng-template>\n-->\n<ng-template #TreeView>\n    <app-tree-panel></app-tree-panel>\n</ng-template>\n"
 
 /***/ }),
 
@@ -2073,7 +2313,7 @@ module.exports = "table {\n    width: 100%;\n  }\n  \n  .mat-form-field {\n    f
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar color=\"primary\">\n    <span style=\"width:100%;\" >Logger</span>       \n</mat-toolbar>\n<mat-form-field style=\"margin-top:12px;\">\n    <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\n  </mat-form-field>\n  \n  <div  class=\"mat-elevation-z8\">\n    <table mat-table [dataSource]=\"dataSource\" matSort>\n  \n\n      <ng-container matColumnDef=\"TimeStamp\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> TimeStamp </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.TimeStamp}} </td>\n      </ng-container>\n  \n\n      <ng-container matColumnDef=\"Event\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> Event </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.Event}} </td>\n      </ng-container>\n\n  \n      <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n      <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n      </tr>\n    </table>\n  \n    <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n  </div>"
+module.exports = "<mat-toolbar color=\"primary\">\n    <span style=\"width:100%;\" >Logger</span>       \n</mat-toolbar>\n<mat-form-field style=\"margin-top:12px;\">\n    <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filter\">\n</mat-form-field>\n  \n<div  class=\"mat-elevation-z8\">\n  <table mat-table [dataSource]=\"dataSource\" matSort>\n\n\n    <ng-container matColumnDef=\"TimeStamp\">\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> TimeStamp </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.TimeStamp}} </td>\n    </ng-container>\n\n    <ng-container matColumnDef=\"JointId\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> JointId </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.JointId}} </td>\n    </ng-container>\n\n    <ng-container matColumnDef=\"JointName\">\n        <th mat-header-cell *matHeaderCellDef mat-sort-header> JointName </th>\n        <td mat-cell *matCellDef=\"let row\"> {{row.JointName}} </td>\n    </ng-container>  \n\n    <ng-container matColumnDef=\"Event\">\n      <th mat-header-cell *matHeaderCellDef mat-sort-header> Event </th>\n      <td mat-cell *matCellDef=\"let row\"> {{row.Event}} </td>\n    </ng-container>\n\n    <ng-container matColumnDef=\"Action\" stickyEnd>\n        <th mat-header-cell *matHeaderCellDef></th>\n        <td mat-cell *matCellDef=\"let row\">\n          <button (click)=\"showControlPanel(row.JointName)\" mat-icon-button>\n            <mat-icon>more_vert</mat-icon>\n          </button>            \n        </td>\n    </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\">\n    </tr>\n  </table>\n\n  <mat-paginator [pageSizeOptions]=\"[5, 10, 25, 100]\"></mat-paginator>\n</div>"
 
 /***/ }),
 
@@ -2104,18 +2344,53 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var LoggerComponent = /** @class */ (function () {
-    function LoggerComponent(dialogRef, 
-    //@Inject(MAT_DIALOG_DATA) public data: DialogData,
-    robotService) {
+    function LoggerComponent(dialogRef, robotService) {
         this.dialogRef = dialogRef;
         this.robotService = robotService;
-        this.displayedColumns = ['TimeStamp', 'Event'];
+        this.displayedColumns = ['TimeStamp', 'JointId', 'JointName', 'Event', 'Action'];
         this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableDataSource"](this.robotService.faultList);
     }
     LoggerComponent.prototype.onNoClick = function () {
         this.dialogRef.close();
     };
+    LoggerComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        this.sub = this.robotService.currentFaultAddmsg.subscribe(function (msg) {
+            if (msg != null) {
+                var fault = msg["fault"];
+                if (fault) {
+                    if (_this.table != null) {
+                        console.log("render");
+                        _this.table.renderRows();
+                        _this.dataSource.paginator = _this.paginator;
+                        _this.dataSource.sort = _this.sort;
+                    }
+                }
+            }
+        });
+    };
+    LoggerComponent.prototype.ngOnDestroy = function () {
+        if (this.sub != null)
+            this.sub.unsubscribe();
+        this.robotService = null;
+    };
+    LoggerComponent.prototype.showControlPanel = function (name) {
+        this.robotService.selectJointSensorName = name;
+        if (this.robotService.controlPanelViewFlag) {
+            this.robotService.advertiseSelectedJoint(this.robotService.selectJointSensorName);
+            this.onNoClick();
+            return;
+        }
+        this.robotService.controlPanelViewFlag = true;
+        this.robotService.countView(this.robotService.controlPanelViewFlag);
+        this.robotService.advertiseSelectedJoint(this.robotService.selectJointSensorName);
+        this.onNoClick();
+    };
     LoggerComponent.prototype.ngOnInit = function () {
+        this.sort.sort({
+            id: 'TimeStamp',
+            start: 'desc'
+        });
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
     };
@@ -2133,6 +2408,10 @@ var LoggerComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSort"]),
         __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSort"])
     ], LoggerComponent.prototype, "sort", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTable"]),
+        __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTable"])
+    ], LoggerComponent.prototype, "table", void 0);
     LoggerComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
             selector: 'app-logger',
@@ -2146,6 +2425,28 @@ var LoggerComponent = /** @class */ (function () {
 }());
 
 
+
+/***/ }),
+
+/***/ "./src/app/plotter/pldialog.component.css":
+/*!************************************************!*\
+  !*** ./src/app/plotter/pldialog.component.css ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/*#myChart{\n    margin-top: 64px;\n}*/"
+
+/***/ }),
+
+/***/ "./src/app/plotter/pldialog.component.html":
+/*!*************************************************!*\
+  !*** ./src/app/plotter/pldialog.component.html ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = " <mat-toolbar color=\"primary\">\n    <span style=\"width:100%;\" >Settings</span>       \n</mat-toolbar>\n<div style=\"padding:20px;\">\n    Scale <input #Scale name=\"range\" step=\"0.1\" (change)=\"data.setScale(Scale.value)\" style=\" width:50px\" >              \n    Sample <input #Sample name=\"range\" step=\"0.1\" value = {{data.samples}} (change)=\"data.setSample(Sample.value)\" style=\" width:50px\"> \n</div>\n<div style=\"margin-bottom:10px\">\n    <div style=\"float:left; padding:5px;\" >\n        <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"data.clearData()\">Clear</button>  \n    </div>\n    <div  style=\"float:left; padding:5px;\">\n        <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"data.freeze()\">Pause</button>\n    </div>\n</div>\n \n\n \n\n"
 
 /***/ }),
 
@@ -2167,7 +2468,7 @@ module.exports = "/*#myChart{\n    margin-top: 64px;\n}*/"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div >\n  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"clearData()\">Clear</button> \n  <button mat-raised-button color=\"primary\" type=\"button\" (click)=\"freeze()\">Pause</button>\n  Scale <input #Scale name=\"range\" step=\"0.1\" (change)=\"setScale(Scale.value)\" style=\" width:50px\" > \n  Sample <input #Sample name=\"range\" step=\"0.1\" value = {{samples}} (change)=\"setSample(Sample.value)\" style=\" width:50px\"> \n</div> \n<div style=\"width:100%; height:100%\"\nfxLayout =\"column\"\nfxLayoutAlign=\"center stretch\"\nfxLayoutGap=\"2px\">\n  <div class=\"item item-1\"  fxFlex=\"90\" >\n    <div style=\" height:100%\">\n      <canvas [id]=\"getId()\"></canvas>\n    </div> \n  </div>\n</div>\n"
+module.exports = "\n<div style=\"width:100%; height:100%; position:relative;\">\n    <div style=\"width:100%; position:absolute; top:0; left:0; z-index:10\">\n        <div style=\"position: absolute;top: 0;right: 0;\">\n            <button mat-icon-button (click)=\"openDialog()\">\n                <mat-icon aria-label=\"Settings\">settings</mat-icon>\n              </button>\n        </div>       \n      </div> \n      <div style=\"width:100%; height:100%; position:absolute; top:0; left:0;\"\n      fxLayout =\"column\"\n      fxLayoutAlign=\"center stretch\"\n      fxLayoutGap=\"2px\">\n        <div class=\"item item-1\"  fxFlex=\"90\" >\n          <div style=\" height:100%\">\n            <canvas [id]=\"getId()\"></canvas>\n          </div> \n        </div>\n      </div>\n      \n</div>\n"
 
 /***/ }),
 
@@ -2175,16 +2476,18 @@ module.exports = "<div >\n  <button mat-raised-button color=\"primary\" type=\"b
 /*!**********************************************!*\
   !*** ./src/app/plotter/plotter.component.ts ***!
   \**********************************************/
-/*! exports provided: PlotterComponent */
+/*! exports provided: PlDialogComponent, PlotterComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlDialogComponent", function() { return PlDialogComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlotterComponent", function() { return PlotterComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/src/chart.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _services_robot_state_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../services/robot-state.service */ "./src/app/services/robot-state.service.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /*
  * Copyright (C) 2017 IIT-ADVR
  * Author:  Giuseppe Rigano
@@ -2212,12 +2515,38 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 
 
+
+
+var PlDialogComponent = /** @class */ (function () {
+    function PlDialogComponent(dialogRef, data, robotService) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.robotService = robotService;
+    }
+    PlDialogComponent.prototype.onNoClick = function () {
+        this.dialogRef.close();
+    };
+    PlDialogComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-pldialog',
+            template: __webpack_require__(/*! ./pldialog.component.html */ "./src/app/plotter/pldialog.component.html"),
+            styles: [__webpack_require__(/*! ./pldialog.component.css */ "./src/app/plotter/pldialog.component.css")]
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_3__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogRef"], Object, _services_robot_state_service__WEBPACK_IMPORTED_MODULE_2__["RobotStateService"]])
+    ], PlDialogComponent);
+    return PlDialogComponent;
+}());
 
 var PlotterComponent = /** @class */ (function () {
-    function PlotterComponent(robotService) {
+    function PlotterComponent(robotService, dialog) {
         var _this = this;
+        this.dialog = dialog;
         this.isloaded = false;
         this.labels = new Array();
         this.datas = new Map();
@@ -2272,7 +2601,7 @@ var PlotterComponent = /** @class */ (function () {
                     },
                     responsive: _this.isResponsive,
                     maintainAspectRatio: false,
-                    steppedLine: true,
+                    //steppedLine: true,
                     //cubicInterpolationMode: "",
                     title: {
                         display: true,
@@ -2287,9 +2616,9 @@ var PlotterComponent = /** @class */ (function () {
                       mode: 'nearest',
                       intersect: true
                     },*/
-                    ticks: {
-                        source: 'labels'
-                    },
+                    /* ticks:{
+                       source: 'labels'
+                     },*/
                     scales: {
                         xAxes: [{
                                 display: false,
@@ -2307,7 +2636,7 @@ var PlotterComponent = /** @class */ (function () {
                                 }
                             }],
                         yAxes: [{
-                                beginAtZero: true,
+                                //beginAtZero: true,
                                 display: true,
                                 ticks: {
                                     stepSize: 0.5
@@ -2409,6 +2738,7 @@ var PlotterComponent = /** @class */ (function () {
         this.robotService.plotUpdateMap.set(parseInt(this.idPlot), null);
         this.robotService = null;
         this.map = null;
+        this.myChart.destroy();
         window.removeEventListener('resize', this.OnWindowResize);
         this.timeout = setTimeout(function () {
             window.dispatchEvent(new Event('resize'));
@@ -2452,6 +2782,16 @@ var PlotterComponent = /** @class */ (function () {
         this.datas.set(index, value);
         //console.log("label "+ dataset.label+ " "+dataset.data.length);
     };
+    PlotterComponent.prototype.openDialog = function () {
+        var dialogRef = this.dialog.open(PlDialogComponent, {
+            width: '40%',
+            height: '30%',
+            data: this
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log('The dialog was closed');
+        });
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", String)
@@ -2470,7 +2810,7 @@ var PlotterComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./plotter.component.html */ "./src/app/plotter/plotter.component.html"),
             styles: [__webpack_require__(/*! ./plotter.component.css */ "./src/app/plotter/plotter.component.css")]
         }),
-        __metadata("design:paramtypes", [_services_robot_state_service__WEBPACK_IMPORTED_MODULE_2__["RobotStateService"]])
+        __metadata("design:paramtypes", [_services_robot_state_service__WEBPACK_IMPORTED_MODULE_2__["RobotStateService"], _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"]])
     ], PlotterComponent);
     return PlotterComponent;
 }());
@@ -2840,6 +3180,10 @@ var RobotStateService = /** @class */ (function () {
         this.connectionAttempt = 5;
         this.limits = new Map();
         this.faultList = new Array();
+        this.faultMap = new Map();
+        this.LastFaultMap = new Map();
+        this.faultAddMsg = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"]({});
+        this.currentFaultAddmsg = this.faultAddMsg.asObservable();
         this.modelViewFlag = true;
         this.plotterViewFlag = false;
         this.allPlotsViewFlag = false;
@@ -2848,6 +3192,7 @@ var RobotStateService = /** @class */ (function () {
         this.nBadgeLogger = 0;
         this.viewCounter = 1;
         this.contentViewCounter = 2;
+        this.checklistSelection = null;
         this.plotUpdateMap = new Map();
         this.CanvasState = {
             scene: null,
@@ -2979,6 +3324,12 @@ var RobotStateService = /** @class */ (function () {
         var obj = this.robot.get(param);
         if (obj == null)
             return null;
+        return obj.joint_id;
+    };
+    RobotStateService.prototype.getSensorId = function (param) {
+        var obj = this.robotSensor.get(param);
+        if (obj == null)
+            return null;
         return obj.id;
     };
     RobotStateService.prototype.parseMsg = function (msg) {
@@ -3000,33 +3351,47 @@ var RobotStateService = /** @class */ (function () {
             var velrefs = robot["vel_ref"];
             var torrefs = robot["eff_ref"];
             var auxs = robot["aux"];
-            //var barTopic = robot[this.currentTopicBar];
-            //if (barTopic != null)
             if (this.currentBarAddDatamsg.get(0) != null)
-                this.barAddDataMsg.get(0).next({ "robot": robot, "topic": this.currentTopicBar });
+                this.barAddDataMsg.get(0).next({ "robot": robot, "topic": this.currentTopicBar, "selected": this.checklistSelection.selected });
             var _loop_1 = function (i) {
                 obj = {
-                    name: nameList[i],
-                    id: ids[i],
-                    motorPos: motors[i],
-                    linkPos: links[i],
-                    motorVel: motorsv[i],
-                    linkVel: linksv[i],
-                    temp: temps[i],
+                    joint_name: nameList[i],
+                    joint_id: ids[i],
+                    motor_position: motors[i],
+                    link_position: links[i],
+                    motor_velocity: motorsv[i],
+                    link_velocity: linksv[i],
+                    temperature: temps[i],
                     effort: efforts[i],
-                    stiff: stiffs[i],
-                    damp: damps[i],
-                    fault: faults[i],
+                    stiffness: stiffs[i],
+                    damping: damps[i],
+                    fault_string: faults[i],
                     aux: auxs[i],
-                    refPos: posrefs[i],
-                    refVel: velrefs[i],
-                    refTor: torrefs[i]
+                    pos_ref: posrefs[i],
+                    vel_ref: velrefs[i],
+                    eff_ref: torrefs[i]
                 };
                 if (faults[i] != "") {
-                    this_1.faultList.push({ 'TimeStamp': new Date(), 'Event': faults[i] });
-                    //il badge deve essere aggiornato solo quando dialog è chiusa.
-                    //TODO
-                    this_1.nBadgeLogger = this_1.nBadgeLogger + 1;
+                    lastFault = this_1.LastFaultMap.get(nameList[i]);
+                    if (lastFault == null) {
+                        this_1.LastFaultMap.set(nameList[i], faults[i]);
+                        array = new Array();
+                        array.push({ 'TimeStamp': new Date().toLocaleString(), 'Event': "  " + faults[i] });
+                        this_1.faultMap.set(nameList[i], array);
+                        this_1.faultList.push({ 'TimeStamp': new Date().toLocaleString(), 'JointId': ids[i], 'JointName': nameList[i], 'Event': "  " + faults[i] });
+                        this_1.nBadgeLogger = this_1.nBadgeLogger + 1;
+                        this_1.faultAddMsg.next({ 'fault': true });
+                    }
+                    else {
+                        if (lastFault != faults[i]) {
+                            this_1.faultList.push({ 'TimeStamp': new Date().toLocaleString(), 'JointId': ids[i], 'JointName': nameList[i], 'Event': "  " + faults[i] });
+                            fitem = this_1.faultMap.get(nameList[i]);
+                            fitem.push({ 'TimeStamp': new Date().toLocaleString(), 'Event': "  " + faults[i] });
+                            this_1.nBadgeLogger = this_1.nBadgeLogger + 1;
+                            this_1.LastFaultMap.set(nameList[i], faults[i]);
+                            this_1.faultAddMsg.next({ 'fault': true });
+                        }
+                    }
                 }
                 this_1.robot.set(nameList[i], obj);
                 keys = Object.keys(obj);
@@ -3046,7 +3411,7 @@ var RobotStateService = /** @class */ (function () {
                     }
                 });
             };
-            var this_1 = this, obj, keys;
+            var this_1 = this, obj, lastFault, array, fitem, keys;
             for (var i = 0; i < nameList.length; i++) {
                 _loop_1(i);
             }
@@ -3222,6 +3587,16 @@ var RobotStateService = /** @class */ (function () {
             this.viewCounter++;
         else
             this.viewCounter--;
+    };
+    RobotStateService.prototype.getCurrentFault = function (pitem) {
+        var item = this.robot.get(pitem);
+        if (item != null) {
+            return item.fault_string;
+        }
+        return null;
+    };
+    RobotStateService.prototype.getJointObj = function (param) {
+        return this.robot.get(param);
     };
     RobotStateService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
@@ -3596,7 +3971,7 @@ var SliderControlComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".dot {\n    height: 25px;\n    width: 25px;\n    background-color: #bbb;\n    border-radius: 50%;\n    display: inline-block;\n  }\n\n  .reddot {\n    height: 25px;\n    width: 25px;\n    background-color: rgba(236, 11, 11, 0.973);\n    border-radius: 50%;\n    display: inline-block;\n  }\n\n  .greendot {\n    height: 25px;\n    width: 25px;\n    background-color: rgb(65, 189, 8);\n    border-radius: 50%;\n    display: inline-block;\n  }\n\n  .orangedot {\n    height: 25px;\n    width: 25px;\n    background-color: rgba(235, 127, 3, 0.973);\n    border-radius: 50%;\n    display: inline-block;\n  }"
 
 /***/ }),
 
@@ -3607,7 +3982,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"width:100%; height:100%\"\nfxLayout =\"column\"\nfxLayoutAlign=\"center stretch\"\nfxLayoutGap=\"5px\">\n    <div class=\"item item-2\"  fxFlex=\"100\">\n        <div style=\" height:100%; overflow: scroll;\">\n            <mat-tree [dataSource]=\"dataSource\" [treeControl]=\"treeControl\">\n                <mat-tree-node *matTreeNodeDef=\"let node\" matTreeNodeToggle matTreeNodePadding>\n                  <button mat-icon-button disabled></button>\n                  <button (click)=\"setActiveDevice(node.type, node.isJoint)\" mat-button>{{node.devicename}} : {{node.type}}</button>\n                </mat-tree-node>\n              \n                <mat-tree-node *matTreeNodeDef=\"let node;when: hasChild\" matTreeNodePadding>\n                  <button mat-icon-button matTreeNodeToggle\n                          [attr.aria-label]=\"'toggle ' + node.filename\">\n                    <mat-icon class=\"mat-icon-rtl-mirror\">\n                      {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}\n                    </mat-icon>\n                  </button>\n                  <button (click)=\"setActiveDevice(node.type,node.isJoint)\" mat-button>{{node.devicename}} : {{node.type}}</button>\n                </mat-tree-node>\n            </mat-tree>\n        </div> \n    </div>\n   <!-- <div class=\"item item-3\"  fxFlex=\"10\" >\n        <div style=\"width:100%; height:100%\">\n            <div style=\"width:100%; height:100%\">\n                   {{selectedDevice}} <button  style=\"float: right;\" *ngIf=\"isJoint\" mat-raised-button color=\"primary\" type=\"button\" (click)=\"plotState(jointId,selectedDevice)\">PlotState</button>\n            </div> \n        </div> \n    </div>-->\n</div>"
+module.exports = "<div style=\"width:95%;\">\n    <mat-card style=\"padding:10px\"> \n        <div style=\"width:100%;\" >\n            <div>Item:</div>\n            <div style=\"margin-left:10px\"><span style=\"vertical-align: sub;\">{{jointId}} {{selectedDevice}}</span> <span *ngIf=\"fault == 1\" style=\"float:right\" class=\"greendot\"></span> <span *ngIf=\"fault == 2\" style=\"float:right\" class=\"reddot\"></span> <span *ngIf=\"fault == 0\" style=\"float:right\" class=\"dot\"></span> <span *ngIf=\"fault == 3\" style=\"float:right\" class=\"orangedot\"></span></div>        \n        </div>\n    </mat-card>      \n</div>\n<div style=\"width:100%; height:100%\">\n    <div style=\" height:100%; overflow: scroll;\">\n        <mat-tree [dataSource]=\"dataSource\" [treeControl]=\"treeControl\">\n            <mat-tree-node *matTreeNodeDef=\"let node\" matTreeNodeToggle matTreeNodePadding [matTreeNodePaddingIndent]=\"20\">\n                <button mat-icon-button disabled></button>   \n                <mat-checkbox *ngIf=\"node.isJoint==true;\"\n                    [checked]=\"robotService.checklistSelection.isSelected(node)\"\n                    (change)=\"leafItemSelectionToggle(node)\">\n                </mat-checkbox>             \n                <button (click)=\"setActiveDevice(node.type, node.isJoint)\" mat-button>{{node.devicename}} : {{node.type}}</button>\n            </mat-tree-node>\n            \n            <mat-tree-node *matTreeNodeDef=\"let node;when: hasChild\" matTreeNodePadding [matTreeNodePaddingIndent]=\"20\">\n                <button mat-icon-button matTreeNodeToggle\n                        [attr.aria-label]=\"'toggle ' + node.filename\">\n                <mat-icon class=\"mat-icon-rtl-mirror\">\n                    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}\n                </mat-icon>\n                </button>\n\n                <mat-checkbox *ngIf=\"node.isChain==true;\" [checked]=\"descendantsAllSelected(node)\"\n                [indeterminate]=\"descendantsPartiallySelected(node)\"\n                (change)=\"itemSelectionToggle(node)\"></mat-checkbox>\n                \n                <button (click)=\"setActiveDevice(node.type,node.isJoint)\" mat-button>{{node.devicename}}</button>\n            </mat-tree-node>\n        </mat-tree>\n    </div> \n</div>"
 
 /***/ }),
 
@@ -3632,6 +4007,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _common_not_foud_error__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../common/not-foud-error */ "./src/app/common/not-foud-error.ts");
 /* harmony import */ var _services_robot_state_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../services/robot-state.service */ "./src/app/services/robot-state.service.ts");
+/* harmony import */ var _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/cdk/collections */ "./node_modules/@angular/cdk/esm5/collections.es5.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3641,6 +4017,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -3674,43 +4051,49 @@ var FileDatabase = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    FileDatabase.prototype.getChains = function () {
+        var _this = this;
+        this.service.get("/chains")
+            .subscribe(function (response) {
+            var robot = _this.dataResponse["Robot"];
+            var joints = robot["joint_name"];
+            var jointsid = robot["joint_id"];
+            var sensors = _this.dataResponse["Sensors"];
+            var fts = sensors["fts"];
+            var ftid = fts["ft_id"];
+            var ft = fts["ft_name"];
+            var imus = sensors["imus"];
+            var imu = imus["imu_name"];
+            var imuid = imus["imu_id"];
+            var obj = {
+                "Robot": response["Chains"],
+                "Sensor": { "fts": ft, "imus": imu },
+            };
+            var stringjson = JSON.stringify(obj);
+            var dataObject = JSON.parse(stringjson);
+            console.log(dataObject);
+            var data = _this.buildFileTree(dataObject, 0, false, { "ftid": ftid, "imuid": imuid }, null);
+            // Notify the change.
+            _this.dataChange.next(data);
+        }, function (error) {
+            //rimovo dal vettore
+            if (error instanceof _common_not_foud_error__WEBPACK_IMPORTED_MODULE_6__["NotFoundError"]) {
+                //expected error
+                //deleted
+                //this.form.setErrors(error.json());
+            }
+            else {
+                //unexpected error
+                throw error;
+            }
+        });
+    };
     FileDatabase.prototype.getData = function () {
         var _this = this;
         this.service.get("/state")
             .subscribe(function (response) {
-            var robot = response["Robot"];
-            var joints = robot["joint_name"];
-            var sensors = response["Sensors"];
-            var fts = sensors["fts"];
-            var ft = fts["ft_name"];
-            var imus = sensors["imus"];
-            var imu = imus["imu_name"];
-            /*var obj = {
-    
-                "Robot": {
-                  "chain_i0": ["namej0",
-                              "nasmej1",
-                              "namej1",
-                              "namej1",
-                              "namej1",
-                              "namej1",
-                              "namej5"],
-                  "chain_i1": ["namej0",
-                              "namej1"]
-                },
-                "Sensor": ["sensor0",
-                          "sensor1"]
-            
-            };*/
-            var obj = {
-                "Robot": joints,
-                "Sensor": { "fts": ft, "imus": imu }
-            };
-            var stringjson = JSON.stringify(obj);
-            var dataObject = JSON.parse(stringjson);
-            var data = _this.buildFileTree(dataObject, 0, false);
-            // Notify the change.
-            _this.dataChange.next(data);
+            _this.dataResponse = response;
+            _this.getChains();
         }, function (error) {
             if (error instanceof _common_not_foud_error__WEBPACK_IMPORTED_MODULE_6__["NotFoundError"]) {
                 //expected error
@@ -3727,27 +4110,52 @@ var FileDatabase = /** @class */ (function () {
         // Parse the string to json object.
         this.getData();
     };
-    FileDatabase.prototype.buildFileTree = function (value, level, isJoint) {
+    FileDatabase.prototype.buildFileTree = function (value, level, isJoint, ids, devtype) {
         var data = [];
         for (var k in value) {
             var v = value[k];
+            var ldevtype = 0;
             var node = new DeviceNode();
-            node.devicename = "" + k;
-            if (v === null || v === undefined) {
-                // no action
+            if (k == "Robot") {
+                ldevtype = 0;
+            }
+            else if (k == "Sensor") {
+                ldevtype = 1;
+            }
+            else if (k == 'imus') {
+                ldevtype = 2;
+            }
+            else if (k == 'fts') {
+                ldevtype = 3;
+            }
+            if (k == "Robot" || k == "Sensor" || k == 'imus' || k == 'fts') {
+                node.devicename = "" + k;
+                node.children = this.buildFileTree(v, level + 1, false, ids, ldevtype);
             }
             else if (typeof v === 'object') {
-                if (node.devicename == "Robot")
-                    node.children = this.buildFileTree(v, level + 1, true);
-                else
-                    node.children = this.buildFileTree(v, level + 1, false);
+                var chain = v["Chain"];
+                if (chain != null) {
+                    node.devicename = "" + chain;
+                    v = v["Val"];
+                    node.isChain = true;
+                    node.children = this.buildFileTree(v, level + 1, true, ids, ldevtype);
+                }
+                else {
+                    if (isJoint) {
+                        var jname = v["Name"];
+                        node.type = jname;
+                        node.isJoint = true;
+                        node.devicename = v["ID"];
+                    }
+                }
             }
             else {
                 node.type = v;
-                if (isJoint)
-                    node.isJoint = true;
-                else
-                    node.isJoint = false;
+                node.isJoint = false;
+                if (devtype == 2)
+                    node.devicename = ids["imuid"][k];
+                if (devtype == 3)
+                    node.devicename = ids["ftid"][k];
             }
             data.push(node);
         }
@@ -3761,13 +4169,24 @@ var FileDatabase = /** @class */ (function () {
 }());
 
 var TreePanelComponent = /** @class */ (function () {
+    /* plotState(id, name){
+       if(this.isJoint){
+         this.robotService.changeView("AllPlots");
+         this.timeout = setTimeout(()=>{
+           this.robotService.plotState(this.robotService.selectJointSensorId,this.robotService.selectJointSensorName);
+         },200);
+       }
+     }*/
     function TreePanelComponent(database, robotService) {
         var _this = this;
-        this.selectedDevice = "";
+        this.selectedDevice = "No Item Selected";
         this.isJoint = true;
+        this.fault = 0;
         this.transformer = function (node, level) {
             var flatNode = new DeviceFlatNode();
             flatNode.devicename = node.devicename;
+            //console.log(node);
+            flatNode.isChain = node.isChain;
             flatNode.type = node.type;
             flatNode.level = level;
             flatNode.isJoint = node.isJoint;
@@ -3782,19 +4201,47 @@ var TreePanelComponent = /** @class */ (function () {
         this.hasChild = function (_, _nodeData) { return _nodeData.expandable; };
         this.robotService = robotService;
         this.robotService.currentJointmsg.subscribe(function (msg) {
+            if (msg == null)
+                return;
+            if (Object.keys(msg).length < 1)
+                return;
             _this.selectedDevice = msg;
             _this.isJoint = _this.robotService.isJoint;
+            _this.jointId = _this.robotService.getJointId(_this.selectedDevice);
+            if (!_this.isJoint) {
+                _this.jointId = _this.robotService.getSensorId(_this.selectedDevice);
+                _this.fault = 0;
+            }
+            if (_this.isJoint) {
+                var isLastFault = false;
+                var currFault = _this.robotService.getCurrentFault(_this.selectedDevice);
+                var lastFault = _this.robotService.LastFaultMap.get(_this.selectedDevice);
+                if (lastFault != null && lastFault != "" && currFault != null && currFault == "") {
+                    _this.fault = 3;
+                    isLastFault = true;
+                }
+                if (currFault != null && currFault != "") {
+                    _this.fault = 2;
+                }
+                if (currFault != null && currFault == "" && !isLastFault) {
+                    _this.fault = 1;
+                }
+            }
         });
         this.treeFlattener = new _angular_material_tree__WEBPACK_IMPORTED_MODULE_2__["MatTreeFlattener"](this.transformer, this._getLevel, this._isExpandable, this._getChildren);
         this.treeControl = new _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_0__["FlatTreeControl"](this._getLevel, this._isExpandable);
         this.dataSource = new _angular_material_tree__WEBPACK_IMPORTED_MODULE_2__["MatTreeFlatDataSource"](this.treeControl, this.treeFlattener);
         database.dataChange.subscribe(function (data) {
             _this.dataSource.data = data;
+            _this.robotService.checklistSelection = new _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_8__["SelectionModel"](true, _this.treeControl.dataNodes);
         });
     }
     TreePanelComponent.prototype.ngOnInit = function () {
+        //console.log(this.dataSource);
     };
     TreePanelComponent.prototype.setActiveDevice = function (param, param1) {
+        if (param == null)
+            return;
         this.selectedDevice = param;
         //this.isJoint = this.robotService.isJoint;
         this.robotService.selectJointSensorName = param;
@@ -3803,18 +4250,94 @@ var TreePanelComponent = /** @class */ (function () {
             this.isJoint = this.robotService.isJoint;
         }
         if (param1 != null && param1) {
+            var isLastFault = false;
             this.jointId = this.robotService.getJointId(param);
             this.robotService.selectJointSensorId = this.jointId;
             this.robotService.selectJointSensorName = param;
+            var lastFault = this.robotService.LastFaultMap.get(this.selectedDevice);
+            if (lastFault != null && lastFault != "" && currFault != null && currFault == "") {
+                this.fault = 3;
+                isLastFault = true;
+            }
+            var currFault = this.robotService.getCurrentFault(this.selectedDevice);
+            if (currFault != null && currFault != "") {
+                this.fault = 2;
+            }
+            if (currFault != null && currFault == "" && !isLastFault) {
+                this.fault = 1;
+            }
+        }
+        if (param1 != null && !param1) {
+            this.jointId = this.robotService.getSensorId(param);
+            this.fault = 0;
         }
     };
-    TreePanelComponent.prototype.plotState = function (id, name) {
-        /*if(this.isJoint){
-          this.robotService.changeView("AllPlots");
-          this.timeout = setTimeout(()=>{
-            this.robotService.plotState(this.robotService.selectJointSensorId,this.robotService.selectJointSensorName);
-          },200);
-        }*/
+    TreePanelComponent.prototype.itemSelectionToggle = function (node) {
+        var _this = this;
+        this.robotService.checklistSelection.toggle(node);
+        var descendants = this.treeControl.getDescendants(node);
+        this.robotService.checklistSelection.isSelected(node)
+            ? (_a = this.robotService.checklistSelection).select.apply(_a, descendants) : (_b = this.robotService.checklistSelection).deselect.apply(_b, descendants);
+        // Force update for the parent
+        descendants.every(function (child) {
+            return _this.robotService.checklistSelection.isSelected(child);
+        });
+        this.checkAllParentsSelection(node);
+        var _a, _b;
+    };
+    TreePanelComponent.prototype.leafItemSelectionToggle = function (node) {
+        this.robotService.checklistSelection.toggle(node);
+        this.checkAllParentsSelection(node);
+        //console.log(this.robotService.checklistSelection.selected);
+    };
+    TreePanelComponent.prototype.descendantsAllSelected = function (node) {
+        var _this = this;
+        var descendants = this.treeControl.getDescendants(node);
+        var descAllSelected = descendants.every(function (child) {
+            return _this.robotService.checklistSelection.isSelected(child);
+        });
+        return descAllSelected;
+    };
+    TreePanelComponent.prototype.descendantsPartiallySelected = function (node) {
+        var _this = this;
+        var descendants = this.treeControl.getDescendants(node);
+        var result = descendants.some(function (child) { return _this.robotService.checklistSelection.isSelected(child); });
+        return result && !this.descendantsAllSelected(node);
+    };
+    TreePanelComponent.prototype.checkAllParentsSelection = function (node) {
+        var parent = this.getParentNode(node);
+        while (parent) {
+            this.checkRootNodeSelection(parent);
+            parent = this.getParentNode(parent);
+        }
+    };
+    TreePanelComponent.prototype.checkRootNodeSelection = function (node) {
+        var _this = this;
+        var nodeSelected = this.robotService.checklistSelection.isSelected(node);
+        var descendants = this.treeControl.getDescendants(node);
+        var descAllSelected = descendants.every(function (child) {
+            return _this.robotService.checklistSelection.isSelected(child);
+        });
+        if (nodeSelected && !descAllSelected) {
+            this.robotService.checklistSelection.deselect(node);
+        }
+        else if (!nodeSelected && descAllSelected) {
+            this.robotService.checklistSelection.select(node);
+        }
+    };
+    TreePanelComponent.prototype.getParentNode = function (node) {
+        var currentLevel = this._getLevel(node);
+        if (currentLevel < 1) {
+            return null;
+        }
+        var startIndex = this.treeControl.dataNodes.indexOf(node) - 1;
+        for (var i = startIndex; i >= 0; i--) {
+            var currentNode = this.treeControl.dataNodes[i];
+            if (this._getLevel(currentNode) < currentLevel) {
+                return currentNode;
+            }
+        }
+        return null;
     };
     TreePanelComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
